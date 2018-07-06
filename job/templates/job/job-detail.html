@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>{{job.title}}</h2>
+    <div class="job-detail">
+        <h4>Responsibilities: </h4>
+        {{job.responsibilities}}
+
+        <h4>Qualification: </h4>
+        {{job.qualification}}
+
+        <h4>Education: </h4>
+        {{job.education}}
+
+        <h4>Salary: </h4>
+        {{job.salary}}
+
+        <h4>Number of Openings: </h4>
+        {{job.no_opening}}
+    </div>
+
+</div>
+
+{% endblock %}

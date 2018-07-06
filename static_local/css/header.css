@@ -1,0 +1,8 @@
+.messages{
+    z-index: 9999;
+    list-style: none;
+    text-align: center;
+    color: white;
+    background-color: orange;
+    padding: 5px;
+}

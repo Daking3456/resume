@@ -1,0 +1,42 @@
+.left-tab {
+    background-color: aliceblue;
+    padding-left: 20px;
+    padding-right: 0;
+    padding-bottom: 20px;
+  }
+
+  .tabs-left {
+    border: unset;
+  }
+
+  .file-input-wrapper {
+    width: 200px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .file-input-wrapper>input[type="file"] {
+    font-size: 200px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+  }
+
+  .file-input-wrapper>.btn-file-input {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    background-color: #2196F3;
+    color: white;
+
+  }
+
+  .file-input-wrapper:hover>.btn-file-input {
+    background-color: rgba(33, 149, 243, 0.658);
+    cursor: pointer;
+  }
+  .tabs-left>li.active
+  {
+    z-index: 1;
+  }

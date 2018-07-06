@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block extrastyles %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block extracdn %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" >
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="search-space row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="search" placeholder="SEARCH BAR">
+            <div class="search-buttons">
+                <button type="button" class="btn btn-primary">SEARCH BUTTON</button>
+                <button type="button" class="btn btn-info">UPLOAD BUTON</button>
+            </div>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="search-result-table">
+        {% include 'job/job-list.html' %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extrascripts %}
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script>
+       $(document).ready(function() {
+           $('#result-table').DataTable();
+       } );
+    </script>
+
+{% endblock %}

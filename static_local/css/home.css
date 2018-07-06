@@ -1,0 +1,11 @@
+.search-buttons{
+    position: relative;
+    top: 8px;
+    text-align: center;
+}
+
+.post-tag{
+    background-color: #9ddef3;
+    padding: 10px;
+    line-height: 5;
+}

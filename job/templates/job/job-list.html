@@ -1,0 +1,12 @@
+
+<h2>Hot Jobs</h2>
+
+{% for job in jobs %}
+<div class="row">
+    <div class="col-lg-12 job-cat-list">
+        <h2><a href="job/{{job.slug}}">{{job.title}}</a></h2>
+        <p>{{job.company.name}}-{{job.company.address.country}}, {{job.company.address.city}}</p>
+
+    </div>
+</div>
+{% endfor %}

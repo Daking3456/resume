@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block extrastyles %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.vertical-tabs.css' %}">
+{% endblock %}
+
+{% block extrascripts %}
+<script src="http://jhollingworth.github.io/bootstrap-wysihtml5/src/bootstrap-wysihtml5.js"></script>
+<script src="http://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row" style="min-height:600px;">
+      <div class="col-sm-12">
+        <div class="col-xs-3 left-tab">
+          <!-- required for floating -->
+          <!-- Nav tabs -->
+          <h3>Sections</h3>
+          <ul class="nav nav-tabs tabs-left">
+            <li class="active">
+              <a href="#summary" data-toggle="tab">Profile Summary</a>
+            </li>
+			  <li>
+              <a href="#address" data-toggle="tab">Address</a>
+            </li>
+              <li>
+              <a href="#job-posting" data-toggle="tab">Job Posting</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-xs-9" style="border: 1px solid #ddd;">
+          <div class="tab-content">
+              <div class="tab-pane active" id="summary">
+                {% include 'accounts/summary.html' %}
+              </div>
+			  <div class="tab-pane" id="address">
+                {% include 'accounts/address.html' %}
+              </div>
+
+              <div class="tab-pane" id="job-posting">
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+  </div>
+</div>
+{% endblock %}

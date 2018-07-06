@@ -1,0 +1,14 @@
+<h2> Hello, {{user.username}} </h2>
+<hr>
+<form method='POST' action="/profile/">{% csrf_token %}
+    <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="form-control" name="username" value="{{user.username}}">
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" name="email" value="{{user.email}}">
+    </div>
+    <hr>
+
+</form>
