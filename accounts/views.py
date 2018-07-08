@@ -3,8 +3,9 @@ from django.http import HttpResponseRedirect,HttpResponseNotFound
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import Group
+from django.db import transaction
 
-from job.models import Company, Address
+from accounts.models import Company, Address
 from accounts.forms import LoginForm, UserForm
 
 # View function for registration of user
@@ -12,7 +13,12 @@ def create_user(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
-            form.save()
+            address = Address.objects.create()
+
+            # Create user
+            user = form.save(commit=False)
+            user.address = address
+            user.save()
             messages.info(request, "created successfully!")
         else:
             messages.error(request, 'Something is Wrong!')
@@ -26,6 +32,7 @@ def create_user(request):
     return render(request,'create_user.html', context_dict)
 
 # View function for registration of company
+@transaction.atomic
 def create_company(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
@@ -43,9 +50,7 @@ def create_company(request):
             user_group.user_set.add(user)
 
             # Create company
-            Company.objects.create(name = form.cleaned_data['username'],
-                                   website = form.cleaned_data['website'],
-                                   address = address,
+            Company.objects.create(website = form.cleaned_data['website'],
                                    user = user)
             messages.info(request, "Company created successfully!")
         else:
@@ -74,6 +79,10 @@ def login_page(request):
             else:
                 messages.error(request,'Invalid login credentials!')
                 return render(request, 'login.html')
+        else:
+            messages.error(request,'Invalid login credentials!')
+            return render(request, 'login.html')
+
     else:
         form = LoginForm()
         return render(request,'login.html',{'forms':form})
@@ -84,4 +93,5 @@ def logout_page(request):
     return HttpResponseRedirect('/accounts/login/')
 
 def accounts_profile(request):
+
     return render(request,'accounts/profile.html')

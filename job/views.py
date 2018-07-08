@@ -4,8 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 
 from job.forms import JobForm
-from job.models import Job, Company, Address
-
+from job.models import Job
+from accounts.models import Company, Address
+            
 # This function is for the authorization
 def job_poster(user):
     return user.groups.filter(name='company').exists()
