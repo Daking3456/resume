@@ -6,6 +6,7 @@ from django.contrib.auth.models import Group
 from django.db import transaction
 
 from accounts.models import Company, Address
+from job.models import Applicant, Job
 from accounts.forms import LoginForm, UserForm
 
 # View function for registration of user
@@ -93,5 +94,17 @@ def logout_page(request):
     return HttpResponseRedirect('/accounts/login/')
 
 def accounts_profile(request):
+    user = request.user
 
-    return render(request,'accounts/profile.html')
+    if user.is_company == True :
+        company = Company.objects.get(user = user)
+        job_posted = Job.objects.filter(company = company)
+
+        context_dict = {'job_posted':job_posted}
+
+    else:
+        job_applied = Applicant.objects.filter(applicant = user  )
+        context_dict = {'job_applied': job_applied }
+
+
+    return render(request,'accounts/profile.html', context_dict)

@@ -1,0 +1,26 @@
+<div class="container">          
+  <div class="col-xs-8" >
+   <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Title</th>
+        <th>Company</th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for applicant in job_applied %}
+      <tr>
+        <td>{{applicant.date_applied|date:'Y-m-d'}}</td>
+        <td>{{applicant.job.title}}</td>
+        <td>{{applicant.job.company.user.username}}</td>
+        
+      </tr>
+      {% endfor%}
+     
+    </tbody>
+  </table>
+</div>
+</div>

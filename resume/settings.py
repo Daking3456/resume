@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     # my apps
     'job',
     'accounts',
+
+    'datetimewidget',
 ]
 
 MIDDLEWARE = [

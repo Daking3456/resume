@@ -37,7 +37,6 @@ class UserManager(BaseUserManager):
 			raise ValueError('User must have email address')
 
 		email = self.normalize_email(email)
-		# since address cannot be null added address
 		temp_address = Address.objects.create()
 		user = self.model(username=username, email=email, address=temp_address, **extra_fields)
 		user.set_password(password)

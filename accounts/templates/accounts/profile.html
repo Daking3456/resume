@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% load static %}
+{% load auth_extras %}
 
 {% block extrastyles %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.vertical-tabs.css' %}">
@@ -25,9 +26,17 @@
 			  <li>
               <a href="#address" data-toggle="tab">Address</a>
             </li>
+            {% if user|has_group:"company" %}
               <li>
               <a href="#job-posting" data-toggle="tab">Job Posting</a>
             </li>
+             {% else %}
+
+            <li>
+              <a href="#job-applied" data-toggle="tab">Job Applied</a>
+            </li>
+            {% endif %}
+
           </ul>
         </div>
 
@@ -39,10 +48,15 @@
 			  <div class="tab-pane" id="address">
                 {% include 'accounts/address.html' %}
               </div>
-              
               <div class="tab-pane" id="job-posting">
+                 {% include 'accounts/jobpostings.html' %}
+              </div>
+              <div class="tab-pane" id="job-applied">
+                 {% include 'accounts/jobapplied.html' %}
 
               </div>
+              
+
 
             </div>
           </div>

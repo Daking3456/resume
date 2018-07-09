@@ -1,0 +1,27 @@
+
+<div class="container">    
+<div class="col-xs-8">      
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Title</th>
+        <th>No of opening</th>
+       
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for job in job_posted %}
+      <tr>
+        <td>{{job.created_at|date:'Y-m-d'}}</td>
+        <td>{{job.title}}</td>
+        <td>{{job.no_opening}}</td> 
+      </tr>
+      {% endfor%}
+     
+    </tbody>
+  </table>
+</div>
+</div>
