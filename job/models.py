@@ -23,6 +23,8 @@ class Job(models.Model):
     salary = models.IntegerField(null=True, blank=True)
     no_opening = models.IntegerField(null= True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    description = models.TextField(null=True, blank=True)
+    requirements = models.TextField(null=True, blank=True)
 
     type_of_job = models.CharField(max_length=100)
     job_field = models.ForeignKey(Field, on_delete=models.CASCADE)
@@ -49,7 +51,9 @@ class Job(models.Model):
 class Applicant (models.Model):
     job = models.ForeignKey(Job, on_delete= models.CASCADE)
     applicant = models.ForeignKey(User, on_delete=models.CASCADE)
+    resume = models.FileField(upload_to="uploads/resume/%Y/%m/%d/")
     date_applied = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         return ('{}{}'.format(self.applicant.username, self.job.title))

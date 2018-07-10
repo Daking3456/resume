@@ -96,15 +96,28 @@ def logout_page(request):
 def accounts_profile(request):
     user = request.user
 
-    if user.is_company == True :
-        company = Company.objects.get(user = user)
-        job_posted = Job.objects.filter(company = company)
-
-        context_dict = {'job_posted':job_posted}
+    if request.method == "POST":
+        address = Address.objects.create(
+            city=request.POST.get("city"),
+            country=request.POST.get("country"),
+            zip_code=request.POST.get("zip_code"),
+            address1=request.POST.get("address1"),
+            address2=request.POST.get("address2"),
+            )
+        user.address = address
+        user.save()
+        return HttpResponseRedirect('/accounts/profile/')
 
     else:
-        job_applied = Applicant.objects.filter(applicant = user  )
-        context_dict = {'job_applied': job_applied }
+        if user.is_company == True :
+            company = Company.objects.get(user = user)
+            job_posted = Job.objects.filter(company = company).order_by('-created_at')
 
+            for job in job_posted:
+                print(job.created_at)
+            context_dict = {'job_posted':job_posted}
+        else:
+            job_applied = Applicant.objects.filter(applicant=user).order_by('-date_applied')
+            context_dict = {'job_applied': job_applied }
 
     return render(request,'accounts/profile.html', context_dict)

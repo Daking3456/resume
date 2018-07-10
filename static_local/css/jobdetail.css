@@ -1,0 +1,131 @@
+/*for the class in right side i.e relatable job*/
+.relatable{
+	/*background-color: #F9F3F3   ;*/
+	padding:10px;
+	border-radius: 10px;
+	
+}
+
+.mains{
+	
+	padding:10px;
+}
+
+/*for button 1 i.e. apply now*/
+
+.buttons1{
+
+	background-color: #adc22a;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	margin-left: 5px;
+	width: 49%;
+	height: 60px;
+	}
+
+h6{
+	font-style:bold !important;
+}
+
+.buttons1:hover {
+  background-color: #bdc22b  ;
+ 
+}
+
+.buttons1:active {
+  background-color: #129413;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+/*------------------------*/
+
+
+.lin{
+	float:left;
+}
+
+tr td{
+	padding:15px;
+	font-size: 20px;
+}
+
+.tds{
+	font-style: bold;
+}	
+
+/*for button 2 i.e. apply now with linkedin*/
+
+
+.buttons2{
+
+	 background-color: #0077B5;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	width: 49%;
+	height: 60px;	
+}
+
+.buttons2:active {
+  background-color: #0077B5;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.buttons2:hover {
+  background-color: #3077c6;
+ 
+}
+
+/*------------------------*/
+
+.view{
+	text-align: left;
+}
+
+.jumbotron {
+	background-color: white !important;
+}
+
+.breadcrumb{
+	background-color: #F9F3F3 !important;
+	font-size: 12px;
+
+}
+
+ol li a{
+	color:#a85a4d  !important;
+}
+
+a{
+	color:#a85a4d !important;
+}
+
+
+ a i{
+ 	margin-left: 20px;
+ 	cursor: pointer;
+ 	text-decoration: none;
+ }
+
+ .lead{
+ 	font-family: times new roman;
+ }
+
+.imp{
+	color: #a85a4d;
+}

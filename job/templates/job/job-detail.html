@@ -1,23 +1,25 @@
 {% extends 'layout.html' %}
+{% load static %}
 
+{% block extrastyles %}
+<link rel="stylesheet" href="{% static 'css/jobdetail.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock %}
 {% block content %}
+<div class="container">
 <div class="row">
     <!--left part of the page-->
-
         <div class="col-sm-8">
             <div class = "mains">               
-                <h2>{{job.ttitle}}</h2> <!--Title for the job-->
+                <h2>{{job.title}}</h2> <!--Title for the job-->
                     <div class="view">Date of publish
                         :<span class="imp"> {{job.created_at}}</span> &nbsp;&nbsp;&nbsp; 
                         | &nbsp;&nbsp; Apply Before : <span class="imp"> {{job.deadline}} </span><br><br>
                     </div>
-
-                <a href="/apply/{{job.slug}}/"><button class="buttons1" type="submit">APPLY NOW</button></a>
-                <!--<button class="buttons2" type="submit"><i class="fa fa-linkedin fa-lg"></i>&nbsp;&nbsp; APPLY WITH LINKEDIN</button>-->
-  
+                {% include 'job/applymodal.html' %}
             </div>
-        
-
         <div class="mainsbody">
             <div class="jumbotron jumbotron-fluid">
             <div class="req">
@@ -48,36 +50,35 @@
                             <td><b>Field:</b></td>
                             <td>{{job.job_field}}</td>
                         </tr>
+                        <tr>
+                          <td><b>Education:</b></td>
+                          <td>{{job.education}}</td>
+                        </tr>
 
-              <tr>
-                <td><b>Education:</b></td>
-                <td>{{job.educaton}}</td>
-              </tr>
+                         <tr>
+                          <td><b>Qualification:</b></td>
+                          <td>{{job.qualification}}</td>
+                        </tr>
 
-               <tr>
-                <td><b>Qualification:</b></td>
-                <td>{{job.qualification}}</td>
-              </tr>
+                        <tr>
+                          <td><b>Responsibilities:</b></td>
+                          <td>{{job.responsibilities}}</td>
+                        </tr>
 
-              <tr>
-                <td><b>Responsibilities:</b></td>
-                <td>{{job.reponsiibility}}</td>
-              </tr>
-
-               <tr>
-                <td><b>No of opening:</b></td>
-                <td>{{job.no_opening}}</td>
-              </tr>
+                         <tr>
+                          <td><b>No of opening:</b></td>
+                          <td>{{job.no_opening}}</td>
+                        </tr>
 
                
 
                     </table>
-                </div>
-                <hr>
+                  </div>
+                  <hr>
 
                  <h2 class="display-4">Description</h2>
                 <p class="lead">
-            {{job.descripption}}
+            {{job.description}}
                              
 
                             <!-- <br><br>By clicking 'Apply Now' you are agreeing to Robert Half <a href="#">Terms of Use.</a></p> -->
@@ -86,19 +87,18 @@
                 <p class="lead">
             {{job.requirements}}
             </div>
-
-            <div class="rr">
-                <hr>
-                <a href="/apply/{{job.slug}}/"><button class="buttons1" type="submit">APPLY NOW</button></a>
-            </div>
+          
+            {% include 'job/applymodal.html' %}
+                
+            
 
             <div class = "info">
                 <hr>
                 <h3><div class="companynamee">{{job.company.user.username}}</div></h3><!--place for company detail-->
-                    {{job.company.address.address1}}<br>
-                    {{job.company.address.country}}<br>
-                    {{job.company.address.zip_code}}<br>
-                    {{company.user.website}}<br>
+                    {{job.company.user.address.address1}}<br>
+                    {{job.company.user.address.country}}<br>
+                    {{job.company.user.address.zip_code}}<br>
+                    {{job.company.user.website}}<br>
             </div>
 
             </div>
@@ -135,78 +135,33 @@
                     Help Desk Analyst III
               </a>
                  <br>
-                                   <span class="rh-job-result-sidebar__job-details">OKC, OK</span>
+                    <span class="rh-job-result-sidebar__job-details">OKC, OK</span>
                 <br>
-                                    <span class="rh-job-result-sidebar__job-details">Contract</span>
+                    <span class="rh-job-result-sidebar__job-details">Contract</span>
                 <br>
-                                    <span class="rh-job-result-sidebar__job-details">July 6, 2018</span>
-                <br>
-            </div>
-
-            <hr>
-
-            <div class="rh-job-result-sidebar__job-summary">
-              <a class="rh-job-result-sidebar__job-title" href="/job/okc-ok/help-desk-analyst-iii/03500-0010077781" rel="nofollow">
-                    Help Desk Analyst III
-              </a>
-                 <br>
-                                   <span class="rh-job-result-sidebar__job-details">OKC, OK</span>
-                <br>
-                                    <span class="rh-job-result-sidebar__job-details">Contract</span>
-                <br>
-                                    <span class="rh-job-result-sidebar__job-details">July 6, 2018</span>
+                    <span class="rh-job-result-sidebar__job-details">July 6, 2018</span>
                 <br>
             </div>
-
             <hr>
-
-            <div class="rh-job-result-sidebar__job-summary">
-              <a class="rh-job-result-sidebar__job-title" href="/job/okc-ok/help-desk-analyst-iii/03500-0010077781" rel="nofollow">
-                    Help Desk Analyst III
-              </a>
-                 <br>
-                                   <span class="rh-job-result-sidebar__job-details">OKC, OK</span>
-                <br>
-                                    <span class="rh-job-result-sidebar__job-details">Contract</span>
-                <br>
-                                    <span class="rh-job-result-sidebar__job-details">July 6, 2018</span>
-                <br>
-            </div>
-
-            <hr>
-
-            <div class="rh-job-result-sidebar__job-summary">
-              <a class="rh-job-result-sidebar__job-title" href="/job/okc-ok/help-desk-analyst-iii/03500-0010077781" rel="nofollow">
-                    Help Desk Analyst III
-              </a>
-                 <br>
-                                   <span class="rh-job-result-sidebar__job-details">OKC, OK</span>
-                <br>
-                                    <span class="rh-job-result-sidebar__job-details">Contract</span>
-                <br>
-                                    <span class="rh-job-result-sidebar__job-details">July 6, 2018</span>
-                <br>
-            </div>
-
-            <hr>
-
-            <div class="rh-job-result-sidebar__job-summary">
-              <a class="rh-job-result-sidebar__job-title" href="/job/okc-ok/help-desk-analyst-iii/03500-0010077781" rel="nofollow">
-                    Help Desk Analyst III
-              </a>
-                 <br>
-                                   <span class="rh-job-result-sidebar__job-details">OKC, OK</span>
-                <br>
-                                    <span class="rh-job-result-sidebar__job-details">Contract</span>
-                <br>
-                                    <span class="rh-job-result-sidebar__job-details">July 6, 2018</span>
-                <br>
-            </div>
-
-            <hr>
-
-            <a href="#" class="rh-job-page__sidebar-see-more" rel="nofollow">See More Jobs &gt;</a>
-        </div>
-      </div>
-    </div>
 {% endblock %}
+</div>
+</div>
+</p>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>

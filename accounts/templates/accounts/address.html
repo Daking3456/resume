@@ -1,5 +1,7 @@
  <h3> Your Address Information</h3>
     <hr>
+    <form method="post">
+    {% csrf_token %}
     <div class="form-group">
         <label>Country</label>
         <input type="text" class="form-control" name="country" value="{{user.address.country}}">
@@ -24,4 +26,5 @@
     <div class="form-group">
         <button class='btn btn-primary' type='submit'>Edit</button>
     </div>
+    </form>
 

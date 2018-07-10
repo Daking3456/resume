@@ -6,5 +6,5 @@ urlpatterns = [
     path('accounts/create/company/',views.create_company, name="createcompany"),
     path('accounts/login/',views.login_page,name="login"),
     path('accounts/logout/',views.logout_page,name="logout"),
-    path('accounts/profile',views.accounts_profile,name='accounts_profile'),
+    path('accounts/profile/',views.accounts_profile,name='accounts_profile'),
 ]

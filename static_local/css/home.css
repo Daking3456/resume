@@ -1,11 +1,193 @@
-.search-buttons{
-    position: relative;
-    top: 8px;
-    text-align: center;
+
+
+body{
+	background-image: url('/static/image/wallpaper.jpg');
+	max-height: 10px;
+	background-repeat: no-repeat;
+	background-size: 100% 400px;
 }
 
-.post-tag{
-    background-color: #9ddef3;
-    padding: 10px;
-    line-height: 5;
+
+.input-group-btn1{
+	width: 100% !important;
+
 }
+
+.forsearch
+{	
+	margin-top: 80px;		
+	padding: 20px;	
+	width: 50%;
+	margin:auto;
+}
+
+.text
+{
+	color: #2E4053;
+	margin-top: 200px;
+	margin-bottom: 5px;
+	text-align: center;
+	font-style: bold;
+	font-size: 30px;
+}
+
+
+/*for button 1 i.e. apply now*/
+
+.buttons1
+{
+	border:solid #E8F8F5  ;
+	background-color: ;
+	text-align: center;
+    color: white;
+    padding: 10px ;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;    	
+	width: 100%;
+	max-height: 30px;
+
+	
+}
+
+.buttons1>a
+{
+	text-decoration: none;
+	cursor: pointer; 
+}
+
+
+.buttons1:hover 
+{
+  background-color: ;
+ 
+}
+/*------------------------*/
+
+.buttons2
+{
+	border:solid grey;
+    text-align:center;   
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;   
+    font-size: 16px;   
+	width: 100%;
+	max-height: 30px;	
+	
+}
+.buttons2:hover 
+{
+  background-color: ;
+ 
+}
+.every
+{
+	margin: auto;
+}
+.sponsor
+{
+	font-size: 20px;
+	font-style: bold;	
+	padding:20px;
+	width:100%;
+	background-color: #eaebed;
+	margin-top: 30px;
+
+}
+.card-title
+{
+	font-size: bold !important;
+	
+}
+
+.row
+{
+	margin-left: 5px;
+}
+.hot
+{
+	font-size: 20px;	
+	text-align:center;
+	margin-bottom: 20px;
+	font-weight: bolder;
+}
+.ad
+{
+
+border-radius: 10px;
+padding: 10px;
+min-height: 400px;
+min-width: 100px;
+}
+
+.logi
+{
+	background-color: #efefef;
+	padding:10px;
+	border-radius: 20px;
+}
+img
+{
+	height: 100px;
+	width:100px;
+}
+.jobdetails
+{
+	color:2E4053;
+	text-align: center;
+}
+.jobsn{
+	
+	max-height: 30px;
+}
+.companyimg
+{
+	border-style:  solid;
+	height: 10px;
+	width: 10px;
+	margin-right: 30px;
+}
+.spatialism-sec{
+    
+    padding: 20px;
+   
+}
+
+ul li 
+{
+	padding:3px;
+	border-left: solid #fbFfff;
+	background-color: #F8F9F9  ;
+	list-style: none;
+	border-bottom: solid #fbFfff;
+}
+.titles
+{
+	text-align: center;
+	margin-top: 3px;
+	padding: 10px;
+	font-size: 30px;
+}
+.alljobs
+{
+	text-align: right;
+	margin-top: -2px;
+
+}
+
+a{
+	color:#5DADE2   !important;
+	text-align:center ;
+}
+.sear
+{
+	margin: auto;
+	float:unset !important;
+}
+.tocenter
+{
+	text-align:center;
+}
+

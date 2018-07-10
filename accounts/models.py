@@ -134,6 +134,7 @@ class Company(models.Model):
         return ('{}'.format(self.user.username))
 
     def save(self, **kwargs):
+        self.user.address = Address.objects.create()
         slug_str = "%s" % (self.user.username)
         self.slug = slugify(self, slug_str)
         super(Company, self).save(**kwargs)
