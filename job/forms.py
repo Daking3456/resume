@@ -14,4 +14,10 @@ class JobForm(forms.Form):
     type_of_job = forms.CharField(max_length=100)
     deadline = forms.DateTimeField(widget=DateTimeWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3))
 
+class JobModelForm(forms.ModelForm):
+    class Meta:
+        model = Job
+        fields = '__all__'
+        exclude = ['slug','is_featured','created_at','status','company']
+
 

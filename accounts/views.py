@@ -15,7 +15,6 @@ def create_user(request):
         form = UserForm(request.POST)
         if form.is_valid():
             address = Address.objects.create()
-
             # Create user
             user = form.save(commit=False)
             user.address = address

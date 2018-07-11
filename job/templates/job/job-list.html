@@ -1,17 +1,21 @@
 <div class="container">
 <h2>Hot Jobs</h2>
 
-{% for job in jobs %}
 
 
 <div class="row">
     <div class="col-lg-12">
+    	{% for job in jobs %}
+
         
-        <li class="col-lg-3 col-md-3 col-sm-6 col-xs-12">{{job.title}}<br><a href="/job/{{job.slug}}/">
-        	<h3>{{job.company.user.username}}<br>{{job.company.user.address.country}}, {{job.company.user.address.city}}
-        </h3></a></li>
+        <li class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        	<h4><a href="/job/{{job.slug}}/">{{job.title}}</a></h4><br>
+        
+        {{job.company.user.username}}<br>{{job.company.user.address.country}}, {{job.company.user.address.city}}
+        <hr>
+        {% endfor %}
     </div>
 </div>
 
-{% endfor %}
+
       </div>

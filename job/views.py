@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 
-from job.forms import JobForm
+from job.forms import JobForm, JobModelForm
 from job.models import Job, Field, Applicant
 from accounts.models import Company, Address
             
@@ -18,37 +18,28 @@ def load_home(request):
 
 def post_job(request):
     if request.method == 'POST':
-        form = JobForm(request.POST)
+        form = JobModelForm(request.POST)
         if form.is_valid():
             company = Company.objects.get(user=request.user)
-            Job.objects.create(
-                title = form.cleaned_data['title'],
-                responsibilities = form.cleaned_data['responsibilities'],
-                qualification = form.cleaned_data['qualification'],
-                education = form.cleaned_data['education'],
-                salary = form.cleaned_data['salary'],
-                no_opening = form.cleaned_data['no_opening'],
-                company = company,
-                description = form.cleaned_data['description'],
-                requirements = form.cleaned_data['requirements'],
-                job_field = Field.objects.get(id=request.POST.get("Field")),
-                deadline = form.cleaned_data['deadline']
-            )
+            job = form.save(commit=False)
+            job.company = company
+            form.save()
             messages.success(request,'Job Posted Successfully!')
         else:
             messages.error(request,'Something is Wrong, try again!')
         return render(request, 'job/postjob.html')
     else:
         form = JobForm()
+        # To display different options for job field
         fields = Field.objects.all()
         context_dict = {'form':form, 'fields':fields}
         return render(request, 'job/postjob.html',context_dict)
 
 def job_detail(request,slug):
     job = Job.objects.get(slug=slug)
-    user = request.user
 
     if request.method == 'POST' and request.FILES['resume']: 
+        user = request.user
         user.username =request.POST.get('username')
         user.email = request.POST.get('email')
         print(request.POST.get('username'))
@@ -64,13 +55,9 @@ def job_detail(request,slug):
         else:
             Applicant.objects.create(job=job, applicant=user, resume=resume)
             messages.success(request,'Job applied Successfully!')
-
-    status = False
-    check = True
-    if Applicant.objects.filter(job=job, applicant=user):
-        status = True
-    context_dict = {'job':job, 'staus':status, 'check':check}
-        
+            
+    related_jobs = Job.objects.filter(job_field= job.job_field)
+    context_dict = {'job':job, 'related_jobs': related_jobs}
     return render(request,'job/job-detail.html',context_dict)
 
 def apply_job(request, slug):
@@ -84,4 +71,30 @@ def apply_job(request, slug):
         
     return HttpResponseRedirect('/')
 
+def edit_job(request, slug):
+    if request.method == 'POST':
+        job = Job.objects.get(slug=slug)
+        form = JobModelForm(request.POST, instance=job)
+        if form.is_valid():
+            
+            company = Company.objects.get(user=request.user)
+            job = form.save()
+            messages.success(request,'Job Posting Edited!')
+        else:
+            messages.error(request,'Something is Wrong, try again!')
+        return HttpResponseRedirect('/')
+    else:
+        form = JobForm()
+        job = Job.objects.get(slug=slug)
+        # To display different options for job field
+        fields = Field.objects.all()
+        context_dict = { 'form':form,'fields':fields, 'job':job}
+        return render(request, 'job/edit-job.html',context_dict)
 
+
+def see_applicants(request, slug):
+    job = Job.objects.get(slug = slug)
+    applicants = Applicant.objects.filter(job=job)
+
+
+    return render(request,'job/view-applicants.html',{'applicants':applicants} )

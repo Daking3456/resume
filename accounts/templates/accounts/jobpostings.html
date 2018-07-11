@@ -7,6 +7,8 @@
         <th>Date</th>
         <th>Title</th>
         <th>No of opening</th>
+        <th>Edit</th>
+        <th>View Applicants</th>
        
         
       </tr>
@@ -17,7 +19,12 @@
       <tr>
         <td>{{job.created_at|date:'Y-m-d'}}</td>
         <td>{{job.title}}</td>
-        <td>{{job.no_opening}}</td> 
+        <td>{{job.no_opening}}</td>
+        <td><a href="/job/edit/{{job.slug}}">
+          <span class="glyphicon glyphicon-edit"></span>
+        </a></td>
+        <td><a href="/job/applicants/{{job.slug}}" > View</a></td>
+
       </tr>
       {% endfor%}
      

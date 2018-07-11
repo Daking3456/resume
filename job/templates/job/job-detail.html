@@ -9,159 +9,179 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-<div class="row">
+
+    <!--Indicate the current page’s location within a navigational hierarchy-->
+
+  <div class="row">
     <!--left part of the page-->
-        <div class="col-sm-8">
-            <div class = "mains">               
-                <h2>{{job.title}}</h2> <!--Title for the job-->
-                    <div class="view">Date of publish
-                        :<span class="imp"> {{job.created_at}}</span> &nbsp;&nbsp;&nbsp; 
-                        | &nbsp;&nbsp; Apply Before : <span class="imp"> {{job.deadline}} </span><br><br>
+
+      <div class="col-sm-8 mainbody">
+        <div class = "mains">         
+          <h2>{{job.title}}</h2> <!--Title for the job-->
+            <div class="view">Date of publish
+              :<span class="imp">{{job.created_at}}</span> &nbsp;&nbsp;&nbsp; 
+              | &nbsp;&nbsp; Apply Before : <span class="imp">{{job.deadline}}</span><br><br>
+            </div>
+
+            <!-- ************************************-->
+              <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary buttons1" data-toggle="modal" data-target="#exampleModalLong">
+  Apply now
+</button>
+
+ <hr class="style2">
+
+<!-- Modal -->
+          <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    
+                    <div class="modal-header">
+
+                      <h3 class="modal-title">Apply</h3>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                     </div>
-                {% include 'job/applymodal.html' %}
+
+                   <div class="modal-body" style="padding:40px 50px;">
+          <form role="form" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              {% csrf_token %}
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Name</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter Name" name="username">
             </div>
-        <div class="mainsbody">
-            <div class="jumbotron jumbotron-fluid">
-            <div class="req">
-                <hr>
-                <div class = "detail">
-                    <table border= "0">
-                        <tr>
-                            <td><b>Salary:</b></td>
-                            <td>{{job.salary}}</td>
-                        </tr>
-
-                        <tr>
-                            <td><b>Location:</b></td>
-                            <td>{{job.location}}</td>
-                        </tr>
-
-                        <tr>
-                            <td><b>Date Posted:</b></td>
-                            <td>{{job.created_at}}</td>
-                        </tr>
-
-                        <tr>
-                            <td><b>Employment Type:</b></td>
-                            <td>{{job.type_of_job}}</td>
-                        </tr>
-
-                        <tr>
-                            <td><b>Field:</b></td>
-                            <td>{{job.job_field}}</td>
-                        </tr>
-                        <tr>
-                          <td><b>Education:</b></td>
-                          <td>{{job.education}}</td>
-                        </tr>
-
-                         <tr>
-                          <td><b>Qualification:</b></td>
-                          <td>{{job.qualification}}</td>
-                        </tr>
-
-                        <tr>
-                          <td><b>Responsibilities:</b></td>
-                          <td>{{job.responsibilities}}</td>
-                        </tr>
-
-                         <tr>
-                          <td><b>No of opening:</b></td>
-                          <td>{{job.no_opening}}</td>
-                        </tr>
-
-               
-
-                    </table>
-                  </div>
-                  <hr>
-
-                 <h2 class="display-4">Description</h2>
-                <p class="lead">
-            {{job.description}}
-                             
-
-                            <!-- <br><br>By clicking 'Apply Now' you are agreeing to Robert Half <a href="#">Terms of Use.</a></p> -->
-
-                <h2 class="display-4">Requirement</h2>
-                <p class="lead">
-            {{job.requirements}}
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+              <input type="text" class="form-control" id="psw" name="email" placeholder="Enter Email address">
             </div>
-          
-            {% include 'job/applymodal.html' %}
-                
-            
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-file"></span> Upload CV</label>
+              <input type="file" class="form-control" id="usrname" placeholder="Upload CV" name="resume">
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Apply</button>
+          </form>
+        </div>
+                      </div>
+                </div>
+          </div>
+
+            <!-- ************************************-->
+
+        
+          <!--<button class="buttons2" type="submit"><i class="fa fa-linkedin fa-lg"></i>&nbsp;&nbsp; APPLY WITH LINKEDIN</button>-->
+
+        </div>
+
+      <div class="mainsbody">
+        <div class="jumbotron jumbotron-fluid">
+        <div class="req">
+        
+          <div class = "detail">
+            <table border= "0">
+              <tr>
+                <td><b>Salary:</b></td>
+                <td>{{job.salary}}</td>
+              </tr>
+              <tr>
+                <td><b>Employment Type:</b></td>
+                <td>{{job.type_of_job}}</td>
+              </tr>
+
+              <tr>
+                <td><b>Field:</b></td>
+                <td>{{job.job_field}}</td>
+              </tr>
+
+              <tr>
+                <td><b>Education:</b></td>
+                <td>{{job.education}}</td>
+              </tr>
+
+               <tr>
+                <td><b>Qualification:</b></td>
+                <td>{{job.qualification}}</td>
+              </tr>
+
+              <tr>
+                <td><b>Responsibilities:</b></td>
+                <td>{{job.responsibilities}}</td>
+              </tr>
+
+               <tr>
+                <td><b>No of opening:</b></td>
+                <td>{{job.no_opening}}</td>
+              </tr>
+            </table>
+          </div>
+          <hr class="style1">
+
+           <h2 class="display-4">Description</h2>
+          <p class="lead">
+          {{job.description}}   
+          </p>
+
+        <h2 class="display-4">Requirement</h2>
+          <p class="lead"> {{job.requirements}}</p>
+        </div>
+
+        <button type="button" class="btn btn-primary buttons1" data-toggle="modal" data-target="#exampleModalLong">
+  Apply now
+</button>
 
             <div class = "info">
-                <hr>
-                <h3><div class="companynamee">{{job.company.user.username}}</div></h3><!--place for company detail-->
+              <hr class="style1">
+              <h3><div class="companynamee">{{job.company.user.username}}</div></h3><!--place for company detail-->
                     {{job.company.user.address.address1}}<br>
                     {{job.company.user.address.country}}<br>
                     {{job.company.user.address.zip_code}}<br>
                     {{job.company.user.website}}<br>
             </div>
 
-            </div>
-        </div>
 
-        </div>
+      </div>
+    </div>
 
-       <div class="col-sm-3">
+      </div>
+
+       <div class="col-sm-4">
         <!--shows relatable job on the right side-->
         <div class = "relatable">
-          <div class="backtosearchresult">
+         <!--  <div class="backtosearchresult">
               <a href = "#"> <i class="fa fa-chevron-left" style="font-size:13px"></i> Back to search result </a>
-          </div>
-        <h3>Relatable Jobs</h3>
-        <hr>
-        
-        <div class="rh-job-result-sidebar__job-summary">
-              <a class="rh-job-result-sidebar__job-title" href="/job/okc-ok/help-desk-analyst-iii/03500-0010077781" rel="nofollow">
-                    Help Desk Analyst III
-              </a>
+          </div> -->
+        <h3>Relatable Jobs</h3>        
+             {% for related_job in related_jobs %}   
+            <div class="summ">
+                      
+                <h3><a href="/job/{{related_job.slug}}/"> {{related_job.title}}</a></h3>
+                
                  <br>
-                                   <span class="rh-job-result-sidebar__job-details">OKC, OK</span>
-                <br>
-                                    <span class="rh-job-result-sidebar__job-details">Contract</span>
-                <br>
-                                    <span class="rh-job-result-sidebar__job-details">July 6, 2018</span>
-                <br>
-            </div>
 
-            <hr>
-
-            <div class="rh-job-result-sidebar__job-summary">
-              <a class="rh-job-result-sidebar__job-title" href="/job/okc-ok/help-desk-analyst-iii/03500-0010077781" rel="nofollow">
-                    Help Desk Analyst III
-              </a>
-                 <br>
-                    <span class="rh-job-result-sidebar__job-details">OKC, OK</span>
+                    <span class="rh-job-result-sidebar__job-details">{{related_job.comapany.user.username}}</span>
                 <br>
                     <span class="rh-job-result-sidebar__job-details">Contract</span>
                 <br>
-                    <span class="rh-job-result-sidebar__job-details">July 6, 2018</span>
+                    <span class="rh-job-result-sidebar__job-details">deadline: {{related_job.deadline}}</span>
                 <br>
+                
             </div>
-            <hr>
+             {% endfor %}   
+            
+              
+
+           
+        </div>
+      </div>
+      
+
+
+
+      
+  </div>
+</div>
+
 {% endblock %}
-</div>
-</div>
-</p>
-</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 
+ 
 
-
-
-<script>
-$(document).ready(function(){
-    $("#myBtn").click(function(){
-        $("#myModal").modal();
-    });
-});
-</script>

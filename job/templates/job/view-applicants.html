@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container">
+  <h2>Applicants for {{applicant.job.title}}</h2>            
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+      	<th>Date Applied</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Resume</th>
+      </tr>
+    </thead>
+    <tbody>
+ 	{% for applicant in applicants%}
+      <tr>
+      	<td>{{applicant.date_applied|date:'Y-m-d'}}</td>
+        <td>{{applicant.applicant.username}}</td>
+        <td>{{applicant.applicant.email}}</td>
+        <td>
+		<a <a href="/media/{{applicant.resume}}/" download="{{applicant.resume}}" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-download-alt"></span> Download
+        </a>   </td>   
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+        
+{% endblock %}

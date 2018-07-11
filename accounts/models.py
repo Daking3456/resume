@@ -35,10 +35,8 @@ class UserManager(BaseUserManager):
 	def _create_user(self,username, email, password, **extra_fields):
 		if not email:
 			raise ValueError('User must have email address')
-
 		email = self.normalize_email(email)
-		temp_address = Address.objects.create()
-		user = self.model(username=username, email=email, address=temp_address, **extra_fields)
+		user = self.model(username=username, email=email, **extra_fields)
 		user.set_password(password)
 		user.save(using=self._db)
 		return user
@@ -134,7 +132,6 @@ class Company(models.Model):
         return ('{}'.format(self.user.username))
 
     def save(self, **kwargs):
-        self.user.address = Address.objects.create()
         slug_str = "%s" % (self.user.username)
         self.slug = slugify(self, slug_str)
         super(Company, self).save(**kwargs)
