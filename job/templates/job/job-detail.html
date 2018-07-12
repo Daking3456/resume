@@ -63,11 +63,11 @@
             <div class="form-group">
               {% csrf_token %}
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Name</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter Name" name="username">
+              <input type="text" class="form-control" id="usrname" placeholder="Enter Name" name="username" value="{{ request.user.username }}">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-envelope"></span> Email</label>
-              <input type="text" class="form-control" id="psw" name="email" placeholder="Enter Email address">
+              <input type="text" class="form-control" id="psw" name="email" value="{{request.user.email}}" placeholder="Enter Email address">
             </div>
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-file"></span> Upload CV</label>

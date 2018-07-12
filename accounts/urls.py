@@ -8,6 +8,9 @@ urlpatterns = [
     path('accounts/create/company/',views.create_company, name="createcompany"),
     path('accounts/login/',views.login_page,name="login"),
     path('accounts/logout/',views.logout_page,name="logout"),
+    
+    # using default auth view for pasword change and reset
+    
     path('accounts/profile/',views.accounts_profile,name='accounts_profile'),
     path('accounts/change_password/', auth_views.PasswordChangeView.as_view()),
     path('accounts/password_change/done/', auth_views.PasswordChangeDoneView.as_view(),name='password_change_done'),

@@ -37,21 +37,21 @@ def post_job(request):
 
 def job_detail(request,slug):
     job = Job.objects.get(slug=slug)
-
     if request.method == 'POST' and request.FILES['resume']: 
         user = request.user
         user.username =request.POST.get('username')
         user.email = request.POST.get('email')
-        print(request.POST.get('username'))
         user.save()
-        
         resume = request.FILES['resume']
+
+        # if User applies again to update their credentials
         if Applicant.objects.filter(job=job, applicant=user):
             applicant = Applicant.objects.get(job=job, applicant=user)
             applicant.delete()
             Applicant.objects.create(job=job, applicant=user, resume=resume)
             messages.success(request,'Reapplied with updated credentials')
-
+        
+        # Appling for the first time
         else:
             Applicant.objects.create(job=job, applicant=user, resume=resume)
             messages.success(request,'Job applied Successfully!')
