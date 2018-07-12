@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% load static %}
+{% load auth_extras %}
 
 {% block extrastyles %}
 <link rel="stylesheet" href="{% static 'css/jobdetail.css' %}">
@@ -25,9 +26,22 @@
 
             <!-- ************************************-->
               <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary buttons1" data-toggle="modal" data-target="#exampleModalLong">
-  Apply now
-</button>
+{% if user.is_authenticated %}
+  {% if user|has_group:"company" %}
+
+  {% else %}
+
+      <button type="button" class="btn btn-primary buttons1" data-toggle="modal" data-target="#exampleModalLong">
+        Apply now
+      </button>
+      {% endif %}
+    {% else %}
+
+     <a href="/accounts/login/"><button type="button" class="btn btn-primary buttons1">
+        Apply now
+      </button></a>
+    {% endif %}
+
 
  <hr class="style2">
 
@@ -125,9 +139,22 @@
           <p class="lead"> {{job.requirements}}</p>
         </div>
 
-        <button type="button" class="btn btn-primary buttons1" data-toggle="modal" data-target="#exampleModalLong">
-  Apply now
-</button>
+  {% if user.is_authenticated %}
+  {% if user|has_group:"company" %}
+
+  {% else %}
+
+      <button type="button" class="btn btn-primary buttons1" data-toggle="modal" data-target="#exampleModalLong">
+        Apply now
+      </button>
+      {% endif %}
+    {% else %}
+
+     <a href="/accounts/login/"><button type="button" class="btn btn-primary buttons1">
+        Apply now
+      </button></a>
+    {% endif %}
+
 
             <div class = "info">
               <hr class="style1">

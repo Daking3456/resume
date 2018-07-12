@@ -74,7 +74,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'resume',
         'USER': 'postgres',
-        'PASSWORD': 'adminadmin',
+        'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': ''
     }
@@ -129,6 +129,8 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'media_root')
 
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'daking.infodev@gmail.com'
