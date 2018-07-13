@@ -1,20 +1,9 @@
-.container3{
-	background-color:#212F3C !important;
-	color:white;
+.page-footer{
+   background-color:rgb(247, 247, 247) !important;
 }
 
-.copyr
+
+.footer-copyright > a
 {
-	background-color: black !important;
-	color:white;
-}
-
-.btn{
-  background-color: #5DADE2;
   color:white !important;
-
-}
-.tocenter
-{
-	text-align:center;
 }

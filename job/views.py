@@ -14,7 +14,8 @@ def job_poster(user):
 
 def load_home(request):
     jobs = Job.objects.filter(status=True)
-    return render(request, 'home.html',{'jobs':jobs})
+    fields = Field.objects.all() 
+    return render(request, 'home.html',{'jobs':jobs,'fields':fields })
 
 def post_job(request):
     if request.method == 'POST':

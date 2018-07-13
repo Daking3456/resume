@@ -1,4 +1,4 @@
-.container3{
+/*.container3{
 	background-color:#212F3C !important;
 	color:white;
 }
@@ -18,4 +18,15 @@
 .tocenter
 {
 	text-align:center;
+}
+*/
+
+.page-footer{
+   background-color:rgb(247, 247, 247) !important;
+}
+
+
+.footer-copyright > a
+{
+  color:white !important;
 }
