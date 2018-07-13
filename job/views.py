@@ -56,7 +56,7 @@ def job_detail(request,slug):
             Applicant.objects.create(job=job, applicant=user, resume=resume)
             messages.success(request,'Job applied Successfully!')
             
-    related_jobs = Job.objects.filter(job_field= job.job_field)
+    related_jobs = Job.objects.filter(job_field= job.job_field).exclude(slug=slug)
     context_dict = {'job':job, 'related_jobs': related_jobs}
     return render(request,'job/job-detail.html',context_dict)
 
@@ -95,6 +95,5 @@ def edit_job(request, slug):
 def see_applicants(request, slug):
     job = Job.objects.get(slug = slug)
     applicants = Applicant.objects.filter(job=job)
-
-
+    
     return render(request,'job/view-applicants.html',{'applicants':applicants} )
