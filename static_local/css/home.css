@@ -1,26 +1,17 @@
-body{   
+*{
  background-color: white;
-  background-repeat: no-repeat; 
-  background-size: 390px 250px;
-  margin-top: 30px;
-  background-position: 2px  100px;
-  font-family: 'Roboto', sans-serif !important;
+ font-family: 'Roboto', sans-serif !important;
 }
-
-
 
 .input-group{
   width: 100% !important;
-
 }
 
 .forsearch
-{ 
-  margin-top: 80px;     
+{
+  padding-bottom: 110px;
   width: 100%;
   margin:auto;
-  padding-top: 20px;
-  padding-bottom: 20px;
   
 
 }

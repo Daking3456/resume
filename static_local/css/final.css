@@ -10,47 +10,9 @@
 }
 /*for nav bar */
 
-.navbar-default{
-  background-color:white !important;
-  
-  font-weight: bold;
- 
- 
-}
-
-.nav> ul li a{
-  color:black !important;
-  padding: 20px;
-  font-size: 20px;
-}
-
-.log
-{
-  border:solid lightgreen;
-  color:lightgreen;
-  padding:10px;
-  width:50px !important;
-  
-}
-.sup
-{
-   border:solid lightblue;
-  color:lightblue;
-  padding:10px;
-  width:30px;
- 
-}
 
 
 
-body{   
- background-color: white;
-  background-repeat: no-repeat; 
-  background-size: 390px 250px;
-  margin-top: 30px;
-  background-position: 2px  100px;
-  font-family: 'Roboto', sans-serif !important;
-}
 
 
 
@@ -59,16 +21,6 @@ body{
 
 }
 
-.forsearch
-{ 
-  margin-top: 80px;     
-  width: 100%;
-  margin:auto;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  
-
-}
 
 .text
 {
