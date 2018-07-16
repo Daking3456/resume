@@ -1,35 +1,26 @@
-<<<<<<< HEAD
-body
-{  
 
-  font-family: 'Roboto', sans-serif !important;
+.page-footer{
+   background-color:rgb(247, 247, 247) !important;
 }
 
-.input-group
+
+.footer-copyright > a
 {
-=======
-*{
- background-color: white;
- font-family: 'Roboto', sans-serif !important;
+  color:white !important;
 }
+/*for nav bar */
+
+
+
+
+
+
 
 .input-group{
->>>>>>> origin/master
   width: 100% !important;
-}
-.forsearch
-{
-  padding-bottom: 110px;
-  width: 100%;
-  margin:auto;
-<<<<<<< HEAD
-  padding-top: 20px;
-  padding-bottom: 20px;
-=======
-  
 
->>>>>>> origin/master
 }
+
 
 .text
 {
@@ -39,6 +30,11 @@ body
   font-style: bold;
   font-size: 30px;
 }
+
+
+
+/*for button 1 i.e. apply now*/
+
 .btn-success
 {
   text-align: center;
@@ -52,8 +48,23 @@ body
   padding-right: 50px; 
   border:none;
   box-shadow: 2px 3px  10px rgb(42, 158, 23);
-  width: 150px;
 }
+
+.btn-success1
+{
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;   
+  
+  color: white!important;
+  padding: 10px; 
+  background-color: rgb(28, 197, 0);
+  padding-left: 50px;
+  padding-right: 50px; 
+  border:none;
+  box-shadow: 2px 3px  10px rgb(42, 158, 23);
+}
+
 .btn-primary
 {
   text-align: center;
@@ -65,33 +76,52 @@ body
   background-color: rgb(15, 171, 238);
   padding: 10px;
   box-shadow: 2px 3px  10px rgb(21, 124, 168);
-  width: 150px;  
+  margin-left: 20px;
+
+ 
+  
 }
 
 .input-group > input
 {
   padding: 25px;
 }
-a
-{
+/*------------------------*/
+
+
+a{
   color:#2983af   !important;
   text-align:center ;
-}
 
-.searchh
+}
+.sear
 {
   margin: auto;
   float:unset !important;
-  text-align:center;
 }
-a:hover
-{  
+.tocenter
+{
+  text-align:center;
+
+}
+
+
+a:hover{
+  
 text-decoration: none ;
 }
 
 
-.car1
-{
+
+.cont1{
+  padding-bottom: 20px !important;
+}
+
+.conthot{
+  padding-bottom: 20px !important;
+}
+
+.car1{
   background-color: #f5f5f5;
   padding:20px;
 }
@@ -99,15 +129,30 @@ text-decoration: none ;
 {
   margin-bottom: 20px;
 }
+
+.car2
+{
+  border: solid #f5f5f5;
+  padding:10px;
+  
+  
+}
+.car3 
+{
+   text-align:right;
+   
+}
+
+/*.conthot > .car2 > img
+{
+  height: 20px !important;
+  width: 30px !important;
+}*/
+
 .car1
 {
   text-align:center;
-  padding: 5px;
-}
-.car1 > img
-{
-  width:120px;
-  height: 80px;
+  padding: 10px;
 }
 .btn-warning
 {
@@ -120,4 +165,9 @@ text-decoration: none ;
 .company
 {
   font-size: 10px;
+}
+
+.biss
+{
+  padding: 30px;
 }

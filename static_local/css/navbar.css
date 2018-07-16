@@ -1,0 +1,33 @@
+
+.navbar-default{
+  background-color:white !important;
+
+  font-weight: bold;
+  padding-bottom: 10px;
+  position: relative !important;
+
+
+}
+
+.nav> ul li a{
+  color:black !important;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.log
+{
+  border:solid lightgreen;
+  color:lightgreen;
+  padding:10px;
+  width:50px !important;
+
+}
+.sup
+{
+   border:solid lightblue;
+  color:lightblue;
+  padding:10px;
+  width:30px;
+
+}
