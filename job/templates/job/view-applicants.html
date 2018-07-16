@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
 <div class="container">
-  <h2>Applicants for {{applicant.job.title}}</h2>            
+  <h2>Applicants for {{job.title}}</h2>            
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -18,9 +18,9 @@
         <td>{{applicant.applicant.username}}</td>
         <td>{{applicant.applicant.email}}</td>
         <td>
-		<a <a href="/media/{{applicant.resume}}/" download="{{applicant.resume}}" class="btn btn-info btn-lg">
+		<a href="/media/{{applicant.resume}}/" download="{{applicant.resume}}" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-download-alt"></span> Download
-        </a>   </td>   
+        </a></td>   
       </tr>
 
       {% endfor %}

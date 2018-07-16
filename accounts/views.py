@@ -112,9 +112,13 @@ def accounts_profile(request):
             company = Company.objects.get(user = user)
             job_posted = Job.objects.filter(company = company).order_by('-created_at')
 
+            job_and_applicants = []
             for job in job_posted:
-                print(job.created_at)
-            context_dict = {'job_posted':job_posted}
+                temp = [job, len(Applicant.objects.filter(job=job))]
+                job_and_applicants.append(temp)
+            
+
+            context_dict = {'job_and_applicants': job_and_applicants}
         else:
             job_applied = Applicant.objects.filter(applicant=user).order_by('-date_applied')
             context_dict = {'job_applied': job_applied }

@@ -8,5 +8,5 @@ urlpatterns = [
     path('apply/<slug>/', views.apply_job, name='apply_job'),
     path('job/edit/<slug>/',views.edit_job, name='edit_job'),
     path('job/applicants/<slug>/', views.see_applicants, name='see_applicants'),
-
+    path('job/field/<id>', views.view_by_field, name='view_by_field'),
 ]

@@ -15,15 +15,15 @@
     </thead>
 
     <tbody>
-      {% for job in job_posted %}
+      {% for job in job_and_applicants %}
       <tr>
-        <td>{{job.created_at|date:'Y-m-d'}}</td>
-        <td>{{job.title}}</td>
-        <td>{{job.no_opening}}</td>
-        <td><a href="/job/edit/{{job.slug}}">
+        <td>{{job.0.created_at|date:'Y-m-d'}}</td>
+        <td>{{job.0.title}}</td>
+        <td>{{job.0.no_opening}}</td>
+        <td><a href="/job/edit/{{job.0.slug}}">
           <span class="glyphicon glyphicon-edit"></span>
         </a></td>
-        <td><a href="/job/applicants/{{job.slug}}" > View</a></td>
+        <td><a href="/job/applicants/{{job.0.slug}}" > View </a> ({{job.1}})</td>
 
       </tr>
       {% endfor%}

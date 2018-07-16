@@ -1,61 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>Document</title>
-
-    {% load static %}
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
+<title>Login</title>
+{% load static %}
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="maincss.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<style>
+</style>
 </head>
-
 <body>
-    <div class="col-lg-12">
-        <div class="col-lg-5 login-form">
+<div class=" col-lg-12   row">
+<div class="col-lg-4 col-md-4 col-sm-1">
+</div>
 
-            <h2><b>Login</b></h2>
+<div class="col-lg-4 col-md-4 col-sm-10 forms">
+    
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% if messages %}
+                            <ul class="messages col-md-12">
+                                {% for message in messages %}
+                                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <h2><center>Login</center></h2> 
+                        <br>
+                        
 
-            <!-------------------------login form---------------------->
+                        <div class="form-group">
+                            {{ forms.email.errors }}
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" >
+                        </div>
 
-            <form method="POST">
-            {% csrf_token %}
-                {% if messages %}
-                    <ul class="messages col-md-12">
-                        {% for message in messages %}
-                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+                        <div class="form-group">
+                            {{forms.password.errors}}
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+                        </div>
+                        
+                        <!-- <button type="submit" class="hvr-bounce-to-right login-btn">Login</button> -->
+                        <button  type="submit" class="btn btn-primary  btn-block">Login</button>                                      
+                        <br>
+                        <center><a href="/accounts/password_reset/">Forget password?</a></center>    
+                        <div class="col-lg-12 col-md-12 col-sm-12 links">
+                <a href="/accounts/create/user/" type="submit"   style="width:40%">Register as user </a> 
+                <span>&nbsp; | &nbsp;</span>
+                <a href="/accounts/create/company/" type="submit"  style="width:40%">Register as company</a>
+            </div>      
+                        <hr>        
+                        <div class="icons">
+                        <p style="margin: 0; padding: 0; text-align:center;">
+              <a href="#"><img src="/static/icon/fb.svg" alt="" width="35"></a> 
+              <a href="#"><img src="/static/icon/gplus.svg" alt="" width="35"></a>
+              <a href="#"><img src="/static/icon/linkedin.svg" alt="" width="35"></a>
+            </p>
+                    </div>
+                                                
+                    </form>
+                </div>      
+    
 
-                <div class="form-group">
-                    {{ forms.email.errors }}
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
-                </div>
-                <div class="form-group">
-                    {{forms.password.errors}}
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
-                </div>
-                <div class="form-group" style="margin-top: 2rem;">
-                    <a href="/accounts/password_reset/">Forgot your password?</a>
-                </div>
-                <button type="submit" class="hvr-bounce-to-right login-btn">Login</button>
-                <div class="form-group create">
-                    <a href="/accounts/create/user">Register User</a>
-                </div>
-                <div class="form-group create">
-                    <a href="/accounts/create/company">Register Company</a>
-                </div>
-            </form>
-        </div>
-    </div>
+<div class="col-lg-4 col-md-4 col-sm-1">
+</div>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
-
 </html>

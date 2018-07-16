@@ -69,8 +69,13 @@ def apply_job(request, slug):
     else:
         Applicant.objects.create(job=job, applicant=user)
         messages.success(request,'Job applied Successfully!')
-        
+
     return HttpResponseRedirect('/')
+
+def view_by_field(request, id):
+    field = Field.objects.get(id=id)
+    jobs = Job.objects.filter(job_field=field)
+    return render(request, 'job/by-field.html' ,{'jobs':jobs})
 
 def edit_job(request, slug):
     if request.method == 'POST':
@@ -96,5 +101,6 @@ def edit_job(request, slug):
 def see_applicants(request, slug):
     job = Job.objects.get(slug = slug)
     applicants = Applicant.objects.filter(job=job)
-    
-    return render(request,'job/view-applicants.html',{'applicants':applicants} )
+    # job sent for displaying job title
+
+    return render(request,'job/view-applicants.html',{'applicants':applicants, 'job':job} )

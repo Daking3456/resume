@@ -47,7 +47,6 @@ class Job(models.Model):
         super(Job, self).save(**kwargs)
 
 
-
 class Applicant (models.Model):
     job = models.ForeignKey(Job, on_delete= models.CASCADE)
     applicant = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -57,3 +56,4 @@ class Applicant (models.Model):
 
     def __str__(self):
         return ('{}{}'.format(self.applicant.username, self.job.title))
+
