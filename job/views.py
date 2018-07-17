@@ -13,9 +13,11 @@ def job_poster(user):
     return user.groups.filter(name='company').exists()
 
 def load_home(request):
-    jobs = Job.objects.filter(status=True)
-    fields = Field.objects.all() 
-    return render(request, 'home.html',{'jobs':jobs,'fields':fields })
+    hot_jobs = Job.objects.filter(status=True).exclude(is_featured=True)
+    featured_jobs = Job.objects.filter(is_featured=True) 
+    fields = Field.objects.all()
+
+    return render(request, 'home.html',{'hot_jobs':hot_jobs,'fields':fields, 'featured_jobs':featured_jobs })
 
 def post_job(request):
     if request.method == 'POST':

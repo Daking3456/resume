@@ -1,6 +1,7 @@
 .page-footer
 {
    background-color:rgb(247, 247, 247) !important;
+   margin-top: 15px;
 }
 .footer-copyright > a
 {
@@ -9,7 +10,7 @@
 
 .footicon
 {
-  padding: 15px;
+  padding: 2px;
 }
 .footicon:hover
 {
@@ -17,7 +18,7 @@
 }
 .footer-copyright
 {
-  margin-top: 10px;
+  margin-top: 1px!important;
 }
 .btn-success1
 {
@@ -32,3 +33,23 @@
   border:none;
   box-shadow: 2px 3px  10px rgb(42, 158, 23);
 }
+.page-downn
+{
+  background-color:rgb(218, 244, 247)!important;
+  padding-top: 5px; 
+
+}
+.containerfooter>ul
+{
+    margin-top: 1px;
+}
+.containerfooter
+{
+    padding: 0px;
+}
+
+.footer-copyright1 > ul
+{
+  margin-bottom: 0px !important;
+}
+

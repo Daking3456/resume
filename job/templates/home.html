@@ -46,39 +46,72 @@
 <hr>
 </div>
 
-<div class="container">
-  <h3>Hot Jobs</h3>
-  
-  <div class="row">
-  {% for job in jobs%}
-    <div class="col-lg-3  col-md-3 col-sm-12 car">
-      <div class="car1">
-      <img src="/static/image/lll.png">        
-      <a href="/job/{{job.slug}}/">
-      <h6>{{job.title}}</h6>
-      </a>
-      <span class="numm">{{job.no_opening}}</span>
+    <div class= "row">
+        <div class="container">
+    
+    <div class = " hotjobcontainer col-lg-12 col-md-12 col-sm-12">
+        <div class = "hotjobscontainer col-lg-12 col-md-12 col-sm-12">
+           <h2>Hot jobs</h2>
+           {% for job in hot_jobs %}
+           {% if forloop.counter|divisibleby:2 %}
+
+            <div class=" col-lg-3 col-md-3 col-sm-12 card card2">
+              {% else %}
+              <div class="col-lg-3 col-md-3 col-sm-12 card card1">
+                {% endif %}
+                <div class="card-header">
+                    <a href="/job/{{job.slug}}/">{{job.title}}</a>
+                </div>               
+                  <div class="card-body body1">                 
+                    <ul>
+                        
+                        
+                        <li> {{job.company.user.username}} </li>
+                    </ul>
+                  </div>
+            </div>
+
+{% endfor %}
     </div>
-    </div>
-    {% endfor %}
   </div>
 </div>
- 
-<div class="container">
-  <h3>Browse by Categories</h3>
+</div>
+</div>
 
-  <div class="row">
-    <div class="row">
-      {% for field in fields%}
-    <div class="col-lg-3  col-md-3 col-sm-12 car">
-      <div class="car1">
-      <img src="/static/image/lll.png">        
-      <a href="job/field/{{field.id}}"><h6>{{field.name}}</h6></a>
-       <span class="numm">2</span>
+
+<div class="container">
+<hr>
+</div>
+
+    <div class= "row">
+        <div class="container">
+    
+    <div class = " hotjobcontainer col-lg-12 col-md-12 col-sm-12">
+        <div class = "hotjobscontainer  col-lg-12 col-md-12 col-sm-12">
+           <h2>Featured jobs</h2>
+           {% for job in featured_jobs %}
+           {% if forloop.counter|divisibleby:2 %}
+
+            <div class=" col-lg-3 col-md-3 col-sm-12 card card2">
+              {% else %}
+              <div class="col-lg-3 col-md-3 col-sm-12 card card1">
+                {% endif %}
+                <div class="card-header">
+                    <a href="/job/{{job.slug}}/">{{job.title}}</a>
+                </div>               
+                  <div class="card-body body1">                 
+                    <ul>
+                        
+                        
+                        <li> {{job.company.user.username}} </li>
+                    </ul>
+                  </div>
+            </div>
+
+{% endfor %}
     </div>
-    </div>
-    {% endfor %}
   </div>
+</div>
 </div>
 </div>
 {% endblock %}
