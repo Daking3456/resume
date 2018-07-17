@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 body
 {  
 
@@ -7,14 +6,12 @@ body
 
 .input-group
 {
-=======
-*{
+
  background-color: white;
  font-family: 'Roboto', sans-serif !important;
 }
 
 .input-group{
->>>>>>> origin/master
   width: 100% !important;
 }
 .forsearch
@@ -22,13 +19,9 @@ body
   padding-bottom: 110px;
   width: 100%;
   margin:auto;
-<<<<<<< HEAD
   padding-top: 20px;
   padding-bottom: 20px;
-=======
-  
 
->>>>>>> origin/master
 }
 
 .text
