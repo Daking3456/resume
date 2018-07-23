@@ -3,8 +3,16 @@
 {% load auth_extras %}
 
 {% block extrastyles %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 <link rel="stylesheet" href="{% static 'css/jobdetail.css' %}">
+
 {% endblock %}
+
+
+
 {% block content %}
 <div class="container">
 
@@ -13,7 +21,7 @@
   <div class="row">
     <!--left part of the page-->
 
-      <div class="col-sm-8 mainbody">
+      <div class="col s8 mainbody">
         <div class = "mains">         
           <h2>{{job.title}}</h2> <!--Title for the job-->
             <div class="view">Date of publish
@@ -28,31 +36,25 @@
 
   {% else %}
 
-      <button type="button" class="btn btn-primary buttons1" data-toggle="modal" data-target="#exampleModalLong">
-        Apply now
-      </button>
+     <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Apply now</a>
       {% endif %}
     {% else %}
+    <a class="waves-effect waves-light btn modal-trigger" href="/accounts/login/">Apply now</a>
 
-     <a href="/accounts/login/"><button type="button" class="btn btn-primary buttons1">
-        Apply now
-      </button></a>
+     
     {% endif %}
 
 
- <hr class="style2">
-
 <!-- Modal -->
-          <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+        <div id="modal1" class="modal">
+               
                   <div class="modal-content">
                     
                     <div class="modal-header">
 
+
                       <h3 class="modal-title">Apply</h3>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                     
                     </div>
 
                    <div class="modal-body" style="padding:40px 50px;">
@@ -60,7 +62,7 @@
             <div class="form-group">
               {% csrf_token %}
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Name</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter Name" name="username" value="{{ request.user.username }}">
+              <input type="text" class="form-control" id="usrname" placeholder="Enter Name" name="name" value="{{ request.user.username }}">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-envelope"></span> Email</label>
@@ -73,9 +75,13 @@
             <button type="submit" class="btn btn-success btn-block">Apply</button>
           </form>
         </div>
+        <div class="modal-footer">
+                       <input type="Submit" name="Submit">
+                       <a href="#!" class="modal-close waves-effect waves-green btn-flat">close</a>
+                    </div>
                       </div>
                 </div>
-          </div>
+        
 
             <!-- ************************************-->
 
@@ -141,15 +147,12 @@
 
   {% else %}
 
-      <button type="button" class="btn btn-primary buttons1" data-toggle="modal" data-target="#exampleModalLong">
-        Apply now
-      </button>
+     <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Apply now</a>
       {% endif %}
     {% else %}
+    <a class="waves-effect waves-light btn modal-trigger" href="/accounts/login/">Apply now</a>
 
-     <a href="/accounts/login/"><button type="button" class="btn btn-primary buttons1">
-        Apply now
-      </button></a>
+     
     {% endif %}
 
 
@@ -168,7 +171,7 @@
 
       </div>
 
-       <div class="col-sm-4">
+       <div class="col s4 ">
         <!--shows relatable job on the right side-->
         <div class = "relatable">
          <!--  <div class="backtosearchresult">
@@ -204,8 +207,16 @@
       
   </div>
 </div>
-
+<script>
+     $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>
 {% endblock %}
+
+ 
+
+   
 
  
 

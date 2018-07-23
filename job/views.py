@@ -31,23 +31,20 @@ def post_job(request):
             messages.success(request,'Job Posted Successfully!')
         else:
             messages.error(request,'Something is Wrong, try again!')
-        return render(request, 'job/postjob.html')
     else:
         form = JobForm()
         # To display different options for job field
-        fields = Field.objects.all()
-        context_dict = {'form':form, 'fields':fields}
-        return render(request, 'job/postjob.html',context_dict)
+    fields = Field.objects.all()
+    context_dict = {'form':form, 'fields':fields}
+    return render(request, 'job/postjob.html',context_dict)
 
 def job_detail(request,slug):
     job = Job.objects.get(slug=slug)
     if request.method == 'POST' and request.FILES['resume']: 
         user = request.user
-        user.username =request.POST.get('username')
-        user.email = request.POST.get('email')
-        user.save()
         resume = request.FILES['resume']
-
+        
+        # Uses machine learning to verify the resume
         resume_status = VerifyResume.resume_verifier()
         print(resume_status)
 
@@ -57,12 +54,13 @@ def job_detail(request,slug):
             if Applicant.objects.filter(job=job, applicant=user):
                 applicant = Applicant.objects.get(job=job, applicant=user)
                 applicant.delete()
-                Applicant.objects.create(job=job, applicant=user, resume=resume)
+                Applicant.objects.create(name= request.POST.get('name'), email=request.POST.get('email'),
+                                        job=job, applicant=user, resume=resume)
                 messages.success(request,'Reapplied with updated credentials')
             
             # Appling for the first time
             else:
-                Applicant.objects.create(job=job, applicant=user, resume=resume)
+                Applicant.objects.create(name= request.POST.get('name'), email=request.POST.get('email'),job=job, applicant=user, resume=resume)
                 messages.success(request,'Job applied Successfully!')
 
         else:
@@ -80,7 +78,6 @@ def apply_job(request, slug):
     else:
         Applicant.objects.create(job=job, applicant=user)
         messages.success(request,'Job applied Successfully!')
-
     return HttpResponseRedirect('/')
 
 def view_by_field(request, id):
@@ -93,7 +90,6 @@ def edit_job(request, slug):
         job = Job.objects.get(slug=slug)
         form = JobModelForm(request.POST, instance=job)
         if form.is_valid():
-            
             company = Company.objects.get(user=request.user)
             job = form.save()
             messages.success(request,'Job Posting Edited!')

@@ -1,5 +1,5 @@
 from django import forms
-from job.models import Job
+from job.models import Job, Applicant
 from datetimewidget.widgets import DateTimeWidget
 
 class JobForm(forms.Form):
@@ -19,5 +19,12 @@ class JobModelForm(forms.ModelForm):
         model = Job
         fields = '__all__'
         exclude = ['slug','is_featured','created_at','status','company']
+
+
+class ApplicantForm(forms.ModelForm):
+    class Meta:
+        model = Applicant
+        fields = '__all__'
+        exlude = ['job', 'applicant']
 
 

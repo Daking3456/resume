@@ -58,9 +58,7 @@ def create_company(request):
         return HttpResponseRedirect('/accounts/login/')
     else:
         form = UserForm()
-        context_dict = {
-            'form': form,
-        }
+        context_dict = {'form': form,}
 
     return render(request,'create_company.html', context_dict)
 
@@ -112,6 +110,10 @@ def accounts_profile(request):
             company = Company.objects.get(user = user)
             job_posted = Job.objects.filter(company = company).order_by('-created_at')
 
+            """
+               To display the number of applicants for a job listed by company sending in a list job 
+               and all the applicants for the job 
+            """
             job_and_applicants = []
             for job in job_posted:
                 temp = [job, len(Applicant.objects.filter(job=job))]

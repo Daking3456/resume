@@ -6,6 +6,7 @@ from accounts.models import Company, User
 class Field(models.Model):
     name = models.CharField(max_length=100)
 
+
     def __str__(self):
         return ('{}'.format(self.name))
 
@@ -48,11 +49,12 @@ class Job(models.Model):
 
 
 class Applicant (models.Model):
+    name = models.CharField(max_length=100, null=True, blank=True)
+    email = models.CharField(max_length=100, null=True, blank=True)
     job = models.ForeignKey(Job, on_delete= models.CASCADE)
     applicant = models.ForeignKey(User, on_delete=models.CASCADE)
     resume = models.FileField(upload_to="uploads/resume/%Y/%m/%d/")
     date_applied = models.DateTimeField(auto_now_add=True)
-
 
     def __str__(self):
         return ('{}{}'.format(self.applicant.username, self.job.title))
