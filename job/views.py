@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 
 from job.forms import JobForm, JobModelForm
-from job.models import Job, Field, Applicant
+from job.models import Job, Field, Applicant, TempResume
 from accounts.models import Company, Address
 from job.resume_verifier import VerifyResume 
             
@@ -14,6 +14,21 @@ def job_poster(user):
     return user.groups.filter(name='company').exists()
 
 def load_home(request):
+
+    if request.method == 'POST':
+        resume = request.FILES['temp_resume']
+
+        resume_status = VerifyResume.resume_verifier()
+            
+
+        if resume_status == True:
+            TempResume.objects.create(temp_resume=resume)
+            messages.success(request,'Resume Uploaded Successfully!')
+
+        else:
+            messages.error(request,'The Resume is not valid, try again!')
+
+
     hot_jobs = Job.objects.filter(status=True).exclude(is_featured=True)
     featured_jobs = Job.objects.filter(is_featured=True) 
     fields = Field.objects.all()
@@ -49,7 +64,7 @@ def job_detail(request,slug):
         print(resume_status)
 
         if(resume_status == True):
-
+            print (job)
             # if User applies again to update their credentials
             if Applicant.objects.filter(job=job, applicant=user):
                 applicant = Applicant.objects.get(job=job, applicant=user)
@@ -70,15 +85,6 @@ def job_detail(request,slug):
     context_dict = {'job':job, 'related_jobs': related_jobs}
     return render(request,'job/job-detail.html',context_dict)
 
-def apply_job(request, slug):
-    job = Job.objects.get(slug=slug)
-    user = request.user
-    if Applicant.objects.filter(job=job, applicant=user):
-        messages.info(request,'Already applied for the job!')
-    else:
-        Applicant.objects.create(job=job, applicant=user)
-        messages.success(request,'Job applied Successfully!')
-    return HttpResponseRedirect('/')
 
 def view_by_field(request, id):
     field = Field.objects.get(id=id)

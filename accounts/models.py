@@ -138,3 +138,4 @@ class Company(models.Model):
         slug_str = "%s" % (self.user.username)
         self.slug = slugify(self, slug_str)
         super(Company, self).save(**kwargs)
+

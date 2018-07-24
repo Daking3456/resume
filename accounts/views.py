@@ -9,6 +9,7 @@ from accounts.models import Company, Address
 from job.models import Applicant, Job
 from accounts.forms import LoginForm, UserForm
 
+
 # View function for registration of user
 def create_user(request):
     if request.method == 'POST':

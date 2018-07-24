@@ -4,7 +4,8 @@
 {% block extrastyles %}
  
       <link rel="stylesheet" href="{% static 'css/home.css' %}">
-
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -21,7 +22,9 @@
           <input class="searchjob z-depth-3" id="Search" type="Search" placeholder="  Search for your suitable job">
           <div class="center-align searchbuttons">
         <a class="waves-effect waves-light btn green buttonforsearch" ><i class="material-icons left">search</i>Search</a>
-          <a class="waves-effect waves-light btn blue buttonforsearch" ><i class="material-icons left">attachment</i>Upload Resume</a>
+          <a class="waves-effect waves-light btn blue buttonforsearch modal-trigger" href="#modal1"><i class="material-icons left">attachment</i>Upload Resume</a>
+         
+        
         </div>
         
         </div>
@@ -58,7 +61,7 @@
 </div>
 
 <div class="row">
-  <div class=" col l12 m12 s12 #e0e0e0 grey lighten-2 hotjob">
+  <div class=" col l12 m12 s12 #e0e0e0 grey lighten-3 hotjob">
     <h5>Hot jobs</h5>
 
     {% for job in hot_jobs %}
@@ -104,6 +107,40 @@
     {% endfor %}
 </div>
 </div>
+     <div id="modal1" class="modal">
+               
+                  <div class="modal-content">
+                    
+                    <div class="modal-header">
+
+
+                      <h3 class="modal-title">Upload Resume</h3>
+                     
+                    </div>
+
+                   <div class="modal-body" style="padding:40px 50px;">
+
+          <form role="form" method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-file"></span> Upload CV</label>
+              <input type="file" class="form-control" id="usrname" placeholder="Upload CV" name="temp_resume">
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Upload</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+                       <a href="#!" class="modal-close waves-effect waves-green btn-flat">close</a>
+                    </div>
+  </div>
+</div>
+
+      <script>
+     $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>
     
 {% endblock %}
 

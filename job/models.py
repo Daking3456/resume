@@ -59,3 +59,7 @@ class Applicant (models.Model):
     def __str__(self):
         return ('{}{}'.format(self.applicant.username, self.job.title))
 
+
+class TempResume(models.Model):
+    temp_resume = models.FileField(upload_to="uploads/temp/resume/%Y/%m/%d/")
+
