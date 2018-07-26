@@ -62,7 +62,6 @@ class UserManager(BaseUserManager):
 		return self._create_user(username, email, password, **extra_fields)
 
 
-
 class User(AbstractBaseUser, PermissionsMixin):
 	"""
 	Author: Daking Rai (daking.rai@infodevelopers.com.np)
