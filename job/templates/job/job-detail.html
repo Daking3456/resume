@@ -64,15 +64,15 @@
             <div class="form-group">
               {% csrf_token %}
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Name</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter Name" name="name" value="{{ request.user.username }}">
+              <input type="text" class="form-control" id="usrname" placeholder="Enter Name" name="name" value="{{ request.user.username }}" required>
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-envelope"></span> Email</label>
-              <input type="text" class="form-control" id="psw" name="email" value="{{request.user.email}}" placeholder="Enter Email address">
+              <input type="text" class="form-control" id="psw" name="email" value="{{request.user.email}}" placeholder="Enter Email address" required>
             </div>
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-file"></span> Upload CV</label>
-              <input type="file" class="form-control" id="usrname" placeholder="Upload CV" name="resume">
+              <input type="file" class="form-control" id="usrname" placeholder="Upload CV" name="resume" required>
             </div>
             <button type="submit" class="btn btn-success btn-block applying">Apply</button>
           </form>

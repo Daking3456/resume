@@ -63,3 +63,11 @@ class Applicant (models.Model):
 class TempResume(models.Model):
     temp_resume = models.FileField(upload_to="uploads/temp/resume/%Y/%m/%d/")
 
+class ParsedResume(models.Model):
+    applied_for = models.TextField(null=True, blank=True)
+    personal_info = models.TextField(null=True, blank=True)
+    education = models.TextField(null=True, blank=True)
+    experience = models.TextField(null=True, blank=True)
+    skills = models.TextField(null=True, blank=True)
+
+

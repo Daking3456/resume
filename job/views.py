@@ -5,9 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 
 from job.forms import JobForm, JobModelForm
-from job.models import Job, Field, Applicant, TempResume
+from job.models import Job, Field, Applicant, TempResume, ParsedResume
 from accounts.models import Company, Address
-from job.resume_verifier import VerifyResume 
+from job.resume_verifier import Resume 
             
 # This function is for the authorization
 def job_poster(user):
@@ -18,12 +18,27 @@ def load_home(request):
     if request.method == 'POST':
         resume = request.FILES['temp_resume']
 
-        resume_status = VerifyResume.resume_verifier()
+        resume_status = Resume.resume_verifier()
             
 
         if resume_status == True:
             TempResume.objects.create(temp_resume=resume)
             messages.success(request,'Resume Uploaded Successfully!')
+
+            scraped_dict = Resume.parse_resume();
+
+            print(scraped_dict)
+
+            parsedvalue = ParsedResume.objects.create(
+                                        applied_for=scraped_dict['applied_for'],
+                                        personal_info=scraped_dict['personal_info'], 
+                                        education=scraped_dict['education'], 
+                                        experience=scraped_dict['experience'],
+                                        skills=scraped_dict['skills']
+                                        )
+
+           
+
 
         else:
             messages.error(request,'The Resume is not valid, try again!')
@@ -60,7 +75,7 @@ def job_detail(request,slug):
         resume = request.FILES['resume']
         
         # Uses machine learning to verify the resume
-        resume_status = VerifyResume.resume_verifier()
+        resume_status = Resume.resume_verifier()
         print(resume_status)
 
         if(resume_status == True):

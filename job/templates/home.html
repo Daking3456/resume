@@ -7,7 +7,8 @@
       <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700|Lobster|Sue+Ellen+Francisco" rel="stylesheet">
       <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-
+      
+      
 {% endblock %}
 
 {% block content %}
@@ -23,9 +24,9 @@
           </div>
           <input class="searchjob z-depth-3" id="Search" type="Search" placeholder="  Search for your suitable job">
           <div class="center-align searchbuttons">
-        <a class="waves-effect waves-light btn green buttonforsearch" ><i class="material-icons left">search</i>Search</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a class="waves-effect waves-light btn blue buttonforsearch modal-trigger" href="#modal1"><i class="material-icons left">attachment</i>Upload Resume</a>
-         <a style="display: none;" class="resume-success modal-trigger" id="resume-success" href="#modal3">Test</a>
+        <a class="waves-effect waves-light btn green buttonforsearch" id="search" ><i class="material-icons left">search</i>Search</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a class="waves-effect waves-light btn blue buttonforsearch modal-trigger" href="#modal1" id="upload"><i class="material-icons left">attachment</i>Upload Resume</a>
+        
 
 
         
@@ -134,7 +135,7 @@
             {% csrf_token %}
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-file"></span> Upload CV</label>
-              <input type="file" class="form-control" id="usrname" placeholder="Upload CV" name="temp_resume">
+              <input type="file" class="form-control" id="usrname" placeholder="Upload CV" name="temp_resume" required>
             </div>
            <button type="submit" class="btn btn-success btn-block applying">Upload</button>
           </form>
@@ -174,11 +175,6 @@
         
   </div>
 </div>
-<div id="modal3" class="modal">
-               
-                  dsdssd
-</div>
-
       <script>
      $(document).ready(function(){
     $('.modal').modal();
