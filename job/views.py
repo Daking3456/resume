@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 
-from job.forms import JobForm, JobModelForm
+from job.forms import JobForm, JobModelForm, ParsedResumeForm
 from job.models import Job, Field, Applicant, TempResume, ParsedResume
 from accounts.models import Company, Address
 from job.resume_verifier import Resume 
@@ -14,6 +14,7 @@ def job_poster(user):
     return user.groups.filter(name='company').exists()
 
 def load_home(request):
+    parsedvalue = []
 
     if request.method == 'POST':
         resume = request.FILES['temp_resume']
@@ -36,10 +37,6 @@ def load_home(request):
                                         experience=scraped_dict['experience'],
                                         skills=scraped_dict['skills']
                                         )
-
-           
-
-
         else:
             messages.error(request,'The Resume is not valid, try again!')
 
@@ -47,8 +44,9 @@ def load_home(request):
     hot_jobs = Job.objects.filter(status=True).exclude(is_featured=True)
     featured_jobs = Job.objects.filter(is_featured=True) 
     fields = Field.objects.all()
+    context_dict = {'hot_jobs':hot_jobs,'fields':fields, 'featured_jobs':featured_jobs, 'parsedvalue':parsedvalue}
 
-    return render(request, 'home.html',{'hot_jobs':hot_jobs,'fields':fields, 'featured_jobs':featured_jobs })
+    return render(request, 'home.html', context_dict)
 
 def post_job(request):
     if request.method == 'POST':
@@ -132,3 +130,20 @@ def see_applicants(request, slug):
     # job sent for displaying job title
 
     return render(request,'job/view-applicants.html',{'applicants':applicants, 'job':job} )
+
+
+def edit_parsed_data(request):
+    parsedvalue = ParsedResume.objects.all().order_by('-id')[0]
+    
+    if request.method == 'POST':
+        form = ParsedResumeForm(request.POST, instance=parsedvalue)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Edited Successfully!')
+        else:
+            messages.error(request,'Something is Wrong, try again!')
+        return HttpResponseRedirect('/')
+    else:
+        form = ParsedResumeForm()
+        context_dict = { 'form':form,'parsedvalue':parsedvalue}
+        return render(request, 'edit_parsed_detail.html',context_dict)

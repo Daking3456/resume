@@ -1,0 +1,25 @@
+{% if parsedvalue %}
+<div id="modal2" class="modal">
+
+
+
+                      
+          <div class="container ">
+
+  <h4>It looks like you applied for:{{ parsedvalue.applied_for }} </h4>
+
+<p>Profile:<br>{{ parsedvalue.personal_info }}  </p>
+<p>education:<br>{{ parsedvalue.education }}</p>
+<p>experience:<br>{{ parsedvalue.experience }}</p>
+<p>skills:<br>{{ parsedvalue.skills }}</p>
+
+
+        <div class="modal-footer">
+                       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Looks Good</a>
+                       <a href="/detail/edit/">Edit Contents</a>
+                    </div>
+
+        
+  </div>
+</div>
+{% endif %}

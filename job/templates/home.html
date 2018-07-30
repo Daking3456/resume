@@ -7,6 +7,14 @@
       <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700|Lobster|Sue+Ellen+Francisco" rel="stylesheet">
       <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+      <script type="text/javascript">
+    $(document).ready(function(){ 
+    
+    $('#modal2').modal();
+    $('#modal2').modal('open');
+    $('#modal1').modal(); 
+ });
+      </script>
       
       
 {% endblock %}
@@ -25,11 +33,7 @@
           <input class="searchjob z-depth-3" id="Search" type="Search" placeholder="  Search for your suitable job">
           <div class="center-align searchbuttons">
         <a class="waves-effect waves-light btn green buttonforsearch" id="search" ><i class="material-icons left">search</i>Search</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a class="waves-effect waves-light btn blue buttonforsearch modal-trigger" href="#modal1" id="upload"><i class="material-icons left">attachment</i>Upload Resume</a>
-        
-
-
-        
+          <a class="waves-effect waves-light btn blue buttonforsearch modal-trigger" href="#modal1" id="upload"><i class="material-icons left">attachment</i>Upload Resume</a>      
         </div>
         
         </div>
@@ -43,143 +47,17 @@
  
   </div>
 
+{% include 'home/featured_job.html' %}
 
+{% include 'home/hot_job.html' %}
 
+{% include 'home/category.html' %}
 
-<div class="row">
-  <div class=" col l12 m12 s12 #e0e0e0 grey lighten-2 featuredjob">
-    <h5>Featured jobs</h5>
+ 
+{% include 'home/upload_cv_modal.html' %}
+ 
+{% include 'home/parsed_detail.html' %}
 
-    {% for job in hot_jobs %}
-    <div class="col l4 m4 s12">
-     <ul class="collection  with-header z-depth-3">
-      <li class="collection-item avatar">
-      <i class="material-icons circle">folder</i>
-      <span class="title"><a href="/job/{{job.slug}}/">{{job.title}}</a></span>
-      <p>{{job.company.user.username}}<br>
-
-      </p>
-     
-      </li>
-     </ul>
-    </div>
-    {% endfor %}
- </div>
-</div>
-
-<div class="row">
-  <div class=" col l12 m12 s12 #e0e0e0 grey lighten-3 hotjob">
-    <h5>Hot jobs</h5>
-
-    {% for job in hot_jobs %}
-    <div class="col l4 m4 s12">
-     <ul class="collection  with-header z-depth-3">
-      <li class="collection-item avatar">
-      <i class="material-icons circle">folder</i>
-      <span class="title"><a href="/job/{{job.slug}}/">{{job.title}}</a></span>
-      <p>{{job.company.user.username}}<br>
-
-      </p>
-      
-      </li>
-     </ul>
-    </div>
-    {% endfor %}
- </div>
-</div>
-
-<div class="row backgroundimgs">  
-  <div class="col s12 l12 m12">
-
-      <div class="col s12 l12 m12">
-        <h5>Job category</h5> 
-      </div>
-
-    {% for field in fields %}
-    <div class="col s12 l3 m3">        
-        <div class="card z-depth-2">
-              <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator float:center" src='static/image/php.png' " >
-              </div>
-                  <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">   
-                      <a href="/job/field/{{field.id}}">
-                        {{field.name}}
-                      </a>
-                      
-                    </span>      
-                  </div>
-        </div>
-    </div>
-    {% endfor %}
-</div>
-</div>
-     <div id="modal1" class="modal">
-               
-                  <div class="modal-content">
-                    <div class="modal-footer">
-                       <a href="#!" class="modal-close waves-effect waves-green btn-flat">X</a>
-                    </div>
-                    
-                    <div class="modal-header">
-
-
-                      <h3 class="modal-title">Upload Resume</h3>
-                     
-                    </div>
-
-                   <div class="modal-body" style="padding:40px 50px;">
-
-          <form role="form" method="POST" enctype="multipart/form-data">
-
-            {% csrf_token %}
-            <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-file"></span> Upload CV</label>
-              <input type="file" class="form-control" id="usrname" placeholder="Upload CV" name="temp_resume" required>
-            </div>
-           <button type="submit" class="btn btn-success btn-block applying">Upload</button>
-          </form>
-        </div>
-        
-  </div>
-</div>
- <div id="modal2" class="modal">
-               
-                  <div class="modal-content">
-                    
-                    
-                    <div class="modal-header">
-
-
-                      <h3 class="modal-title">Looks like you Applied for {Insert_Title}</h3>
-                     
-                    </div>
-
-                   <div class="modal-body" style="padding:40px 50px;">
-
-          <form role="form" method="POST" enctype="multipart/form-data">
-
-            {% csrf_token %}
-            <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-file"></span> Upload CV</label>
-              <input type="file" class="form-control" id="usrname" placeholder="Upload CV" name="temp_resume">
-            </div>
-            <button type="submit" class="btn btn-success btn-block applying">Upload</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-                       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Looks Good</a>
-                       <a href="#">Edit Contents</a>
-                    </div>
-
-        
-  </div>
-</div>
-      <script>
-     $(document).ready(function(){
-    $('.modal').modal();
-  });
-</script>
-    
 {% endblock %}
+
 

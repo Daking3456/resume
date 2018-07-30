@@ -1,0 +1,20 @@
+<div class="row">
+  <div class=" col l12 m12 s12 #e0e0e0 grey lighten-2 featuredjob">
+    <h5>Featured jobs</h5>
+
+    {% for job in hot_jobs %}
+    <div class="col l4 m4 s12">
+     <ul class="collection  with-header z-depth-3">
+      <li class="collection-item avatar">
+      <i class="material-icons circle">folder</i>
+      <span class="title"><a href="/job/{{job.slug}}/">{{job.title}}</a></span>
+      <p>{{job.company.user.username}}<br>
+
+      </p>
+     
+      </li>
+     </ul>
+    </div>
+    {% endfor %}
+ </div>
+</div>

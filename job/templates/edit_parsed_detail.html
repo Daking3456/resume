@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% block content %}
+  <div class="container">
+  <h3> Your Resume Information</h3>
+    <hr>
+    <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label>Applied for:</label>
+        <input type="text" class="form-control" name="applied_for" value="{{ parsedvalue.applied_for }}">
+    </div>
+    <div class="form-group" >
+        <label>Profile:</label>
+        <textarea  rows="100" cols ="100" name="personal_info" >{{ parsedvalue.personal_info }}</textarea>
+    </div>
+    <div class="form-group">
+        <label>Education:</label>
+        <textarea  rows="6" cols ="60" name="education" >{{ parsedvalue.education }}</textarea>
+        
+    </div>
+    <div class="form-group">
+        <label>Experience:</label>
+        <textarea  rows="6" cols ="60" name="experience" >{{ parsedvalue.experience }}</textarea>
+    </div>
+    <div class="form-group">
+        <label>Skills:</label>
+        <textarea  rows="6" cols ="60" name="skills">{{ parsedvalue.skills }}</textarea> 
+    </div>
+    <div class="form-group">
+        <button class='btn btn-primary' type='submit'>Edit</button>
+    </div>
+    </form>
+
+</div>
+{% endblock %}

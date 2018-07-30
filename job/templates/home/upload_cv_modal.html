@@ -1,0 +1,29 @@
+<div id="modal1" class="modal">
+               
+                  <div class="modal-content">
+                    <div class="modal-footer">
+                       <a href="#!" class="modal-close waves-effect waves-green btn-flat">X</a>
+                    </div>
+                    
+                    <div class="modal-header">
+
+
+                      <h3 class="modal-title">Upload Resume</h3>
+                     
+                    </div>
+
+                   <div class="modal-body" style="padding:40px 50px;">
+
+          <form role="form" method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-file"></span> Upload CV</label>
+              <input type="file" class="form-control" id="usrname" placeholder="Upload CV" name="temp_resume" required>
+            </div>
+           <button type="submit" class="btn btn-success btn-block applying">Upload</button>
+          </form>
+        </div>
+        
+  </div>
+</div>

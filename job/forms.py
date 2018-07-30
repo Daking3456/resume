@@ -1,6 +1,7 @@
 from django import forms
-from job.models import Job, Applicant
+from job.models import Job, Applicant, ParsedResume
 from datetimewidget.widgets import DateTimeWidget
+
 
 class JobForm(forms.Form):
     title = forms.CharField(max_length=1000)
@@ -14,6 +15,7 @@ class JobForm(forms.Form):
     type_of_job = forms.CharField(max_length=100)
     deadline = forms.DateTimeField(widget=DateTimeWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3))
 
+
 class JobModelForm(forms.ModelForm):
     class Meta:
         model = Job
@@ -26,5 +28,12 @@ class ApplicantForm(forms.ModelForm):
         model = Applicant
         fields = '__all__'
         exlude = ['job', 'applicant']
+
+
+class ParsedResumeForm(forms.ModelForm):
+    class Meta:
+        model = ParsedResume
+        fields = '__all__'
+
 
 
