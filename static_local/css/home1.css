@@ -1,0 +1,112 @@
+.collection
+          {
+            margin-bottom: 0px;
+            box-shadow: none;
+          }
+    
+              .searchjob
+              {
+                box-shadow: 1px 1px  8px grey!important;
+                height: 45px;
+                border-radius: 0px;
+                border: none;   
+                padding-left: 20px!important;            
+              }
+              .slogen
+              {
+                padding: 20px;
+                margin-top: 55px;
+              }
+              .searchbuttons
+              {
+                margin-bottom: 20px;
+                padding-top: 7px;
+              }
+              .hotjobs
+              {
+                padding:10px;
+                border-radius: 10px;: 
+              }
+              .all
+              {
+                background-color: whitesmoke;
+              }
+              input
+              {
+                background-color: white!important;
+              }
+              .card> .card-image > img
+              {
+                height: 60px;
+                width: 90px!important;
+                position: absolute;
+                margin: auto;
+              }
+              .backgroundimgs
+              {
+                /*background-color:grey;*/
+                padding-bottom: 10px;
+                margin-top: -19px;
+              }
+             
+          .card:hover
+          {
+            box-shadow:1px 1px 5px;
+          }
+          .backs
+          {
+            background-image: url('/static/image/backtry.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding-bottom: 20px;
+          }
+         
+          .buttonforsearch
+          {
+            color: white!important;
+            text-align:left; width:23%;
+          }
+      
+          .featuredjob
+          {
+            padding: 20px!important;
+            
+          }
+          .hotjob
+          {
+            padding: 20px!important;
+          }
+          .row{
+            margin-bottom: 0px!important;
+          }
+          .brand-logo
+          {
+            padding-left: 20px!important;
+          }
+          .text
+          {
+            font-size:30px!important;
+            font-family: 'Sue Ellen Francisco', cursive;
+             color:white;
+          }
+          .text2
+          {
+            font-size:30px!important; 
+            color:white!important;
+            
+          }
+          .postingtext
+          {
+            font-size: 25px; 
+             font-family:'Chela One';
+             color: #11217a;
+          }
+          .cators
+          {
+            font-size:30px; 
+            color:black;
+          }
+          .applying
+            {
+              margin-top: 15px;
+            }

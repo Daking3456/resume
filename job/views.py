@@ -35,16 +35,27 @@ def load_home(request):
                                         personal_info=scraped_dict['personal_info'], 
                                         education=scraped_dict['education'], 
                                         experience=scraped_dict['experience'],
-                                        skills=scraped_dict['skills']
-                                        )
+                                        skills=scraped_dict['skills'])
         else:
             messages.error(request,'The Resume is not valid, try again!')
 
 
-    hot_jobs = Job.objects.filter(status=True).exclude(is_featured=True)
+    companies = Company.objects.all()
+    jobs = []
+    for company in companies:
+        j = Job.objects.filter(company=company).order_by('-id')[:2]
+        print(j)
+        if len(j) > 0:
+            jobs.append(j)
+
+            
+
+
+
+
     featured_jobs = Job.objects.filter(is_featured=True) 
     fields = Field.objects.all()
-    context_dict = {'hot_jobs':hot_jobs,'fields':fields, 'featured_jobs':featured_jobs, 'parsedvalue':parsedvalue}
+    context_dict = {'jobs':jobs,'fields':fields, 'featured_jobs':featured_jobs, 'parsedvalue':parsedvalue}
 
     return render(request, 'home.html', context_dict)
 

@@ -15,49 +15,49 @@
 
  <!--nav bar starts-->
   <!--header-->
-  
-  <nav>
-    <div class="nav-wrapper white " >
-      <a href="/" class="brand-logo"><h5>LOGO</h5></a>
-      <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down ">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-success ">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">JOBLOGO</a>
+
+    <div class="collapse navbar-collapse  " id="navbarTogglerDemo03">
+      <ul class="navbar-nav text-center ml-auto">
+        <li class="nav-item active">
+        </li>
         {% if user.is_authenticated %}
+        
+        <li class="nav-item">
+          <a class="nav-link " href="#">PROFILE</a>
+        </li>
         {% if user|has_group:"company" %}
-        <li><a href="/post/job/">Post job</a></li>
+
+        <li class="nav-item">
+          <a class="nav-link loginbtn " href="/post/job/">
+            <i class="fa fa-user"></i> POST JOB</a>
+        </li>
         {% endif %}
-        
-        
-        <li><a href="/accounts/profile/">Profile</a></li>
-        
-        <li><a href="/accounts/logout/">Logout</a></li>
+       
+        <li class="nav-item">
+          <a class="nav-link loginbtn " href="/accounts/logout/">
+            <i class="fa fa-user"></i> LOG OUT</a>
+        </li>
         {% else %}
-
-
-        <li><a href="/accounts/login/">Login</a></li>
-        <li><a href="/">Signup</a></li>
+        <li class="nav-item">
+          <a class="nav-link " href="#">EMPLOYERS</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link  " href="/accounts/signup/"> JOIN US</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link loginbtn " href="/accounts/login/">
+            <i class="fa fa-user"></i> LOGIN</a>
+        </li>
         {% endif %}
       </ul>
     </div>
   </nav>
-
-  <ul class="sidenav" id="mobile-demo">
-    {% if user.is_authenticated %}
-        {% if user|has_group:"company" %}
-        <li><a href="/post/job/">Postjob</a></li>
-        {% endif %}
-
-
-   
-    <li><a href="/accounts/profile/">Profile</a></li>
-    <li><a href="/accounts/logout/">Logout</a></li>
-    {% else %}
-    <li><a href="/accounts/login/">Login</a></li> 
-    <li><a href="/accounts/create/user/">signup</a></li>
-    {% endif %}
-    
-  </ul>
-
-
-   
-
+  
 <!--nav bar ends-->

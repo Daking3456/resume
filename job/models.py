@@ -48,6 +48,7 @@ class Job(models.Model):
         super(Job, self).save(**kwargs)
 
 
+
 class Applicant (models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     email = models.CharField(max_length=100, null=True, blank=True)

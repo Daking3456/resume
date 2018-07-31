@@ -1,0 +1,70 @@
+        <div class="col-lg-3 col-md-3 col-sm-12 topjobs">
+          <div   class="postjob">
+            <p> &nbsp; &nbsp;Employeers ?? click here &nbsp;
+              <a href="#" class="btn btn-warning btn-sm " role="button">post job</a>
+            </p>
+          </div>
+
+          <div class="jobalert">
+              <div class="card1 ">                
+                  <div class="card-body">                    
+                    <h5 class="card-title">Job alert</h5>
+                    <hr>
+                   
+                    <p class="card-text">Get new jobs by email</p>
+                    <div class="form-group">                       
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <br><a href="#" class="btn btn-success btn-sm " role="button">subscribe</a>
+                      </div>
+                   
+                  </div>
+                </div>
+          </div>
+
+            <div class="hotjobss">
+                <div class="box "> 
+                    <div class="card-header">
+                        <i class="fa fa-fire"></i> HOT JOBS
+                    </div>
+
+                    {% for job in jobs %}               
+                    <div class="row hi no-gutter">
+                        <div class="media">
+                          <div class="imagees">
+                              <img src="/static/image/comlogo.png">
+                          </div>      
+                        <div class="text">
+                      <h6>{{ job.0.company.user.username }}</h6>
+                      <ul>
+                        <li>
+                          <a href="/job/{{job.0.slug}}/">{{ job.0 }}</a>
+                        </li>
+                        <li>
+                          <a href="/job/{{job.1.slug}}">{{ job.1 }}</a>
+                        </li>
+                      </ul>
+                    </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                  </div>
+
+                
+
+                    <div class="box text-right"> 
+                       <a href = "#"> see more</a>
+                      </div>
+              </div>
+
+              <div class="quicklinks">
+                <ul>
+                  <li><h4>Quick link</h4></li>
+                  <li><a href = "#">Administrative</a></li>
+                  <li><a href = "#">Administrative</a></li>
+                  <li><a href = "#">Administrative</a></li>
+                  <li><a href = "#">Administrative</a></li>
+                  <li><a href = "#">Administrative</a></li>
+                </ul>
+              </div>
+              
+        </div>

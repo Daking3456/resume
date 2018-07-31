@@ -1,9 +1,11 @@
 {% if parsedvalue %}
+{% if parsedvalue %}
+<div id="modal2" class="modal">
 
-<div class="modal fade" id="modaltoload" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
- <div class="container ">
+
+
+                      
+          <div class="container ">
 
   <h4>It looks like you applied for:{{ parsedvalue.applied_for }} </h4>
 
@@ -14,14 +16,11 @@
 
 
         <div class="modal-footer">
-                       <a href="#!"  data-dismiss="modal">Looks Good</a>
+                       <a href="#!" class="modal-close waves-effect waves-green btn-flat">Looks Good</a>
                        <a href="/detail/edit/">Edit Contents</a>
                     </div>
 
+        
   </div>
-  </div>      
-  </div>
- </div> 
-
+</div>
 {% endif %}
-

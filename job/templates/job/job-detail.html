@@ -1,113 +1,103 @@
 {% extends 'layout.html' %}
 {% load static %}
-{% load auth_extras %}
-
-{% block extrastyles %}
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-<link rel="stylesheet" href="{% static 'css/jobdetail.css' %}">
-
-{% endblock %}
-
-
 
 {% block content %}
 <div class="container">
 
     <!--Indicate the current page’s location within a navigational hierarchy-->
 
-  <div class="row">
+	<div class="row">
     <!--left part of the page-->
 
-      <div class="col s8 mainbody">
-        <div class = "mains">         
-          <h2>{{job.title}}</h2> <!--Title for the job-->
-            <div class="view">Date of publish
-              :<span class="imp">{{job.created_at}}</span> &nbsp;&nbsp;&nbsp; 
-              | &nbsp;&nbsp; Apply Before : <span class="imp">{{job.deadline}}</span><br><br>
-            </div>
+  		<div class="col-sm-8 mainbody">
+  			<div class = "mains">  				
+  				<h2>{{job.title}}</h2> <!--Title for the job-->
+  					<div class="view">Date of publish
+  						:<span class="imp">{{job.created_at}}</span> &nbsp;&nbsp;&nbsp; 
+  						| &nbsp;&nbsp; Apply Before : <span class="imp">{{job.deadline}}</span><br><br>
+  					</div>
 
             <!-- ************************************-->
               <!-- Button trigger modal -->
-{% if user.is_authenticated %}
-  {% if user|has_group:"company" %}
+<button type="button" class="btn btn-primary buttons1" data-toggle="modal" data-target="#exampleModalLong">
+  Apply now
+</button>
 
-  {% else %}
-
-     <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Apply now</a>
-      {% endif %}
-    {% else %}
-    <a class="waves-effect waves-light btn modal-trigger" href="/accounts/login/">Apply now</a>
-
-     
-    {% endif %}
-
+ <hr class="style2">
 
 <!-- Modal -->
-        <div id="modal1" class="modal">
-               
+          <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
                   <div class="modal-content">
-                    <div class="modal-footer">
-                       <a href="#!" class="modal-close waves-effect waves-green btn-flat">X</a>
-                    </div>
                     
                     <div class="modal-header">
 
-
-                      <h3 class="modal-title">Apply</h3>
-                     
+                      <h3 class="modal-title">Resume Upload</h3>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                     </div>
 
-                   <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-              {% csrf_token %}
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Name</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter Name" name="name" value="{{ request.user.username }}" required>
-            </div>
-            <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-envelope"></span> Email</label>
-              <input type="text" class="form-control" id="psw" name="email" value="{{request.user.email}}" placeholder="Enter Email address" required>
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-file"></span> Upload CV</label>
-              <input type="file" class="form-control" id="usrname" placeholder="Upload CV" name="resume" required>
-            </div>
-            <button type="submit" class="btn btn-success btn-block applying">Apply</button>
-          </form>
-        </div>
-        
-                      </div>
+                    <div class="modal-body">
+                        <form >
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Name</label>
+                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Email address</label>
+                               <i class="fa fa-envelope prefix grey-text"></i>
+                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1">Upload CV</label>
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            </div>      
+                        </form>
+                    </div>
+
+
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-success">Upload</button>
+                    </div>
+                  </div>
                 </div>
-        
+          </div>
 
             <!-- ************************************-->
 
-        
-          <!--<button class="buttons2" type="submit"><i class="fa fa-linkedin fa-lg"></i>&nbsp;&nbsp; APPLY WITH LINKEDIN</button>-->
+  			
+  				<!--<button class="buttons2" type="submit"><i class="fa fa-linkedin fa-lg"></i>&nbsp;&nbsp; APPLY WITH LINKEDIN</button>-->
 
-        </div>
+  			</div>
 
-      <div class="mainsbody">
-        <div class="jumbotron jumbotron-fluid">
-        <div class="req">
-        
-          <div class = "detail">
-            <table border= "0">
-              <tr>
-                <td><b>Salary:</b></td>
-                <td>{{job.salary}}</td>
-              </tr>
-              <tr>
-                <td><b>Employment Type:</b></td>
-                <td>{{job.type_of_job}}</td>
-              </tr>
+  		<div class="mainsbody">
+  			<div class="jumbotron jumbotron-fluid">
+  			<div class="req">
+  			
+  				<div class = "detail">
+  					<table border= "0">
+  						<tr>
+  							<td><b>Salary:</b></td>
+  							<td>{{job.salary}}</td>
+  						</tr>
+  						<tr>
+  							<td><b>Location:</b></td>
+  							<td>{{job.location}}</td>
+  						</tr>
+  						<tr>
+  							<td><b>Employment Type:</b></td>
+  							<td>{{job.type_of_job}}</td>
+  						</tr>
 
-              <tr>
-                <td><b>Field:</b></td>
-                <td>{{job.job_field}}</td>
-              </tr>
+  						<tr>
+  							<td><b>Field:</b></td>
+  							<td>{{job.job_field}}</td>
+  						</tr>
 
               <tr>
                 <td><b>Education:</b></td>
@@ -128,49 +118,39 @@
                 <td><b>No of opening:</b></td>
                 <td>{{job.no_opening}}</td>
               </tr>
-            </table>
-          </div>
-          <hr class="style1">
+  					</table>
+  				</div>
+  				<hr class="style1">
 
-           <h2 class="display-4">Description</h2>
-          <p class="lead">
-          {{job.description}}   
+   				 <h2 class="display-4">Description</h2>
+    			<p class="lead">
+					{{job.description}}		
           </p>
 
-        <h2 class="display-4">Requirement</h2>
-          <p class="lead"> {{job.requirements}}</p>
-        </div>
+				<h2 class="display-4">Requirement</h2>
+    			<p class="lead"> {{job.requirements}}</p>
+  			</div>
 
-  {% if user.is_authenticated %}
-  {% if user|has_group:"company" %}
+        <button type="button" class="btn btn-primary buttons1" data-toggle="modal" data-target="#exampleModalLong">
+  Apply now
+</button>
 
-  {% else %}
-
-     <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Apply now</a>
-      {% endif %}
-    {% else %}
-    <a class="waves-effect waves-light btn modal-trigger" href="/accounts/login/">Apply now</a>
-
-     
-    {% endif %}
-
-
-            <div class = "info">
-              <hr class="style1">
-              <h3><div class="companynamee">{{job.company.user.username}}</div></h3><!--place for company detail-->
+      			<div class = "info">
+      				<hr class="style1">
+      				<h3><div class="companynamee">{{job.company.user.username}}</div></h3><!--place for company detail-->
                     {{job.company.user.address.address1}}<br>
                     {{job.company.user.address.country}}<br>
                     {{job.company.user.address.zip_code}}<br>
                     {{job.company.user.website}}<br>
-            </div>
+      			</div>
 
 
-      </div>
-    </div>
+			</div>
+		</div>
 
-      </div>
+  		</div>
 
-       <div class="col s4 ">
+       <div class="col-sm-4">
         <!--shows relatable job on the right side-->
         <div class = "relatable">
          <!--  <div class="backtosearchresult">
@@ -180,10 +160,8 @@
              {% for related_job in related_jobs %}   
             <div class="summ">
                       
-                <h3><a href="/job/{{related_job.slug}}/"> {{related_job.title}}</a></h3>
-                
+                <a href="/job/{{related_job.slug}}/"> {{related_job.title}}</a>
                  <br>
-
                     <span class="rh-job-result-sidebar__job-details">{{related_job.comapany.user.username}}</span>
                 <br>
                     <span class="rh-job-result-sidebar__job-details">Contract</span>
@@ -192,14 +170,14 @@
                 <br>
                 
             </div>
-             {% endfor %}
-        </div>
+             {% endfor %}   
+         </div>
       </div>
-  </div>
+
+	</div>
 </div>
-<script>
-     $(document).ready(function(){
-    $('.modal').modal();
-  });
-</script>
+
 {% endblock %}
+
+ 
+

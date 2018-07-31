@@ -9,7 +9,8 @@
 
 .mains{
 	
-	padding:10px;
+	padding-left:  13px;
+	margin-bottom: 45px;
 }
 
 /*for button 1 i.e. apply now*/
@@ -23,7 +24,7 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 25px !important;
+    font-size: 15px !important;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 	margin-left: 5px;
 	width: 200px;
@@ -49,37 +50,6 @@ h6{
 	font-style: bold;
 }	
 
-/*for button 2 i.e. apply now with linkedin*/
-
-
-/*.buttons2{
-
-	 background-color: #0077B5;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-	width: 49%;
-	height: 60px;	
-}
-
-.buttons2:active {
-  background-color: #0077B5;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-
-.buttons2:hover {
-  background-color: #3077c6;
- 
-}*/
-
-/*------------------------*/
 
 .view{
 	text-align: left;
@@ -139,4 +109,13 @@ hr.style2 {
 .detail > table> tbody> tr > td{
 	padding: 5px;
 }
-
+.btn 
+{
+	background-color: #449D44;
+	color: #fff !important;
+	font-weight: bold;
+}
+.applying
+{
+	margin-top: 15px;
+}

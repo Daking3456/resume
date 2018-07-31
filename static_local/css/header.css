@@ -1,4 +1,18 @@
- .nav-wrapper  > a , a
-          {
-            color: #01579B !important;
-          }
+.navbar-nav >  li > a{
+    color:#e3e3e3 !important;
+   
+}
+.navbar-nav >  li
+{
+    margin-left: 25px;
+}
+.navbar-nav
+{
+    /* text-align: right; */
+}
+.loginbtn
+{
+    border:solid white;
+    padding: 5px !important;
+    border-radius: 10px;
+}

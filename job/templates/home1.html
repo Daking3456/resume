@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block extrastyles %}
+ 
+      <link rel="stylesheet" href="{% static 'css/home.css' %}">
+      <link href="https://fonts.googleapis.com/css?family=Dancing+Script:700|Lobster|Sue+Ellen+Francisco" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+      {% if parsedvalue %}
+      <script type="text/javascript">
+    $(document).ready(function(){
+    $('#modal2').modal();
+    $('#modal2').modal('open');
+     });
+    </script>
+
+      {% endif %}
+
+      <script type="text/javascript">
+        $(document).ready(function(){ 
+        $('#modal1').modal();
+        });
+      </script>      
+{% endblock %}
+
+{% block content %}
+  <div class="row backs">
+ 
+      <div class="row">
+        <div class="col s2 l2 m2">
+        </div>
+        <div class=" col s8 m8 l8">
+          
+          <div class="center-align slogen ">
+             <span  class="text"> <span class="text2"> Artificial Intelligence</span> In Modern Recruitment System</span><span class="text2"> </span>
+          </div>
+          <input class="searchjob z-depth-3" id="Search" type="Search" placeholder="  Search for your suitable job">
+          <div class="center-align searchbuttons">
+        <a class="waves-effect waves-light btn green buttonforsearch" id="search" ><i class="material-icons left">search</i>Search</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a class="waves-effect waves-light btn blue buttonforsearch modal-trigger" href="#modal1" id="upload"><i class="material-icons left">attachment</i>Upload Resume</a>      
+        </div>
+        
+        </div>
+        <div class="col s2 l2 m2">
+        </div> 
+
+      </div>
+    <center>
+         <span class="postingtext"><center>Reflect yourself in your resume and we will find the best job suited for you.&nbsp; 
+         </center></span>
+ 
+  </div>
+
+{% include 'home/featured_job.html' %}
+
+{% include 'home/hot_job.html' %}
+
+{% include 'home/category.html' %}
+
+ 
+{% include 'home/upload_cv_modal.html' %}
+ 
+{% include 'home/parsed_detail.html' %}
+
+{% endblock %}
+
+
