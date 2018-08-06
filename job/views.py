@@ -158,3 +158,12 @@ def edit_parsed_data(request):
         form = ParsedResumeForm()
         context_dict = { 'form':form,'parsedvalue':parsedvalue}
         return render(request, 'edit_parsed_detail.html',context_dict)
+
+def filtered_job(request):
+    job = []
+    ids = Resume.filtered_jobs()
+    for i in ids:
+        job.append(Job.objects.get(id=i))
+
+    context_dict = {'jobs' : job}
+    return render(request,'filtered_jobs.html', context_dict)

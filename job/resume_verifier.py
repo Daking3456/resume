@@ -10,3 +10,7 @@ class Resume:
 						'skills':'this is the values that we get for the skills'
 						}
 		return parsed_value
+
+	def filtered_jobs():
+		job = (2,4,6)
+		return job
