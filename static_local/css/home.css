@@ -152,3 +152,10 @@
 .needtohide{
     display: none;
       }
+.text > ul{
+    list-style-type: none;
+    padding-left: 0px;
+}
+.text{
+    padding-left: 3px;
+}

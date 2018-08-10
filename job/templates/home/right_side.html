@@ -29,10 +29,11 @@
 
                     {% for job in jobs %}               
                     <div class="row hi no-gutter">
-                        <div class="media">
-                          <div class="imagees">
+                       
+                          <div class="col-lg-3 col-md-12 col-sm-12 imagees">
                               <img src="/static/image/comlogo.png">
-                          </div>      
+                          </div>  
+                           <div class="col-lg-9 col-md-12 col-sm-12 ">   
                         <div class="text">
                       <h6>{{ job.0.company.user.username }}</h6>
                       <ul>
@@ -46,6 +47,7 @@
                     </div>
                         </div>
                       </div>
+                      
                       {% endfor %}
                   </div>
 
