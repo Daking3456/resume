@@ -72,6 +72,13 @@
         Launch demo modal
       </button>
 
+<script type="text/javascript">
+  document.getElementById("file").onchange = function() {
+    document.getElementById("form").submit();
+    console.log("upload")
+};
+</script>
+
 {% include 'home/upload_cv_modal.html' %}
  
 {% include 'home/parsed_detail.html' %}
