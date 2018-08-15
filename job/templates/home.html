@@ -52,25 +52,173 @@
     </div>
   </div>
 
-<div class="col-lg-12">
+  <div class="col-md-12">
+      <div class="container">
+        <div class="row part-icon">
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-2 icon-img">
+                <img src="/static/image/icon-companies.png" class="img-fluid" alt="img">
+              </div>
+              <div class="col-md-10 icon-text">
+                <h6>25,000</h6>
+                <p>Great companies on job portal</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-2 icon-img">
+                <img src="/static/image/icon-jobs.png" class="img-fluid" alt="img">
+              </div>
+              <div class="col-md-10 icon-text">
+                <h6>400,000</h6>
+                <p>Job and intership listings</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-2 icon-img">
+                <img src="/static/image/icon-schools.png" class="img-fluid" alt="img">
+              </div>
+              <div class="col-md-10 icon-text">
+                <h6>2,970</h6>
+                <p>Schools with registered users</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+{% include 'home/company.html' %}
+
+  <div class="recommendation">
     <div class="container">
       <div class="row">
-        <div class="col-lg-9 col-md-9 col-sm-12 topjobs">
-           {% include 'home/hot_job.html' %}
-
-           {% include 'home/top_employer.html' %}
+        <div class=" col-lg-6 upload-resume">
+          <h4>Jobs Reference</h4>
+          <p><a href="#">Please upload your resume </a> to find a best jobs that suited to your skill.</p>
+          <p>Grab the opportunity and find more jobs.</p>
         </div>
+        <div class=" col-lg-6 post-job text-center ">
+            <h4>For employers</h4>
+              <br>
+            <p><a href="#">Post a job for free</a></p>
+           
+          </div>
+      </div>
+    </div>
+  </div>
+  
+<div class="col-lg-12"> 
+    <div class="col-lg-12 col-sm-12 col-md-12">
+        <div class="container">
+          <div class="row popular-jobs">
+            <div class="col-lg-12">
+              <h4>Popular job searches</h4>
+              <br>
+            </div>
+            <div class="col-lg-4 cat-job">
+              <h6>By Category</h6>
+              <ul >
+                <li>
+                  <a href="#">sales</a>
+                </li>
+                <li>
+                  <a href="#"> Customer Service</a>
+                </li>
+                <li>
+                  <a href="#">Accounting</a>
+                </li>
+                <li>
+                  <a href="#">Entry Level</a>
+                </li>
+                <li>
+                  <a href="#">Administrative Assistant</a>
+                </li>
+              </ul>
+    
+                <h7><a href = "#"><i class="fa fa-tags"></i> Browse all Category</a></h7>
+    
+    
+    
+            </div>
+    
+            <div class="col-lg-4 cat-job">
+              <h6>By City</h6>
+              <ul >
+                <li>
+                  <a href="#">Chicago</a>
+                </li>
+                <li>
+                  <a href="#"> Houston</a>
+                </li>
+                <li>
+                  <a href="#">Dallas</a>
+                </li>
+                <li>
+                  <a href="#">Boston</a>
+                </li>
+                <li>
+                  <a href="#">Denvar</a>
+                </li>
+              </ul>
+              <h7><a href = "#"><i class="fa fa-map-marker"></i> Browse all City</a></h7>
+            </div>
+    
+            <div class="col-lg-4 cat-job">
+              <h6>By Company</h6>
+              
+              <ul>
+                <li>
+                  <a href="#">Macy's</a>
+                </li>
+                <li>
+                  <a href="#"> UPS</a>
+                </li>
+                <li>
+                  <a href="#">Aerotek</a>
+                </li>
+                <li>
+                  <a href="#">Kelly Service</a>
+                </li>
+                <li>
+                  <a href="#">Robert Half</a>
+                </li>
+              </ul>
+              <h7><a href = "#"><i class="fa fa-building"></i> Browse all Company</a></h7>
+            </div>
+          </div>
+        </div>
+    </div>
+      <hr class="line">
+       
+    <div class="more_for_employee text-center">
+      <span>More for employers </span>
+    </div>
 
-            {% include 'home/right_side.html' %}
- </div>
- </div>
-</div>
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class=" socials ">
+        <h4 class ="text-center">Connect with us</h4>
+        <div class="icons text-center">
+          <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-instagram"></a>
+          <a href="#" class="fa fa-youtube"></a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
-
-<button type="button" class="btn btn-primary needtohide" id="btntrigger" data-toggle="modal" data-target="#modaltoload">
+<button type="button" class="btn btn-primary needtohide" id="btntrigger" data-toggle="modal" data-target="#modaltoload" style="display:none">
         Launch demo modal
       </button>
+{% include 'home/upload_cv_modal.html' %}
+ 
+{% include 'home/parsed_detail.html' %}
 
 <script type="text/javascript">
   document.getElementById("file").onchange = function() {
@@ -78,11 +226,6 @@
     console.log("upload")
 };
 </script>
-
-{% include 'home/upload_cv_modal.html' %}
- 
-{% include 'home/parsed_detail.html' %}
-
 {% endblock %}
 
 

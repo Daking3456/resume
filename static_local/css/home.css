@@ -1,3 +1,5 @@
+
+
 .banner
 {    
   background-image: url("/static/image/banner.jpg"); 
@@ -19,17 +21,12 @@
     color: white;
     margin-bottom: 25px;
 }
-.text
-{
-    white-space: normal;
-    padding-left: 0px !important;
-}
 .bottemslogon
 {
     color: white;
     margin-top: 30px;
     font-size: 25px;
-    font-family: 'Lobster', cursive;
+    font-family: 'Philosopher', sans-serif;
     margin-bottom: 30px;
 }
 .form-group1
@@ -43,119 +40,205 @@
 }
 
 /* css for banner part ends here */
-.innertopjobs
-{
-    border: solid green;
-    
-}
-.topjobs
-{
-    padding: 10px;
-}
-.card-body
-{
-    padding: 20px;
+/*CSS for job recommendation*/
+.recommendation{
+    background: #c9f3c9;
 }
 
-.postjob
-{
-    border:solid green;
-    padding: 3px;
-    padding-top: 15px;
-    padding-bottom: 0px!important;
-    font-size: 15px;
-    margin-bottom: 10px;
-    width: 100%;
+.upload-resume h4{
+    font-size: 24px;
+ }
+
+.upload-resume p{
+    margin-bottom: 0px;
 }
-.jobalert
-{
-    border:solid green;
-    padding: 3px;
-    padding-top: 15px;
-    padding-bottom: 0px!important;
-    font-size: 15px;
-    margin-bottom: 10px;
+.upload-resume, .post-job{
+    padding: 10px 20px;
+    margin: 20px 0px;
 }
-.imagees > img{
-    height: 60px;
-    width: 70px;
-}
-.box
-{
-    padding: 5px;
-    border: 1px solid lightgrey;
-    background-color: whitesmoke;
-}
-.box1
-{
-    padding: 5px;
-    border: 1px solid lightgrey;
-}
-.media
-{
-    padding-left: 10px;
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.card_hot_jobs
-{
-    margin-bottom: 20px;
-    border: solid green;
-}
-.card_top_emplyoees
-{
-    margin-bottom: 20px;
-    border: solid green;
-}
-.image_for_employee>a> img
-{
-    height: 150px;
-    width: 100%;
-}
-.employee
-{
+.post-job >p> a{
     padding: 10px;
+    /* border: solid red; */
+    background-color: #36a936;
+    color:white;
 }
-.image_for_employee
-{
-    border: 1px solid lightgrey;
-    background-color: whitesmoke;
+
+/*End css for job recommendation*/
+.popular-jobs
+    {
+    padding: 20px 0px;
+    line-height: 1.5rem;
+    margin-bottom: 30px;
+    margin-top: 15px;
 }
-.card1 > .card-body
-{
-    padding-top: 8px;
+.popular-jobs h3{
+    margin-bottom: 0px;
 }
-.hotjobss
+    .text > ul>li  > a 
+    {
+      color:#333 !important;
+    }
+    .cat-job >ul {
+      color:#444;
+      padding-left: 0px;
+      flex-wrap: wrap;
+      display: flex;
+    }
+    .cat-job >ul > li{
+      float:left;
+      padding-left: 0px;
+      margin-left: 20px;
+      white-space: normal;
+    }
+    .cat-job >ul > li>a
+    {     
+      color:#444;
+    }
+    .part-icon p,h6
+    {
+        margin-bottom: 0px;
+        font-size: 15px;    
+        color: #84878a;
+    }
+    .icon-img{
+        margin-top: 10px;
+    }
+    .icon-text{
+        padding-left: 0px;
+    }
+    .part-icon  {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px 0px;
+    }
+
+/* css for footer part */
+
+
+ @media only screen and (max-width: 768px) {
+   
+    .company-title {
+        padding-left: 33px;
+    }
+}
+
+@media only screen and (max-width: 988px) {
+   
+    .company-title {
+        padding-left: 33px;
+    }
+}
+
+
+
+.more_for_employee > span{
+    border: 1px solid #3a96c1;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    color:#3a96c1;    
+    font-size: 20px;
+}
+
+.more_for_employee
 {
-    border:solid green;
-    padding: 3px;
-    padding-top: 15px;
-    padding-bottom: 10px!important;
-    font-size: 15px;
+    margin-top: -30px;
+    
+}
+/*CSS Body -company*/
+ .company{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.company-container{
+   
+    border-bottom: 3px solid #11b719;
+    padding: 10px   !important;
+    box-shadow:2px 1px 17px 3px #b7b7b78f;
+}
+.rounded-circle
+{
+    border-radius: 60px;
+    /* width:50%;
+    height:auto; */
+}
+.company-title
+{
+    padding-top: 20px;
+}
+
+
+
+.company-details, .list
+{
+    padding-left: 40px;
+}
+.detail-company{
+        margin-top:20px;
+}
+.days{
+    background: #c9f3c9;
+    padding: 5px;
+    text-align: center;
+    color: #36a936;
+    width: 70%;
+}
+.company h4, .company p {
+    font-family: 'Montserrat', sans-serif;
+}
+.company-detail h4{
+    color: #35434E;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.company-detail p{
+    color: #707c88;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-top: 5px;
     margin-bottom: 10px;
+    font-weight: 300;
 }
-.quicklinks
-{
-    border:solid green;
-    padding: 3px;
-    padding-top: 15px;
-    padding-bottom: 10px!important;
-    font-size: 15px;
-    margin-bottom: 10px;
+.list p{
+    margin: 0px;
+    font-weight: 600;
 }
-.quicklinks > ul
-{
-    list-style-type: none;
-    padding-left: 5px;
+.number{
+ color: #2d5bc5 !important;
 }
-.needtohide{
-    display: none;
-      }
-.text > ul{
-    list-style-type: none;
+.contact-detail p{
+    font-size: 16px;
+    color: #707c88;
+}    
+.contact-detail h4{
+    color: #35434E;
+    font-size: 22px;
+    margin-bottom: 15px;
+ }
+.social-link{
     padding-left: 0px;
 }
-.text{
-    padding-left: 3px;
-}
+ .social-link li{
+    list-style: none;
+    display: inline-block;
+ }
+ .social-link i{
+    background: #f4f4f4;
+    padding: 13px 17px;
+ }
+ .social-link a{
+    color: #212529;
+ }
+  .social-link a:hover{
+    color: #28a745;
+ }
+ .button-custom button{
+    width: 48%;
+    padding:  10px 5px;
+ }
+ .btn-search-job:hover{
+    background: #fff !important;
+    border: 1px solid green;
+    color: green;
+ }
