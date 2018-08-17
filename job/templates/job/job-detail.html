@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% load static %}
+{% load auth_extras %}
 
 {% block content %}
 <div class="container">
@@ -19,11 +20,20 @@
 
             <!-- ************************************-->
               <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary buttons1" data-toggle="modal" data-target="#exampleModalLong">
+
+{% if user.is_authenticated %}
+{% if user|has_group:"company" %}
+{% else %}
+<button type="button" class="btn btn-success buttons1" data-toggle="modal" data-target="#exampleModalLong">
   Apply now
 </button>
-
+{% endif %}
+{% else %}
+<a class="btn btn-success buttons1" href="/accounts/login/" > Apply Now </a>
+{% endif %}
  <hr class="style2">
+
+
 
 <!-- Modal -->
           <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -51,7 +61,7 @@
             </div>
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-file"></span> Upload CV</label>
-              <input type="file" class="form-control" id="usrname" placeholder="Upload CV" name="resume" required>
+              <input type="file" class="form-control" id="usrname" placeholder="Upload CV" name="resume" value="/media/{{request.user.recent_resume}}" required>
             </div>
             <button type="submit" class="btn btn-success btn-block applying">Apply</button>
           </form>
@@ -130,9 +140,18 @@
     			<p class="lead"> {{job.requirements}}</p>
   			</div>
 
-        <button type="button" class="btn btn-primary buttons1" data-toggle="modal" data-target="#exampleModalLong">
+{% if user.is_authenticated %}
+{% if user|has_group:"company" %}
+{% else %}
+<button type="button" class="btn btn-success buttons1" data-toggle="modal" data-target="#exampleModalLong">
   Apply now
 </button>
+{% endif %}
+{% else %}
+<a class="btn btn-success buttons1" href="/accounts/login/" >
+  Apply Now
+</a>
+{% endif %}
 
       			<div class = "info">
       				<hr class="style1">

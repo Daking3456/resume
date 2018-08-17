@@ -23,7 +23,13 @@ def load_home(request):
             
 
         if resume_status == True:
-            TempResume.objects.create(temp_resume=resume)
+            user = request.user
+            
+            temp = TempResume.objects.create(temp_resume=resume)
+
+            if user.is_authenticated:
+                user.recent_resume = temp.temp_resume
+                user.save()
             messages.success(request,'Resume Uploaded Successfully!')
 
             scraped_dict = Resume.parse_resume();
@@ -85,10 +91,9 @@ def job_detail(request,slug):
         
         # Uses machine learning to verify the resume
         resume_status = Resume.resume_verifier()
-        print(resume_status)
 
         if(resume_status == True):
-            print (job)
+            # print (job)
             # if User applies again to update their credentials
             if Applicant.objects.filter(job=job, applicant=user):
                 applicant = Applicant.objects.get(job=job, applicant=user)

@@ -104,6 +104,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 	USERNAME_FIELD = 'email'
 	REQUIRED_FIELDS = ['username']
 
+	recent_resume = models.FileField(blank=True, null=True)
+
 	def get_full_name(self):
 		full_name = '%s' %(self.username)
 		return full_name.strip()
