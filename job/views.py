@@ -21,7 +21,6 @@ def load_home(request):
 
         resume_status = Resume.resume_verifier()
             
-
         if resume_status == True:
             user = request.user
             

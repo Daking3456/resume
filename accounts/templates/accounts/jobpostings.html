@@ -1,6 +1,5 @@
 
-<div class="container">    
-<div class="col-xs-8">      
+   
   <table class="table">
     <thead>
       <tr>
@@ -8,9 +7,7 @@
         <th>Title</th>
         <th>No of opening</th>
         <th>Edit</th>
-        <th>View Applicants</th>
-       
-        
+        <th>View Applicants</th>    
       </tr>
     </thead>
 
@@ -21,7 +18,7 @@
         <td>{{job.0.title}}</td>
         <td>{{job.0.no_opening}}</td>
         <td><a href="/job/edit/{{job.0.slug}}">
-          <span class="glyphicon glyphicon-edit"></span>
+          <i class="fas fa-edit"></i>
         </a></td>
         <td><a href="/job/applicants/{{job.0.slug}}" > View </a> ({{job.1}})</td>
 
@@ -30,5 +27,3 @@
      
     </tbody>
   </table>
-</div>
-</div>

@@ -89,7 +89,7 @@ def login_page(request):
 # View function to handle logout
 def logout_page(request):
     logout(request)
-    return HttpResponseRedirect('/accounts/login/')
+    return HttpResponseRedirect('/')
 
 def accounts_profile(request):
     user = request.user

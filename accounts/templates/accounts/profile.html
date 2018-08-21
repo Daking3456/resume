@@ -2,13 +2,11 @@
 {% load static %}
 {% load auth_extras %}
 
-{% block extrascripts %}
-<script src="http://jhollingworth.github.io/bootstrap-wysihtml5/src/bootstrap-wysihtml5.js"></script>
-<script src="http://jhollingworth.github.io/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="{% static 'css/bootstrap.vertical-tabs.css' %}">
+{% block extrastyles %}
+
+  <link rel="stylesheet" href="{% static 'css/profiles.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
 
 {% endblock %}
 
@@ -16,49 +14,43 @@
 {% block content %}
 <div class="container">
     <div class="row" style="min-height:600px;">
-      <div class="col-sm-12">
-        <div class="col-xs-3 left-tab">
-          <!-- required for floating -->
-          <!-- Nav tabs -->
-          <h3>Sections</h3>
-          <ul class="nav nav-tabs tabs-left">
-            <li class="active">
-              <a href="#summary" data-toggle="tab">Profile Summary</a>
-            </li>
-			       <li>
-              <a href="#address" data-toggle="tab">Address</a>
-            </li>
-            {% if user|has_group:"company" %}
-              <li>
-              <a href="#job-posting" data-toggle="tab">Job Posting</a>
-            </li>
-             {% else %}
+      <div class='col-lg-3 col-md-3' style="margin-top: 60px;"> 
+        
+<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+  <a class="nav-link active" id="v-pills-summary-tab" data-toggle="pill" href="#v-pills-summary" role="tab" aria-controls="v-pills-summary" aria-selected="true">Profile Summary</a>
+  
+  <a class="nav-link" id="v-pills-address-tab" data-toggle="pill" href="#v-pills-address" role="tab" aria-controls="v-pills-address" aria-selected="false">Address</a>
+  
+  {% if user|has_group:"company" %}
+  <a class="nav-link" id="v-pills-jobposting-tab" data-toggle="pill" href="#v-pills-jobposting" role="tab" aria-controls="v-pills-jobposting" aria-selected="false">Job Posting</a>
+  
+  {% else %}
 
-            <li>
-              <a href="#job-applied" data-toggle="tab">Job Applied</a>
-            </li>
-            {% endif %}
+  <a class="nav-link" id="v-pills-jobapplied-tab" data-toggle="pill" href="#v-pills-jobapplied" role="tab" aria-controls="v-pills-jobapplied" aria-selected="false">Job Applied</a>
+{% endif %}
+</div>
+</div>
 
-          </ul>
-        </div>
+<div class='col-lg-9 col-md-9'>
 
-        <div class="col-xs-9" style="border: 1px solid #ddd;">
-          <div class="tab-content">
-              <div class="tab-pane active" id="summary">
-                {% include 'accounts/summary.html' %}
-              </div>
-			  <div class="tab-pane" id="address">
-                {% include 'accounts/address.html' %}
-              </div>
-              <div class="tab-pane" id="job-posting">
-                 {% include 'accounts/jobpostings.html' %}
-              </div>
-              <div class="tab-pane" id="job-applied">
-                 {% include 'accounts/jobapplied.html' %}
-              </div> 
-            </div>
-          </div>
-        </div>
+
+<div class="tab-content" id="v-pills-tabContent">
+  <div class="tab-pane fade show active" id="v-pills-summary" role="tabpanel" aria-labelledby="v-pills-summary-tab">
+  {% include 'accounts/summary.html' %}
+</div>
+  <div class="tab-pane fade" id="v-pills-address" role="tabpanel" aria-labelledby="v-pills-address-tab">
+  {% include 'accounts/address.html' %}
+</div>
+
+  <div class="tab-pane fade" id="v-pills-jobposting" role="tabpanel" aria-labelledby="v-pills-jobposting-tab">
+  {% include 'accounts/jobpostings.html' %}
+</div>
+
+  <div class="tab-pane fade" id="v-pills-jobapplied" role="tabpanel" aria-labelledby="v-pills-jobapplieed-tab">
+  {% include 'accounts/jobapplied.html' %}
+</div>
+</div>
+</div>
 
         <div class="clearfix"></div>
 
@@ -69,4 +61,5 @@
 
   </div>
 </div>
+
 {% endblock %}

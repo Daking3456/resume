@@ -3,6 +3,8 @@ from django.utils.text import slugify
 from django.conf import settings
 from accounts.models import Company, User
 
+
+
 class Field(models.Model):
     name = models.CharField(max_length=100)
 

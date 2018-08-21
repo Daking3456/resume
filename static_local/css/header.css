@@ -3,17 +3,24 @@
     font-size: 14px;
    
 }
-/*.navbar-nav >  li
+
+/*.navbar-nav
 {
-    margin-left: 25px;
+     text-align: right; 
 }*/
-.navbar-nav
-{
-    /* text-align: right; */
-}
 .loginbtn
 {
     padding: 3px 5px !important;
     border-radius: 10px;
     margin-top: 4px;
+    border: 2px solid;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+     min-height:100%; 
+  position:relative;
 }

@@ -6,6 +6,7 @@ from django.conf import settings
 from django.utils.text import slugify
 
 
+
 class Address(models.Model):
 	"""
 	Author: Daking Rai (daking.rai@infodevelopers.com.np)
@@ -145,7 +146,6 @@ class Company(models.Model):
 class UserProfile(models.Model):
 
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	
 	
 	education = models.CharField(max_length=255, null=True, blank=True)
 	experinece = models.CharField(max_length=255, null=True, blank=True)

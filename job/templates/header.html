@@ -35,7 +35,7 @@
         {% if user|has_group:"company" %}
 
         <li class="nav-item">
-          <a class="nav-link loginbtn " href="/post/job/">
+          <a class="nav-link  " href="/post/job/">
             <i class="fa fa-user"></i> POST JOB</a>
         </li>
         {% endif %}
@@ -46,18 +46,20 @@
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link " href="#">EMPLOYERS</a>
+          <a class="nav-link  " href="#">EMPLOYERS</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link  " href="/accounts/signup/"> JOIN US</a>
+          <a class="nav-link  loginbtn" href="/accounts/signup/"> JOIN US</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link loginbtn " href="/accounts/login/">
+          <a class="nav-link loginbtn" data-toggle="modal" data-target="#loginForm">
             <i class="fa fa-user"></i> LOGIN</a>
         </li>
         {% endif %}
       </ul>
     </div>
   </nav>
+
+  {% include 'home/login_modal.html' %}
   
 <!--nav bar ends-->

@@ -23,6 +23,7 @@
 
 {% if user.is_authenticated %}
 {% if user|has_group:"company" %}
+
 {% else %}
 <button type="button" class="btn btn-success buttons1" data-toggle="modal" data-target="#exampleModalLong">
   Apply now
