@@ -53,15 +53,9 @@ def load_home(request):
         print(j)
         if len(j) > 0:
             jobs.append(j)
-
-            
-
-
-
-
-    featured_jobs = Job.objects.filter(is_featured=True) 
-    fields = Field.objects.all()
-    context_dict = {'jobs':jobs,'fields':fields, 'featured_jobs':featured_jobs, 'parsedvalue':parsedvalue}
+    featured_job = Job.objects.filter(is_featured=True)[0]
+    fields = Field.objects.all()[:5]
+    context_dict = {'jobs':jobs,'fields':fields, 'featured_job':featured_job, 'parsedvalue':parsedvalue}
 
     return render(request, 'home.html', context_dict)
 

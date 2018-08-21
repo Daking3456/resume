@@ -15,8 +15,8 @@
                 </div>
                   <div class="col-lg-10 col-sm-10 col-md-10">
                     <div class = "company-title">
-                      <h4>Microsoft &nbsp; <span><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span> </h4>
-                      <p>Software Development</p>
+                      <h4>{{ featured_job.company }}</h4>
+                      <p>{{ featured_job }}</p>
                       
                     </div>
                     </div>
@@ -51,14 +51,11 @@
           <div class="col-md-4 contact-detail">
               <p class="days ">10 Days Ago</p>
             <h4>Get in Touch</h4>
-            <p><i class="fa fa-map-marker"></i> <span>location</span></p>
-            <p><i class="fa fa-envelope"></i> <span>Email</span></p>
-            <p><i class="fa fa-globe"></i> <span>website link</span></p>
-            <p><i class="fa fa-phone"></i> <span>contact no.</span></p>
-            <p><i class="fa fa-users"></i> <span>1000-1200</span></p>
-
+            <p><i class="fa fa-map-marker"></i> <span>{{featured_job.company.user.address.city }}, {{featured_job.company.user.address.country }}</span></p>
+            <p><i class="fa fa-envelope"></i> <span> {{featured_job.company.email}} </span></p>
+            <p><i class="fa fa-globe"></i> <span>{{featured_job.company.website}}</span></p>
+            <p><i class="fa fa-phone"></i> <span> {{featured_job.company.phone}}</span></p>
             
-       
           </div>
         </div>
         <!-- ENd company detail -->
@@ -66,7 +63,7 @@
         <!-- Start social link -->
         <div class="company-bottom">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-9">
               <ul class="social-link">
                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -76,9 +73,8 @@
             </div>
             <!-- End social link -->
             <!-- Start Button -->
-            <div class="col-md-4 button-custom">
+            <div class="col-md-3 button-custom">
               <button type="button" class="btn btn-success btn-search-job">Search Jobs</button>  
-              <button type="button" class="btn btn-outline-secondary">Follow</button>  
             </div>
             <!-- End button -->
           </div>

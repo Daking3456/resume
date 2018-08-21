@@ -3,6 +3,11 @@
 
 
 {% block extrastyles %}
+      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Lobster" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
       <link rel="stylesheet" href="{% static 'css/home.css' %}">  
 
@@ -124,21 +129,15 @@
             <div class="col-lg-4 cat-job">
               <h6>By Category</h6>
               <ul >
+
+                {% for category in fields %}
+                {% if category %}
                 <li>
-                  <a href="#">sales</a>
+                  <a href="/job/field/{{category.id}}/">{{category}}</a>
                 </li>
-                <li>
-                  <a href="#"> Customer Service</a>
-                </li>
-                <li>
-                  <a href="#">Accounting</a>
-                </li>
-                <li>
-                  <a href="#">Entry Level</a>
-                </li>
-                <li>
-                  <a href="#">Administrative Assistant</a>
-                </li>
+                {% endif %}
+                {% endfor %}
+              
               </ul>
     
                 <h7><a href = "#"><i class="fa fa-tags"></i> Browse all Category</a></h7>
