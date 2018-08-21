@@ -133,7 +133,6 @@ def edit_job(request, slug):
         context_dict = { 'form':form,'fields':fields, 'job':job}
         return render(request, 'job/edit-job.html',context_dict)
 
-
 def see_applicants(request, slug):
     job = Job.objects.get(slug = slug)
     applicants = Applicant.objects.filter(job=job)
