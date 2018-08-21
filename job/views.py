@@ -42,6 +42,11 @@ def load_home(request):
                                         education=scraped_dict['education'], 
                                         experience=scraped_dict['experience'],
                                         skills=scraped_dict['skills'])
+            if user.is_authenticated:
+                # Add other fields as per the model
+                
+                UserProfile.objects.create(user=request.user)
+
         else:
             messages.error(request,'The Resume is not valid, try again!')
 
@@ -71,7 +76,7 @@ def post_job(request):
         else:
             messages.error(request,'Something is Wrong, try again!')
     else:
-        form = JobForm()
+        form = JobForm(None)
         # To display different options for job field
     fields = Field.objects.all()
     context_dict = {'form':form, 'fields':fields}
@@ -139,7 +144,6 @@ def see_applicants(request, slug):
     # job sent for displaying job title
 
     return render(request,'job/view-applicants.html',{'applicants':applicants, 'job':job} )
-
 
 def edit_parsed_data(request):
     parsedvalue = ParsedResume.objects.all().order_by('-id')[0]

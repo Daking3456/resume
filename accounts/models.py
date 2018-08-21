@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.utils.text import slugify
 
+
 class Address(models.Model):
 	"""
 	Author: Daking Rai (daking.rai@infodevelopers.com.np)
@@ -139,4 +140,20 @@ class Company(models.Model):
         slug_str = "%s" % (self.user.username)
         self.slug = slugify(self, slug_str)
         super(Company, self).save(**kwargs)
+
+
+class UserProfile(models.Model):
+
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	
+	
+	education = models.CharField(max_length=255, null=True, blank=True)
+	experinece = models.CharField(max_length=255, null=True, blank=True)
+	total_experience = models.CharField(max_length=255, null=True, blank=True)
+	skills = models.CharField(max_length=255, null=True, blank=True)
+	skills_present = models.CharField(max_length=255, null=True, blank=True)
+	grad_degree = models.BooleanField(default=False)
+	undergrad_degree = models.BooleanField(default=False)
+
+	date_created = models.DateTimeField(auto_now_add=True)
 
