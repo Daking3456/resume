@@ -77,10 +77,10 @@ def login_page(request):
                 return HttpResponseRedirect('/')
             else:
                 messages.error(request,'Invalid login credentials!')
-                return render(request, 'login.html')
+                return render(request, 'home/login_modal.html',{'error': 'Invalid login credentials'})
         else:
             messages.error(request,'Invalid login credentials!')
-            return render(request, 'login.html')
+            return render(request, 'home/login_modal.html',{'error': form.errors})
 
     else:
         form = LoginForm()

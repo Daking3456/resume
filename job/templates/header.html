@@ -60,6 +60,8 @@
     </div>
   </nav>
 
+{% if user.is_anonymous%}
   {% include 'home/login_modal.html' %}
+{% endif %}
   
 <!--nav bar ends-->

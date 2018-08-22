@@ -30,7 +30,7 @@
 </button>
 {% endif %}
 {% else %}
-<a class="btn btn-success buttons1" href="/accounts/login/" > Apply Now </a>
+<a class="btn btn-success buttons1" data-toggle="modal" data-target="#loginForm" > Apply Now </a>
 {% endif %}
  <hr class="style2">
 
@@ -70,10 +70,6 @@
 
 
 
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-success">Upload</button>
-                    </div>
                   </div>
                 </div>
           </div>
@@ -149,7 +145,7 @@
 </button>
 {% endif %}
 {% else %}
-<a class="btn btn-success buttons1" href="/accounts/login/" >
+<a class="btn btn-success buttons1" data-toggle="modal" data-target="#loginForm"  >
   Apply Now
 </a>
 {% endif %}
