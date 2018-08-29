@@ -13,11 +13,11 @@ class Address(models.Model):
 	Date: July 04, 2018
 	Description: Address model that is used by company.
 	"""
-	city = models.CharField(max_length=200, null=True)
-	country = models.CharField(max_length=200, null=True)
-	zip_code = models.CharField(max_length=200, null=True)
-	address1 = models.CharField(max_length=200, null=True)
-	address2 = models.CharField(max_length=200, null=True)
+	city = models.CharField(max_length=100, null=True)
+	country = models.CharField(max_length=100, null=True)
+	zip_code = models.CharField(max_length=10, null=True)
+	address1 = models.CharField(max_length=100, null=True)
+	address2 = models.CharField(max_length=100, null=True)
 
 	class Meta:
 		db_table = 'addresses'

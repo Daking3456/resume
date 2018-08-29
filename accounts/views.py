@@ -93,7 +93,6 @@ def logout_page(request):
 
 def accounts_profile(request):
     user = request.user
-
     if request.method == "POST":
         address = Address.objects.create(
             city=request.POST.get("city"),
