@@ -8,6 +8,9 @@ from job.forms import JobForm, JobModelForm, ParsedResumeForm
 from job.models import Job, Field, Applicant, TempResume, ParsedResume
 from accounts.models import Company, Address
 from job.resume_verifier import Resume 
+
+# for simple search
+from django.db.models import Q
             
 # This function is for the authorization
 def job_poster(user):
@@ -43,8 +46,14 @@ def load_home(request):
                                         skills=scraped_dict['skills'])
             if user.is_authenticated:
                 # Add other fields as per the model
+                try:
                 
-                UserProfile.objects.create(user=request.user)
+                    UserProfile.objects.create(user=request.user)
+
+                except:
+                    messages.error(request, ' ')
+
+
 
         else:
             messages.error(request,'The Resume is not valid, try again!')
@@ -168,3 +177,22 @@ def filtered_job(request):
 
     context_dict = {'jobs' : job}
     return render(request,'filtered_jobs.html', context_dict)
+
+
+
+
+# def search_job(request):
+#     job = Job.objects.filter(status=True).order_by('-created_at')
+#     query = request.GET.get("q")
+#     print(query)
+#     if query:
+#         search = job.filter(
+#             Q(title__icontains=query)|
+#             Q(company__user__username__icontains=query)|
+#             Q(responsibilities__icontains=query)
+                      
+#             )
+
+#         return render(request, 'search-job.html', {'job': search})
+#     else:
+#         return render(request, 'search-job.html', {'job': job})

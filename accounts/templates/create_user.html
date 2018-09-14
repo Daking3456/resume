@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'layout.html' %}
+{% load auth_extras %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Registration | Restcommerce</title>
-    {% load static %}
+{% load static %}
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-</head>
 
-<body>
-    <div class="col-lg-12">
-        <div class="col-lg-5 login-form">
+{% block content %}
+
+    <div class="row" style ="background-color: whitesmoke;" >
+        <div class="col-lg-5 login-form" style="margin: 100px auto; background-color:white; padding: 10px;">
             <h2>
                 <b>Create Account</b>
             </h2>
@@ -37,16 +30,12 @@
                     <input type="password" class="form-control" id="repass" placeholder="Re-enter Password" name="password2">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-success">Create</button>
                 <div class="form-group create">
                     <a href="/accounts/login">Already have an account?</a>
                 </div>
             </form>
+</div>
         </div>
-    </div>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript"></script>
-</body>
-
-</html>
+{% endblock %}

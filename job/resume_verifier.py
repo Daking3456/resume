@@ -12,5 +12,5 @@ class Resume:
 		return parsed_value
 
 	def filtered_jobs():
-		job = (2,4,6)
+		job = (1,2,4)
 		return job

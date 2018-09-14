@@ -2,6 +2,21 @@
 {% load static %}
 
 {% block extrastyles %}
+<style type="text/css">
+	input[type="text"]:focus{
+  box-shadow: none;
+  border-color:green;
+}
+.post-job{
+	background-color: whitesmoke;
+	padding: 50px;
+}
+.post-job-form{
+	background-color: #fff;
+	padding: 20px;
+	margin: 0px auto;
+}
+</style>
 
 {% endblock %}
 
@@ -11,79 +26,78 @@
 
 {% block content %}
     {{ form.media }}
-
-<div class="container">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <h2>Post Job</h2>
-        <form method='POST' enctype="multipart/form-data">
-            {% csrf_token %}
-            
-            <div class="form-group">
-				<label>Title</label>
-				<input type="text" class="form-control" name="title">
-			</div>
-            <div class="form-group">
-				<label>Field</label>
-				<select name="job_field">
-			    
-			    {% for field in fields %}
-			    <option value="{{field.id}}">{{field}}</option>
-			  	{% endfor %}
-			  </select>
-
-
-			</div>
-			<div class="form-group">
-				<label>Type</label>
-				<input type="text" class="form-control" name="type_of_job">
-			</div>
-            <div class="form-group">
-				<label>Responsibilities</label><br>
-
-				<textarea  rows="6" cols ="60" name="responsibilities"></textarea>
-			</div>
-
-            <div class="form-group">
-				<label>Qualification</label><br>
-				<textarea  rows="6" cols ="60" name="qualification"></textarea>
-			</div>
-            <div class="form-group">
-				<label>Education</label>
-				<input type="text" class="form-control" name="education">
-			</div>
-			<div class="form-group">
-				<label>Description</label><br>
-				<textarea  rows="6" cols ="60" name="description"></textarea>
-			</div>
-			<div class="form-group">
-				<label>Requirements</label><br>
-				<textarea  rows="6" cols ="60" name="requirements"></textarea>
-			</div>
-			<div class="form-group">
-				<label>Salary</label>
-				<input type="text" class="form-control" name="salary">
-			</div>
-			<div class="form-group">
-				<label>Deadline</label>
-				{{form.deadline}}
-			</div>
-            <div class="form-group">
-				<label>Number of Openings</label>
-				<input type="text" class="form-control" name="no_opening">
-			</div>
-			<div class="form-group">
-				<label>Tags</label>
-				<input type="text" class="form-control" name="tags">
-			</div>
-			<div class="form-group">
-				<button class="btn btn-primary" type="submit">Post</button>
-			</div>
+<div class="post-job">
+	<div class="container">
+	    <div class="col-md-8 post-job-form">
+	        <h2>Post Job</h2>
+	        <form method='POST' enctype="multipart/form-data">
+	            {% csrf_token %}
+	            
+	            <div class="form-group">
+					<label>Title</label>
+					<input type="text" class="form-control" name="title">
+				</div>
+	            <div class="form-group">
+					<label>Field</label>
+					<select name="job_field">
+				    
+				    {% for field in fields %}
+				    <option value="{{field.id}}">{{field}}</option>
+				  	{% endfor %}
+				  </select>
 
 
-        </form>
-    </div>
-    <div class="col-md-2"></div>
+				</div>
+				<div class="form-group">
+					<label>Type</label>
+					<input type="text" class="form-control" name="type_of_job">
+				</div>
+	            <div class="form-group">
+					<label>Responsibilities</label><br>
+
+					<textarea  rows="6" cols ="60" name="responsibilities"></textarea>
+				</div>
+
+	            <div class="form-group">
+					<label>Qualification</label><br>
+					<textarea  rows="6" cols ="60" name="qualification"></textarea>
+				</div>
+	            <div class="form-group">
+					<label>Education</label>
+					<input type="text" class="form-control" name="education">
+				</div>
+				<div class="form-group">
+					<label>Description</label><br>
+					<textarea  rows="6" cols ="60" name="description"></textarea>
+				</div>
+				<div class="form-group">
+					<label>Requirements</label><br>
+					<textarea  rows="6" cols ="60" name="requirements"></textarea>
+				</div>
+				<div class="form-group">
+					<label>Salary</label>
+					<input type="text" class="form-control" name="salary">
+				</div>
+				<div class="form-group">
+					<label>Deadline</label>
+					{{form.deadline}}
+				</div>
+	            <div class="form-group">
+					<label>Number of Openings</label>
+					<input type="text" class="form-control" name="no_opening">
+				</div>
+				<div class="form-group">
+					<label>Tags</label>
+					<input type="text" class="form-control" name="tags">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary" type="submit">Post</button>
+				</div>
+
+
+	        </form>
+	    </div>
+	</div>
 </div>
 
 {% endblock %}

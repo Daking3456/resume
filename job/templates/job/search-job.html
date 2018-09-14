@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% for job in jobs %}
+<div class="row">
+	
+    <div class="col-md-2 col-lg-2 "></div>
+    <div class="col-md-8 col-lg-8 col-sm-12">
+    	<a href="/job/{{job.slug}}/"><h1>{{job.title}}({{job.no_opening}})</h1></a>
+    	<h3>{{job.company}}</h3>
+    	<hr>
+
+    </div>
+    
+    <div class="col-md-2 col-lg-2 col-sm-2"></div>
+    
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -3,7 +3,9 @@
     font-size: 14px;
    
 }
-
+.nav-item{
+  margin: 0px 5px;
+}
 /*.navbar-nav
 {
      text-align: right; 
@@ -24,3 +26,4 @@ body {
      min-height:100%; 
   position:relative;
 }
+

@@ -46,10 +46,10 @@
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link  " href="#">EMPLOYERS</a>
+          <a class="nav-link  " href='{% url "createcompany" %}'>EMPLOYERS</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link  loginbtn" href="/accounts/signup/"> JOIN US</a>
+          <a class="nav-link  loginbtn" href="{% url 'createuser'%}"> JOIN US</a>
         </li>
         <li class="nav-item">
           <a class="nav-link loginbtn" data-toggle="modal" data-target="#loginForm">

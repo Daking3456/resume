@@ -6,7 +6,6 @@ from django.conf import settings
 from django.utils.text import slugify
 
 
-
 class Address(models.Model):
 	"""
 	Author: Daking Rai (daking.rai@infodevelopers.com.np)
@@ -25,6 +24,7 @@ class Address(models.Model):
 
 	def __str__(self):
 		return ('{},{}'.format(self.city,self.country))
+
 
 class UserManager(BaseUserManager):
 	"""
@@ -114,6 +114,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 	def get_short_name(self):
 		return self.email
+
 
 class Company(models.Model):
     """

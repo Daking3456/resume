@@ -37,6 +37,7 @@ class Job(models.Model):
     slug = models.SlugField(unique=True)
     tags = models.CharField(max_length=200, null=True, blank=True)
 
+
     class Meta:
         db_table = 'job'
         verbose_name_plural = 'jobs'

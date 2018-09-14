@@ -1,4 +1,6 @@
 {% extends 'layout.html' %}
+{% load auth_extras %}
+
 {% load static %}
 
 
@@ -35,11 +37,13 @@
           <div class="topslogon">
             Artificial Intelligence In Modern Recruitment System
           </div>
-          <input type="email" class="form-control" placeholder="enter keywords e.g: web designing">
+          <form class="navbar-form navbar-left" role = "search" method="get" action="/search/job/">
+          <input type="text" name="q" class="form-control" placeholder="enter keywords e.g: web designing">
          <div class="btn-group">
               <a href="#" class="btn btn-success btn-md " role="button" aria-pressed="true">
                       <i class="fa fa-search"></i> &nbsp;SEARCH</a>
             </div>
+          
 
             
                 
@@ -48,6 +52,7 @@
                   <a href="#" class="btn btn-primary btn-md " data-target="#buttonforbutton" id="btn"data-toggle="modal" role="button" aria-pressed="true">
                           <i class="fa fa-paperclip"></i> UPLOAD RESUME</a>
             </div>
+          </form>
           <div class="bottemslogon">
             Reflect yourself in your resume and we will find the best job suited for you.
           </div>
@@ -105,13 +110,20 @@
       <div class="row">
         <div class=" col-lg-6 upload-resume">
           <h4>Jobs Reference</h4>
-          <p><a href="#">Please upload your resume </a> to find a best jobs that suited to your skill.</p>
+          <p><a href="">Please upload your resume </a> to find a best jobs that suited to your skill.</p>
           <p>Grab the opportunity and find more jobs.</p>
         </div>
         <div class=" col-lg-6 post-job text-center ">
             <h4>For employers</h4>
               <br>
-            <p><a href="#">Post a job for free</a></p>
+              {% if user.is_authenticated %}
+        {% if user|has_group:"company" %}
+
+            <p><a href="{% url 'post_job'%}">Post a job for free</a></p>
+            {% else %}
+              <p><a href="/">Post a job for free</a></p>
+            {% endif %}
+            {% endif %}
            
           </div>
       </div>
