@@ -1,9 +1,16 @@
-from django.shortcuts import render
 from django.http import HttpResponseRedirect,HttpResponseNotFound
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.db import transaction
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash, login, authenticate
+from django.contrib import messages
+#from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, redirect
+#from requests_oauthlib.compliance_fixes import linkedin
+from social_django.models import UserSocialAuth
+
 
 from accounts.models import Company, Address
 from job.models import Applicant, Job
@@ -126,3 +133,42 @@ def accounts_profile(request):
             context_dict = {'job_applied': job_applied }
 
     return render(request,'accounts/profile.html', context_dict)
+
+
+@login_required
+def settings(request):
+    user = request.user
+
+    try:
+        linkedin_login = user.social_auth.get(provider='linkedin')
+    except UserSocialAuth.DoesNotExist:
+        linkedin_login = None
+
+    can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
+
+    return render(request, 'home.html', {
+        'linkedin_login': linkedin_login,
+        'can_disconnect': can_disconnect
+    })
+
+
+@login_required
+def password(request):
+    if request.user.has_usable_password():
+        PasswordForm = PasswordChangeForm
+    else:
+        PasswordForm = AdminPasswordChangeForm
+
+    if request.method == 'POST':
+        form = PasswordForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordForm(request.user)
+    return render(request, 'password.html', {'form': form})
+

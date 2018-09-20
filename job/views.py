@@ -66,7 +66,10 @@ def load_home(request):
         print(j)
         if len(j) > 0:
             jobs.append(j)
-    featured_job = Job.objects.all()[0]
+    try:
+        featured_job = Job.objects.all()[0]
+    except:
+        featured_job = []
     fields = Field.objects.all()[:5]
     context_dict = {'jobs':jobs,'fields':fields, 'featured_job':featured_job, 'parsedvalue':parsedvalue}
 

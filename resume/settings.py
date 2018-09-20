@@ -19,6 +19,10 @@ ALLOWED_HOSTS = ['*']
 # This is required because we have extended the user model in accounts app
 AUTH_USER_MODEL = 'accounts.User'
 
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_USER_MODEL = 'accounts.User'
+
 
 # Application definition
 
@@ -29,11 +33,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
     # my apps
     'job',
     'accounts',
 
     'datetimewidget',
+    
 ]
 
 MIDDLEWARE = [
@@ -44,6 +50,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+
 ]
 
 ROOT_URLCONF = 'resume.urls'
@@ -59,6 +69,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+            
             ],
         },
     },
@@ -68,7 +82,6 @@ WSGI_APPLICATION = 'resume.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -99,6 +112,38 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+AUTHENTICATION_BACKENDS = (
+ 'social_core.backends.open_id.OpenIdAuth',
+ 
+ 'social_core.backends.linkedin.LinkedinOAuth2',
+
+ 'django.contrib.auth.backends.ModelBackend',
+
+
+)
+
+SOCIAL_AUTH_PIPELINE = (
+   'social_core.pipeline.social_auth.social_details',
+   'social_core.pipeline.social_auth.social_uid',
+   'social_core.pipeline.social_auth.social_user',
+   'social_core.pipeline.user.get_username',
+   'social_core.pipeline.user.create_user',
+   'social_core.pipeline.social_auth.associate_user',
+   'social_core.pipeline.social_auth.load_extra_data',
+   'social_core.pipeline.user.user_details',
+   'social_core.pipeline.social_auth.associate_by_email',
+)
+
+SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
+
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '869ale4pgv5tww'
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'gI2szIzK19hhPN4u'
+SOCIAL_AUTH_LINKEDIN_SCOPE = [ 'r_basicprofile', 'r_emailaddress' ]
+
+SOCIAL_AUTH_FIELD_SELECTORS = ['email-address',]
+
+# SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
