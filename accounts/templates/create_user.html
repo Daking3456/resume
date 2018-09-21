@@ -7,7 +7,7 @@
 {% block content %}
 
     <div class="row" style ="background-color: whitesmoke;" >
-        <div class="col-lg-5 login-form" style="margin: 100px auto; background-color:white; padding: 10px;">
+        <div class="col-lg-5 login-form" style="margin: 100px auto; background-color:whitesmoke; padding: 10px;">
             <h2>
                 <b>Create Account</b>
             </h2>
@@ -35,6 +35,13 @@
                     <a href="/accounts/login">Already have an account?</a>
                 </div>
             </form>
+            <hr>
+            <p class="text-center"><strong>Spocial Signup: </strong></p>
+            <div class="text-center">
+                     <a href="{% url 'social:begin' backend='linkedin-oauth2' %}"><i class="fa fa-linkedin" aria-hidden="true" style="font-size: 20px; "></i>
+                    </a>
+                    </div>
+
 </div>
         </div>
 
