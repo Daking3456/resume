@@ -144,7 +144,85 @@ class Company(models.Model):
         super(Company, self).save(**kwargs)
 
 
+
+class WorkExperience(models.Model):
+	job_title = models.CharField(max_length=100)
+	organization = models.CharField(max_length=100)
+	responsibilities = models.TextField()
+	job_level = models.CharField(max_length=10, null=True, blank=True)
+
+
+	from_date = models.DateField()
+	to_date = models.DateField(blank=True, null=True)
+	currently_working = models.BooleanField()
+
+	def __str__(self):
+		return self.job_title
+
+
+class Education(models.Model):
+	degree = models.CharField(max_length=100)
+
+	program = models.CharField(max_length=100)
+	board  = models.CharField(max_length=100)
+	institution = models.CharField(max_length=100)
+	marks = models.CharField(max_length=20)
+
+	graduation = models.DateField()
+
+	def __str__(self):
+		return self.program
+
+class Training(models.Model):
+	name = models.CharField(max_length=255)
+	institution = models.CharField(max_length=100)
+	start_date = models.DateField()
+	end_date = models.DateField()
+
+	def __str__(self):
+		return self.name
+
+
+
+class Skills(models.Model):
+	skill = models.CharField(max_length=50)
+
+	is_featured = models.BooleanField(default=False)
+
+	def __str__(self):
+		return self.skill
+
+
 class UserProfile(models.Model):
+    
+    GENDER_CHOICES = (
+        (1, 'Male'),
+        (2, 'Female'),
+        (3, 'Prefer not to say'),
+    )
+
+    user =  models.ForeignKey(User, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=100)
+
+    gender = models.IntegerField(choices=GENDER_CHOICES)    
+
+    current_address = models.CharField(max_length=100)
+    permanent_address = models.CharField(max_length=100)
+    contact = models.CharField(max_length=20)
+
+    education = models.ManyToManyField(Education, blank=True)
+    trainings = models.ManyToManyField(Training, blank=True)
+    skills = models.ManyToManyField(Skills, blank=True)
+    work_experience = models.ManyToManyField(WorkExperience, blank=True)
+    
+
+    def __str__(self):
+        return self.user.username
+
+
+
+
+class UserExtractedProfile(models.Model):
 
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	
@@ -157,4 +235,3 @@ class UserProfile(models.Model):
 	undergrad_degree = models.BooleanField(default=False)
 
 	date_created = models.DateTimeField(auto_now_add=True)
-

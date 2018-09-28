@@ -1,5 +1,5 @@
 from django import forms
-from accounts.models import User, Address, Company
+from accounts.models import User, Address, Company, UserProfile, Education, Training, Skills, WorkExperience
 
 # Form for registration of user
 class UserForm(forms.ModelForm):
@@ -44,3 +44,31 @@ class CompanyForm(forms.ModelForm):
     class Meta:
         model = Company
         fields = '__all__'
+
+
+
+class UserProfileForm(forms.ModelForm):
+ 	class Meta:
+ 		model = UserProfile
+ 		exclude = ('skills', 'trainings', 'education', 'work_experience', 'user')
+
+class EducationForm(forms.ModelForm):
+ 	class Meta:
+ 		model = Education
+ 		fields = '__all__'
+
+class TrainingForm(forms.ModelForm):
+ 	class Meta:
+ 		model = Training
+ 		fields = '__all__'
+
+class SkillsForm(forms.ModelForm):
+ 	class Meta:
+ 		models= Skills
+ 		fields = '__all__'
+
+
+class WorkExperienceForm(forms.ModelForm):
+ 	class Meta:
+ 		model = WorkExperience
+ 		fields = '__all__'

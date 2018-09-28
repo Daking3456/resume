@@ -1,0 +1,49 @@
+body {
+  background-color: #f5f5f5; }
+
+#tab-function .tab-body {
+  background: #fff;
+  padding: 20px; }
+  #tab-function .tab-body .progress {
+    margin-bottom: 20px; }
+  #tab-function .tab-body .nav-tabs {
+    background: #fff; }
+    #tab-function .tab-body .nav-tabs .nav-link {
+      border: 1px solid #28a745;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      color: #28a745; }
+    #tab-function .tab-body .nav-tabs .nav-link.active {
+      font-weight: bold;
+      background-color: #28a745;
+      color: #fff; }
+  #tab-function .tab-body .tab-content {
+    background: #fff;
+    padding: 50px 0px;
+    height: 100%; }
+  #tab-function .tab-body .title {
+    color: #28a745;
+    text-transform: capitalize;
+    margin-bottom: 30px; }
+    #tab-function .tab-body .title .underline {
+      border-bottom: 2px solid #28a745;
+      padding-bottom: 10px; }
+  #tab-function .tab-body .personal-info, #tab-function .tab-body .work-info, #tab-function .tab-body .education-info, #tab-function .tab-body .skill-info, #tab-function .tab-body .training-info {
+    border: 1px solid #e5e5e5;
+    margin: auto;
+    padding: 15px 20px;
+    border-radius: 5px; }
+    #tab-function .tab-body .personal-info .col-form-label, #tab-function .tab-body .work-info .col-form-label, #tab-function .tab-body .education-info .col-form-label, #tab-function .tab-body .skill-info .col-form-label, #tab-function .tab-body .training-info .col-form-label {
+      padding: 0px; }
+    #tab-function .tab-body .personal-info .btn-group, #tab-function .tab-body .work-info .btn-group, #tab-function .tab-body .education-info .btn-group, #tab-function .tab-body .skill-info .btn-group, #tab-function .tab-body .training-info .btn-group {
+      margin: 0px 0px 0px auto; }
+  #tab-function .tab-body .personal-info:hover, #tab-function .tab-body .work-info:hover, #tab-function .tab-body .education-info:hover, #tab-function .tab-body .skill-info:hover, #tab-function .tab-body .training-info:hover {
+    box-shadow: 0px 0px 12px 0px #9990; }
+  #tab-function .tab-body .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #28a745 !important; }
+  #tab-function .tab-body input:focus, #tab-function .tab-body textarea:focus, #tab-function .tab-body select:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #333; }
+
+/*# sourceMappingURL=profilebuilder.css.map */

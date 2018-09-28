@@ -12,9 +12,9 @@ from django.shortcuts import render, redirect
 from social_django.models import UserSocialAuth
 
 
-from accounts.models import Company, Address
+from accounts.models import Company, Address, UserProfile
 from job.models import Applicant, Job
-from accounts.forms import LoginForm, UserForm
+from accounts.forms import LoginForm, UserForm, UserProfileForm
 
 
 # View function for registration of user
@@ -129,8 +129,15 @@ def accounts_profile(request):
 
             context_dict = {'job_and_applicants': job_and_applicants}
         else:
-            job_applied = Applicant.objects.filter(applicant=user).order_by('-date_applied')
-            context_dict = {'job_applied': job_applied }
+            profile = UserProfile.objects.filter(user=request.user)
+
+            if profile:
+                job_applied = Applicant.objects.filter(applicant=user).order_by('-date_applied')
+                context_dict = {'job_applied': job_applied, 'profile':profile }
+
+                return render(request,'accounts/profileview.html', context_dict)
+            else:
+                return render(request, 'profilebuilder.html')
 
     return render(request,'accounts/profile.html', context_dict)
 
@@ -172,3 +179,61 @@ def password(request):
         form = PasswordForm(request.user)
     return render(request, 'password.html', {'form': form})
 
+
+
+# for basic profile data
+@login_required
+def save_profile(request):
+    if request.method=="POST":
+        form = form(request.post)
+
+        if form.is_valid():
+            form.save(commit=False)
+
+
+@login_required
+def save_profile_education(request):
+    if request.method=="POST":
+        form = form(request.post)
+
+        if form.is_valid():
+            form.save()
+
+
+@login_required
+def save_profile_skills(request):
+    if request.method=="POST":
+        form = form(request.post)
+
+        if form.is_valid():
+            education = form.save()
+
+
+@login_required
+def save_profile_training(request):
+    if request.method=="POST":
+        form = form(request.post)
+
+        if form.is_valid():
+            form.save()
+
+
+@login_required
+def save_profile_experience(request):
+    if request.method=="POST":
+        form = form(request.post)
+
+        if form.is_valid():
+            form.save()
+
+
+@login_required
+def save_profile(request):
+    if request.method=="POST":
+        form = form(request.post)
+
+        if form.is_valid():
+            form.save(commit=False)
+
+    else:
+        pass
