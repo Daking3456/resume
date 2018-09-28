@@ -2,7 +2,7 @@
 {% load auth_extras %}
 
 {% load static %}
-{% block styles %}
+{% block extrastyles %}
 
 <link rel="stylesheet" type="text/css" href="/static/css/profilebuilder.css">
 	<link rel="stylesheet" type="text/css" href="https://s3.amazonaws.com/thurgoimages/hire/css/bootstrap-datepicker3.min.css">
@@ -34,7 +34,7 @@
 					<div class="tab-pane fade show active" id="pop1" role="tabpanel" aria-labelledby="pop1-tab">
 						<div class="col-lg-8 personal-info">
 							<h4 class="text-center title"><span class="underline">Basic Detail</span></h4>
-							<form>
+							<form class="profile" method="POST" action="">
 								<div class="form-group row">
 									<div class="col-md-3">
 										<label for="name" class="col-form-label">Full Name<span>*</span></label>
@@ -472,7 +472,7 @@
 
 {% endblock %}
 
-{% block extra_scripts %}
+{% block extrascripts %}
 
 <!-- jquery cdn script-->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>		
@@ -524,6 +524,31 @@
         $('#viewEndDate').toggle();
     });
 });
+</script>
+<script>
+$(document).ready(function(){
+    var $myForm = $('.profile')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = '/accounts/login/'  // or set your own url
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+      location.reload();
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+
+    }
+})
 </script>
 {% endblock %}
    

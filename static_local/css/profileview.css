@@ -1,0 +1,61 @@
+body {
+  background-color: #f5f5f5; }
+
+#tab-function .tab-body {
+  background: #fff;
+  padding: 20px; }
+  #tab-function .tab-body .progress {
+    margin-bottom: 20px; }
+  #tab-function .tab-body .nav-tabs {
+    background: #fff; }
+    #tab-function .tab-body .nav-tabs .nav-link {
+      border: 1px solid #28a745;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      color: #28a745; }
+    #tab-function .tab-body .nav-tabs .nav-link.active {
+      font-weight: bold;
+      background-color: #28a745;
+      color: #fff; }
+  #tab-function .tab-body .tab-content {
+    background: #fff;
+    padding: 50px 0px; }
+  #tab-function .tab-body .title {
+    color: #28a745;
+    text-transform: capitalize;
+    margin-bottom: 30px; }
+    #tab-function .tab-body .title .underline {
+      border-bottom: 2px solid #28a745;
+      padding-bottom: 10px; }
+  #tab-function .tab-body .personal-info, #tab-function .tab-body .work-info, #tab-function .tab-body .education-info, #tab-function .tab-body .skill-info, #tab-function .tab-body .training-info {
+    border: 1px solid #e5e5e5;
+    margin: auto;
+    padding: 15px 20px;
+    border-radius: 5px; }
+    #tab-function .tab-body .personal-info .col-form-label, #tab-function .tab-body .work-info .col-form-label, #tab-function .tab-body .education-info .col-form-label, #tab-function .tab-body .skill-info .col-form-label, #tab-function .tab-body .training-info .col-form-label {
+      padding: 0px; }
+    #tab-function .tab-body .personal-info .btn-group, #tab-function .tab-body .work-info .btn-group, #tab-function .tab-body .education-info .btn-group, #tab-function .tab-body .skill-info .btn-group, #tab-function .tab-body .training-info .btn-group {
+      margin: 0px 0px 0px auto; }
+      #tab-function .tab-body .personal-info .btn-group button, #tab-function .tab-body .work-info .btn-group button, #tab-function .tab-body .education-info .btn-group button, #tab-function .tab-body .skill-info .btn-group button, #tab-function .tab-body .training-info .btn-group button {
+        width: 100%; }
+  #tab-function .tab-body .detail {
+    margin: 10px 0px; }
+    #tab-function .tab-body .detail .btn-delete {
+      color: #005e16; }
+    #tab-function .tab-body .detail p {
+      font-size: 1rem;
+      margin-bottom: 0px; }
+    #tab-function .tab-body .detail .job-title {
+      font-weight: 600;
+      font-size: 1.4rem; }
+    #tab-function .tab-body .detail .ed-title {
+      font-weight: 600;
+      font-size: 1.2rem; }
+  #tab-function .tab-body input:focus, #tab-function .tab-body textarea:focus, #tab-function .tab-body select:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #333; }
+  #tab-function .tab-body .table td, #tab-function .tab-body .table th {
+    padding: 5px; }
+
+/*# sourceMappingURL=profileview.css.map */

@@ -237,3 +237,10 @@ def save_profile(request):
 
     else:
         pass
+
+
+def temp_add(request):
+    return render (request, 'profilebuilder.html')
+
+def temp_view(request):
+    return render (request, 'profileview.html')

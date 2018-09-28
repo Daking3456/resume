@@ -23,4 +23,10 @@ urlpatterns = [
     path('settings/',views.settings, name='settings'),
     path('settings/password/',views.password, name='password'),
     path('oauth/', include('social_django.urls', namespace='social')),
+
+
+    ###  <temporary for static representation of design
+
+    path('static_page/profile/add', views.temp_add),
+    path('static_page/profile/view', views.temp_view),
 ]
