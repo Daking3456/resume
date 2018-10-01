@@ -25,6 +25,13 @@ urlpatterns = [
     path('oauth/', include('social_django.urls', namespace='social')),
 
 
+    path('accounts/profile/basic/',views.save_profile_basic,name="profile_basic"),
+    path('accounts/profile/experice/',views.save_profile_experience,name="profile_experience"),
+    path('accounts/profile/education/',views.save_profile_education,name="profile_education"),
+    path('accounts/profile/skills/',views.save_profile_skills,name="profile_skills"),
+    path('accounts/profile/training/',views.save_profile_training,name="profile_training"),
+
+
     ###  <temporary for static representation of design
 
     path('static_page/profile/add', views.temp_add),

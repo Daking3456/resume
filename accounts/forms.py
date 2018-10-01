@@ -47,7 +47,7 @@ class CompanyForm(forms.ModelForm):
 
 
 
-class UserProfileForm(forms.ModelForm):
+class BasicProfileForm(forms.ModelForm):
  	class Meta:
  		model = UserProfile
  		exclude = ('skills', 'trainings', 'education', 'work_experience', 'user')
@@ -68,7 +68,7 @@ class SkillsForm(forms.ModelForm):
  		fields = '__all__'
 
 
-class WorkExperienceForm(forms.ModelForm):
+class ExperienceForm(forms.ModelForm):
  	class Meta:
  		model = WorkExperience
  		fields = '__all__'

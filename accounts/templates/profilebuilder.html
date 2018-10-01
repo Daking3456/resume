@@ -34,13 +34,14 @@
 					<div class="tab-pane fade show active" id="pop1" role="tabpanel" aria-labelledby="pop1-tab">
 						<div class="col-lg-8 personal-info">
 							<h4 class="text-center title"><span class="underline">Basic Detail</span></h4>
-							<form class="profile" method="POST" action="">
+							<form class="profile1" method="POST" action="">
+								{% csrf_token %}
 								<div class="form-group row">
 									<div class="col-md-3">
 										<label for="name" class="col-form-label">Full Name<span>*</span></label>
 									</div>
 									<div class="col-md-9">
-										<input type="text" class="form-control" name="name" placeholder="John Doe">
+										<input type="text" class="form-control" name="full_name" placeholder="John Doe">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -48,11 +49,11 @@
 										<label for="gender" class="col-form-label">Gender<span>*</span></label>
 									</div>
 									<div class="col-md-3">
-										<select class="custom-select">
+										<select class="custom-select" name="gender">
 											<option selected disabled>-----</option>
-											<option value="male">Male</option>
-											<option value="female">Female</option>
-											<option value="other">Other</option>
+											<option value="1">Male</option>
+											<option value="2">Female</option>
+											<option value="3">Prefer not to Say</option>
 										</select>
 									</div>
 									<div class="col-md-3 input-daterange text-right" id="datepicker">
@@ -70,13 +71,13 @@
 										<input type="text" class="form-control" name="religion" placeholder="religion">
 									</div>
 									<div class="col-md-3 text-right">
-										<label for="martial_status" class="col-form-label">Marital Status<span>*</span></label>
+										<label for="id_maritual_status" class="col-form-label">Marital Status<span>*</span></label>
 									</div>
 									<div class="col-md-3">									
-										<select class="custom-select">
+										<select class="custom-select" name="maritual_status">
 											<option selected disabled>-----</option>
-											<option value="married">Married</option>
-											<option value="unmarried">Unmarried</option>
+											<option value="1">Married</option>
+											<option value="2">Unmarried</option>
 										</select>
 									</div>
 								</div>
@@ -85,7 +86,7 @@
 										<label for="current_address" class="col-form-label">Current Address<span>*</span></label>
 									</div>
 									<div class="col-md-9">
-										<input type="text" class="form-control" name="current_address" placeholder="Current Address">
+										<input type="text" class="form-control" name="current_address" placeholder="">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -93,7 +94,7 @@
 										<label for="permanent_address" class="col-form-label">Permanent Address<span>*</span></label>
 									</div>
 									<div class="col-md-9">
-										<input type="text" class="form-control" name="permanent_address" placeholder="Permanent Address">
+										<input type="text" class="form-control" name="permanent_address" placeholder="">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -101,12 +102,12 @@
 										<label for="contact" class="col-form-label">Contact<span>*</span></label>
 									</div>
 									<div class="col-md-9">
-										<input type="text" class="form-control" name="contact" placeholder="998479784947">
+										<input type="text" class="form-control" name="contact" placeholder="">
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-3 btn-group">
-										<button class="btn btn-success">Save</button>
+										<button class=" btn btn-success">Save</button>
 										<button class="btn btn-outline-default">Cancel</button>
 									</div>
 								</div>
@@ -116,34 +117,29 @@
 					<div class="tab-pane fade" id="pop2" role="tabpanel" aria-labelledby="pop2-tab">
 						<div class="col-lg-8 work-info">
 							<h4 class="text-center title"><span class="underline">work experience</span></h4>
-							<form>
+							
+
+
+							<form class="profile2" method="POST" action="">
+								{% csrf_token %}
 								<div class="form-group row">
 									<div class="col-md-4">
 										<label for="organization_name" class="col-form-label">Organization Name<span>*</span></label>
 									</div>
 									<div class="col-md-8">
-										<input type="text" class="form-control" name="organization_name" placeholder="Name of Company">
+										<input type="text" class="form-control" name="organization" placeholder="Name of Company">
 									</div>
 								</div>
-								<div class="form-group row">
+								<!-- <div class="form-group row">
 									<div class="col-md-4">
 										<label for="organization_nature" class="col-form-label">Nature of Organization<span>*</span></label>
 									</div>
 									<div class="col-md-8">
-										<select class="custom-select">
-											<option selected disabled>-----</option>
-											<option value="1">Advertising Agency</option>
-											<option value="2">Airlines / GSA</option>
-											<option value="3">Architecture / Interior Design Firm</option>
-											<option value="4">Banks</option>
-											<option value="5">Construction / Real Estate</option>
-											<option value="6">Automotive Sales, Support &amp; Service</option>
-											<option value="7">Education - School &amp; Colleges</option>
-											<option value="8">Airlines / GSA</option>
-											<option value="9">Embassies /  Foreign Consulate</option>
-										</select>
+										<div class="col-md-8">
+										<input type="text" class="form-control" name="location" placeholder="Organization Address">
 									</div>
-								</div>
+									</div>
+								</div> -->
 								<div class="form-group row">
 									<div class="col-md-4">
 										<label for="location" class="col-form-label">Location</label>
@@ -160,7 +156,7 @@
 										<input type="text" class="form-control" name="job_title" placeholder="Your job post">
 									</div>
 								</div>
-								<div class="form-group row">
+								<!-- <div class="form-group row">
 									<div class="col-md-4">
 										<label for="job_category" class="col-form-label">Job Category<span>*</span></label>
 									</div>
@@ -178,13 +174,13 @@
 											<option value="9">Embassies /  Foreign Consulate</option>
 										</select>
 									</div>
-								</div>
+								</div> -->
 								<div class="form-group row">
 									<div class="col-md-4">
 										<label for="level" class="col-form-label">Job Level<span>*</span></label>
 									</div>
 									<div class="col-md-8">
-										<select class="custom-select">
+										<select class="custom-select" name='job_level' required>
 											<option selected disabled>-----</option>
 											<option value="top_level">Top Level</option>
 											<option value="senior_level">Senior Level</option>
@@ -207,63 +203,20 @@
 									<div class="col-md-4">
 										<label for="start_date" class="col-form-label">Start Date<span>*</span></label>
 									</div>
-									<div class="col-md-3">
-										<select class="custom-select">
-											<option selected disabled>Year</option>
-											<option value="1">2018</option>
-											<option value="2">2017</option>
-											<option value="3">2016</option>
-											<option value="4">2015</option>
-										</select>
+									<div class="col-md-8">
+										<input type="date" class="form-control" name="job_title" placeholder="Your job post">
 									</div>
-									<div class="col-md-4">
-										<select class="custom-select">
-											<option selected disabled>Month</option>
-											<option value="1">January</option>
-											<option value="2">February</option>
-											<option value="3">March</option>
-											<option value="4">April</option>
-											<option value="5">May</option>
-											<option value="6">June</option>
-											<option value="7">July</option>
-											<option value="8">August</option>
-											<option value="9">September</option>
-											<option value="10">October</option>
-											<option value="11">November</option>
-											<option value="12">December</option>
-										</select>
-									</div>	
+									
+					
 								</div>
 								<div class="form-group row" id="viewEndDate">
 									<div class="col-md-4">
 										<label for="end_date" class="col-form-label">End Date<span>*</span></label>
 									</div>
-									<div class="col-md-3">
-										<select class="custom-select">
-											<option selected disabled>Year</option>
-											<option value="1">2018</option>
-											<option value="2">2017</option>
-											<option value="3">2016</option>
-											<option value="4">2015</option>
-										</select>
+									<div class="col-md-8">
+										<input type="date" class="form-control" name="job_title" placeholder="Your job post">
 									</div>
-									<div class="col-md-4">
-										<select class="custom-select">
-											<option selected disabled>Month</option>
-											<option value="1">January</option>
-											<option value="2">February</option>
-											<option value="3">March</option>
-											<option value="4">April</option>
-											<option value="5">May</option>
-											<option value="6">June</option>
-											<option value="7">July</option>
-											<option value="8">August</option>
-											<option value="9">September</option>
-											<option value="10">October</option>
-											<option value="11">November</option>
-											<option value="12">December</option>
-										</select>
-									</div>	
+									
 								</div>
 								<div class="form-group row">
 									<div class="col-md-4">
@@ -282,32 +235,41 @@
 							</form>
 						</div>
 					</div>
+
+
+
+
+
 					<div class="tab-pane fade" id="pop3" role="tabpanel" aria-labelledby="pop3-tab">
 						<div class="col-lg-8 education-info">
 							<h4 class="text-center title"><span class="underline">Education</span></h4>
-							<form>
+							<form class="profile3" method="POST" action="">
+								{% csrf_token %}
 								<div class="form-group row">
 									<div class="col-md-3">
 										<label for="Degree" class="col-form-label">Degree<span>*</span></label>
 									</div>
 									<div class="col-md-9">
-										<select class="custom-select">
+										<input type="text" class="form-control" name="degree" placeholder="Education Program">
+									</div>
+									<!-- <div class="col-md-9">
+										<select class="custom-select" name="degree">
 											<option selected disabled>-----</option>
-											<option value="1">Ph. D.</option>
-											<option value="2">Master</option>
-											<option value="3">Bachelor</option>
-											<option value="4">+2 / Diploma</option>
-											<option value="5">SEE</option>
-											<option value="6">Others</option>
+											<option value="Ph. D">Ph. D.</option>
+											<option value="Master">Master</option>
+											<option value="Bachelor">Bachelor</option>
+											<option value="+2 / Diploma">+2 / Diploma</option>
+											<option value="SEE">SEE</option>
+											<option value="Others">Others</option>
 										</select>
-									</div>									
+									</div>			 -->						
 								</div>
 								<div class="form-group row">
 									<div class="col-md-3">
 										<label for="education_program" class="col-form-label">Education Program<span>*</span></label>
 									</div>
 									<div class="col-md-9">
-										<input type="text" class="form-control" name="education_program" placeholder="Education Program">
+										<input type="text" class="form-control" name="program" placeholder="Education Program">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -315,7 +277,7 @@
 										<label for="education_board" class="col-form-label">Education Board<span>*</span></label>
 									</div>
 									<div class="col-md-9">
-										<input type="text" class="form-control" name="education_program" placeholder="Education Board">
+										<input type="text" class="form-control" name="board" placeholder="Education Board">
 									</div>									
 								</div>
 								<div class="form-group row">
@@ -323,20 +285,14 @@
 										<label for="name_of_institute" class="col-form-label">Institute Name<span>*</span></label>
 									</div>
 									<div class="col-md-9">
-										<input type="text" class="form-control" name="name_of_institute" placeholder="Institute you Study">
+										<input type="text" class="form-control" name="institution" placeholder="Institute you Study">
 									</div>
 								</div>
 								<div class="form-group row">
 									<div class="col-md-3">
 										<label for="marks_secured" class="col-form-label">Marks Secured In<span>*</span></label>
 									</div>
-									<div class="col-md-3">
-										<select class="custom-select">
-											<option selected disabled>-----</option>
-											<option value="1">Percentage</option>
-											<option value="2">CGPa</option>
-										</select>
-									</div>
+									
 									<div class="col-md-3">
 										<input type="text" class="form-control" name="marks" placeholder="">
 									</div>
@@ -346,7 +302,7 @@
 										<label for="year" class="col-form-label">Graduation Year<span>*</span></label>
 									</div>
 									<div class="col-md-4">
-										<input type="text" class="form-control" name="year" placeholder="">
+										<input type="text" class="form-control" name="graduation" placeholder="">
 									</div>
 								</div>
 								<div class="row">
@@ -361,7 +317,8 @@
 					<div class="tab-pane fade" id="pop4" role="tabpanel" aria-labelledby="pop4-tab">
 						<div class="col-lg-8 skill-info">
 							<h4 class="text-center title"><span class="underline">Skills</span></h4>
-							<form>
+							<form class="profile4" method="POST" action="">
+								{% csrf_token %}
 								<div class="form-group row">
 									<div class="col-md-3">
 										<label for="skill" class="col-form-label">Select Your Skills<span>*</span></label>
@@ -369,12 +326,9 @@
 									<div class="col-md-9">
 										<select class="custom-select select2" multiple="multiple" data-placeholder="Select skills"
 										style="width: 100%;">
-											<option value="1">Photoshop</option>
-											<option value="2">Django</option>
-											<option value="3">Python</option>
-											<option value="4">Java</option>
-											<option value="5">Oracle</option>
-											<option value="6">UI / UX</option>
+											{% for skill in skills%}
+											<option value="{{skill.id}}">{{ skill.skill }}</option>
+											{% endfor %}
 										</select>
 									</div>									
 								</div>
@@ -390,7 +344,8 @@
 					<div class="tab-pane fade" id="pop5" role="tabpanel" aria-labelledby="pop5-tab">
 						<div class="col-lg-8 training-info">
 							<h4 class="text-center title"><span class="underline">Training</span></h4>
-							<form> 
+							<form class="profile5" method="POST" action=""> 
+								{% csrf_token %}
 								<div class="form-group row">
 									<div class="col-md-3">
 										<label for="training_name" class="col-form-label">Training Name<span>*</span></label>
@@ -457,7 +412,7 @@
 								</div>
 								<div class="row">
 									<div class="col-md-3 btn-group">
-										<button class="btn btn-success">Save</button>
+										<button class="btn btn-success" value="profile5">Save</button>
 										<button class="btn btn-outline-default">Cancel</button>
 									</div>
 								</div>
@@ -480,7 +435,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <!-- extra script -->
 <script type="text/javascript" src="https://s3.amazonaws.com/thurgoimages/hire/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="js/select2.full.min.js"></script>
+<script type="text/javascript" src="/static/js/select2.full.min.js"></script>
 <script type="text/javascript">
 	$('.input-daterange').datepicker({
     autoclose: true
@@ -527,11 +482,11 @@
 </script>
 <script>
 $(document).ready(function(){
-    var $myForm = $('.profile')
+    var $myForm = $('.profile1')
     $myForm.submit(function(event){
         event.preventDefault()
         var $formData = $(this).serialize()
-        var $thisURL = '/accounts/login/'  // or set your own url
+        var $thisURL = '/accounts/profile/basic/'  // or set your own url
         $.ajax({
             method: "POST",
             url: $thisURL,
@@ -542,7 +497,103 @@ $(document).ready(function(){
     })
 
     function handleFormSuccess(data, textStatus, jqXHR){
-      location.reload();
+    	$("#pop2-tab").click()
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+
+    }
+})
+
+
+$(document).ready(function(){
+    var $myForm = $('.profile2')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = '/accounts/profile/experice/' // or set your own url
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+    	$("#pop3-tab").click()
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+
+    }
+})
+
+$(document).ready(function(){
+    var $myForm = $('.profile3')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = '/accounts/profile/education/'  // or set your own url
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+    	$("#pop4-tab").click()
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+
+    }
+})
+
+$(document).ready(function(){
+    var $myForm = $('.profile4')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = '/accounts/profile/skills/'   // or set your own url
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+    	$("#pop5-tab").click()
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+
+    }
+})
+$(document).ready(function(){
+    var $myForm = $('.profile5')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = '/accounts/profile/training/'// or set your own url
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+    	location.reload(true);
     }
 
     function handleFormError(jqXHR, textStatus, errorThrown){

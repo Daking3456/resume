@@ -148,6 +148,7 @@ class Company(models.Model):
 class WorkExperience(models.Model):
 	job_title = models.CharField(max_length=100)
 	organization = models.CharField(max_length=100)
+	location = models.CharField(max_length=100)
 	responsibilities = models.TextField()
 	job_level = models.CharField(max_length=10, null=True, blank=True)
 
@@ -155,6 +156,8 @@ class WorkExperience(models.Model):
 	from_date = models.DateField()
 	to_date = models.DateField(blank=True, null=True)
 	currently_working = models.BooleanField()
+
+
 
 	def __str__(self):
 		return self.job_title
@@ -168,7 +171,7 @@ class Education(models.Model):
 	institution = models.CharField(max_length=100)
 	marks = models.CharField(max_length=20)
 
-	graduation = models.DateField()
+	graduation = models.CharField(max_length=10)
 
 	def __str__(self):
 		return self.program
@@ -201,8 +204,19 @@ class UserProfile(models.Model):
         (3, 'Prefer not to say'),
     )
 
-    user =  models.ForeignKey(User, on_delete=models.CASCADE)
+    MARRIED_STATUS_CHOICES = (
+        (1, 'Married'),
+        (2, 'Unmarried'),
+        (3, '--------'),
+    )
+
+    user =  models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100)
+
+    dob = models.DateField()
+
+    religion = models.CharField(max_length=50, null=True, blank=True)
+    maritual_status = models.IntegerField(choices=MARRIED_STATUS_CHOICES, default=3)
 
     gender = models.IntegerField(choices=GENDER_CHOICES)    
 
@@ -219,7 +233,26 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def get_gender(self):
+        if (self.gender == 1):
+            return "Male"
+        
+        elif self.gender == 2:
+            return 'Female'
+        elif self.gender == 3:
+            return "Prefer not to say"
+        else:
+            return "N/A"
 
+
+    def get_marritual_status(self):
+        if (self.gender == 1):
+            return "Married"
+        
+        elif self.gender == 2:
+            return 'Unmarried'
+        else:
+            return "-"
 
 
 class UserExtractedProfile(models.Model):

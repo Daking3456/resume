@@ -44,35 +44,35 @@
 									<tbody>
 										<tr>
 											<th scope="row" width="25%">Full Name</th>
-											<td>: &nbsp; John Doe</td>
+											<td>: &nbsp; {{ profile.full_name}}</td>
 										</tr>
 										<tr>
 											<th scope="row" width="25%">Gender</th>
-											<td>: &nbsp; Male</td>
+											<td>: &nbsp; {{ profile.get_gender }}</td>
 										</tr>
 										<tr>
 											<th scope="row" width="25%">Date of Birth</th>
-											<td>: &nbsp; 14 july, 2018</td>
+											<td>: &nbsp; {{ profile.dob }}</td>
 										</tr>
 										<tr>
 											<th scope="row" width="25%">Religion</th>
-											<td>: &nbsp; Hindu</td>
+											<td>: &nbsp; {{ profile.religion }}  </td>
 										</tr>
 										<tr>
 											<th scope="row" width="25%">Marital Status</th>
-											<td>: &nbsp; Unmarried</td>
+											<td>: &nbsp; {{profile.get_marritual_status}}</td>
 										</tr>
 										<tr>
 											<th scope="row" width="25%">Current Address</th>
-											<td>: &nbsp; Nepal</td>
+											<td>: &nbsp; {{profile.current_address}}</td>
 										</tr>
 										<tr>
 											<th scope="row" width="25%">Permanent Address</th>
-											<td>: &nbsp; Nepal</td>
+											<td>: &nbsp; {{profile.permanent_address }}</td>
 										</tr>
 										<tr>
 											<th scope="row" width="25%">Contact</th>
-											<td>: &nbsp; 9874665882</td>
+											<td>: &nbsp; {{profile.contact }}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -88,9 +88,11 @@
 						<div class="col-lg-8 work-info">
 							<h4 class="text-center title"><span class="underline">work experience</span></h4>
 							<hr>						
+							{% if profile.work_experience %}
+							{% for work in profile.work_experience.all %}
 							<div class="detail">
 								<a href="#" class="btn-delete pull-right"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
-								<p><span class="job-title">Job Title</span>&nbsp;<span>(level)</span> </p>
+								<p><span class="job-title">work.title</span>&nbsp;<span>(level)</span> </p>
 								<p>Company Name (nature of company)</p>
 								<p>May 2018</p>
 								<p>location of the company</p>
@@ -99,90 +101,80 @@
 								</p>
 								<hr>
 							</div>
-							<div class="detail">
-								<a href="#" class="btn-delete pull-right"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
-								<p><span class="job-title">Job Title</span>&nbsp;<span>(level)</span> </p>
-								<p>Company Name (nature of company)</p>
-								<p>May 2018</p>
-								<p>location of the company</p>
-								<p>Duties & Responsibilities : <br>
-									Text area msg
-								</p>
-								<hr>
-							</div>						
+
 							<div class="row">
 								<div class="col-md-3 btn-group">
 									<button class="btn btn-outline-success">Edit</button>
 								</div>
 							</div>
+							{% endfor %}
+							{% endif %}	
 						</div>
 					</div>
 					<div class="tab-pane fade" id="pop3" role="tabpanel" aria-labelledby="pop3-tab">
 						<div class="col-lg-8 education-info">
 							<h4 class="text-center title"><span class="underline">Education</span></h4>
 							<hr>
+							{% if profile.education %}
+							{% for edu in profile.education.all %}
 							<div class="detail">
 								<a href="#" class="btn-delete pull-right"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
-								<p><span class="ed-title">Masters</span>&nbsp;<span>80.9%</span> </p>
-								<p>College name, 2017</p>
+								<p><span class="ed-title">{{edu.title}}</span>&nbsp;<span>80.9%</span> </p>
+								<p>{{ edu.institute}}, </p>
 								<p>Board</p>
 								<hr>
 							</div>	
-							<div class="detail">
-								<a href="#" class="btn-delete pull-right"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
-								<p><span class="ed-title">Masters</span>&nbsp;<span>80.9%</span> </p>
-								<p>College name, 2017</p>
-								<p>Board</p>
-								<hr>
-							</div>	
+							
 							<div class="row">
 								<div class="col-md-3 btn-group">
 									<button class="btn btn-outline-success">Edit</button>
 								</div>
 							</div>
+							{% endfor %}
+							{% endif %}
 						</div>
 					</div>
 					<div class="tab-pane fade" id="pop4" role="tabpanel" aria-labelledby="pop4-tab">
 						<div class="col-lg-8 skill-info">
 							<h4 class="text-center title"><span class="underline">Skills</span></h4>
 							<hr>
+							{% if profile.skills %}
+							{% for skill in profile.skills.all %}
 							<div class="detail">
 								<a href="#" class="btn-delete pull-right"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
-								<p>Photoshop</p>
+								<p>{{ skill }}</p>
 							</div>	
-							<div class="detail">
-								<a href="#" class="btn-delete pull-right"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
-								<p>Django</p>								
-							</div>	
+								
 							<hr>
 							<div class="row">
 								<div class="col-md-3 btn-group">
 									<button class="btn btn-outline-success">Edit</button>
 								</div>
 							</div>
+							{% endfor %}
+							{% endif %}
 						</div>
 					</div>
 					<div class="tab-pane fade" id="pop5" role="tabpanel" aria-labelledby="pop5-tab">
 						<div class="col-lg-8 training-info">
 							<h4 class="text-center title"><span class="underline">Training</span></h4>
 							<hr>
+							{% if profile.skills %}
+							{% for skill in profile.skills.all %}
 							<div class="detail">
 								<a href="#" class="btn-delete pull-right"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
 								<p><span class="ed-title">Course Name</span>&nbsp;<span>2011</span> </p>
 								<p>Institution</p>
 								<hr>
 							</div>
-							<div class="detail">
-								<a href="#" class="btn-delete pull-right"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
-								<p><span class="ed-title">Course Name</span>&nbsp;<span>2011</span> </p>
-								<p>Institution</p>
-								<hr>
-							</div>
+							
 							<div class="row">
 								<div class="col-md-3 btn-group">
 									<button class="btn btn-outline-success">Edit</button>
 								</div>
-							</div>							
+							</div>
+							{% endfor %}							
+							{% endif %}
 						</div>
 					</div>
 				</div>

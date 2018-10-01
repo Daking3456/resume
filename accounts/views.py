@@ -12,9 +12,9 @@ from django.shortcuts import render, redirect
 from social_django.models import UserSocialAuth
 
 
-from accounts.models import Company, Address, UserProfile
+from accounts.models import Company, Address, UserProfile, Skills
 from job.models import Applicant, Job
-from accounts.forms import LoginForm, UserForm, UserProfileForm
+from accounts.forms import LoginForm, UserForm, BasicProfileForm, EducationForm, TrainingForm, SkillsForm, ExperienceForm 
 
 
 # View function for registration of user
@@ -133,11 +133,13 @@ def accounts_profile(request):
 
             if profile:
                 job_applied = Applicant.objects.filter(applicant=user).order_by('-date_applied')
-                context_dict = {'job_applied': job_applied, 'profile':profile }
+                print(profile)
+                context_dict = {'job_applied': job_applied, 'profile':profile[0]  }
 
-                return render(request,'accounts/profileview.html', context_dict)
+                return render(request,'profileview.html', context_dict)
             else:
-                return render(request, 'profilebuilder.html')
+                skills = Skills.objects.all()
+                return render(request, 'profilebuilder.html', {'skills':skills} )
 
     return render(request,'accounts/profile.html', context_dict)
 
@@ -183,64 +185,124 @@ def password(request):
 
 # for basic profile data
 @login_required
-def save_profile(request):
+def save_profile_basic(request):
     if request.method=="POST":
-        form = form(request.post)
-
+        form = BasicProfileForm(request.POST)
         if form.is_valid():
-            form.save(commit=False)
-
+            profile = form.save(commit=False)
+            profile.user = request.user
+            print('1')
+            profile.save()
+    return HttpResponseRedirect('/')
 
 @login_required
 def save_profile_education(request):
+    userprofile = request.user
     if request.method=="POST":
-        form = form(request.post)
-
+        form = EducationForm(request.POST)
+        a = form.save()
         if form.is_valid():
-            form.save()
+            print(a)
+            education = form.save()
+            profile = UserProfile.objects.get(user=request.user)
+            profile.education.add(education)
+            profile.save()
+
+    return HttpResponseRedirect('/')
 
 
 @login_required
 def save_profile_skills(request):
     if request.method=="POST":
-        form = form(request.post)
+        
+        form = SkillsForm(request.POST)
 
         if form.is_valid():
-            education = form.save()
+            profile = UserProfile.objects.get(user=request.user)
+            print("a")
+            profile.skills = form.save()
+            profile.save()
 
 
 @login_required
 def save_profile_training(request):
     if request.method=="POST":
-        form = form(request.post)
+        form = form(request.POST)
 
         if form.is_valid():
-            form.save()
+            training = form.save()
+            profile = UserProfile.objects.get(user=request.user)
+            profile.training.add(training)
+            profile.save()
 
 
 @login_required
 def save_profile_experience(request):
     if request.method=="POST":
-        form = form(request.post)
+        form = ExperienceForm(request.POST)  
+        print('s')
+
+        if form.is_valid():
+            print('a')
+            experience = form.save()
+            profile = UserProfile.objects.get(user=request.user)
+            profile.work_experience.add(experience)
+            profile.save()
+    return HttpResponseRedirect("/")
+
+
+
+def edit_profile_basic(request, id):
+    if request.method=="POST":
+        form = form(request.POST)
+
+        if form.is_valid():
+            form.save(commit=False)
+
+
+@login_required
+def edit_profile_education(request, id):
+    if request.method=="POST":
+        form = EducationForm(request.POST)
+
+        if form.is_valid():
+            print('a')
+            education = form.save()
+            profile = UserProfile.objects.get(user=request.user)
+            profile.education.add(education)
+            profile.save()
+
+
+@login_required
+def edit_profile_skills(request, id):
+    if request.method=="POST":
+        form = form(request.POST)
+        if form.is_valid():
+            education = form.save()
+
+
+@login_required
+def edit_profile_training(request, id):
+    if request.method=="POST":
+        form = form(request.POST)
 
         if form.is_valid():
             form.save()
 
 
 @login_required
-def save_profile(request):
+def edit_profile_experience(request, id):
     if request.method=="POST":
-        form = form(request.post)
+        form = form(request.POST)
 
         if form.is_valid():
-            form.save(commit=False)
+            form.save()
 
-    else:
-        pass
 
 
 def temp_add(request):
-    return render (request, 'profilebuilder.html')
+    form = EducationsForm()
+    return render (request, 'abc.html',{'form':form})
 
 def temp_view(request):
     return render (request, 'profileview.html')
