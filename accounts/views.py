@@ -133,7 +133,7 @@ def accounts_profile(request):
 
             if profile:
                 job_applied = Applicant.objects.filter(applicant=user).order_by('-date_applied')
-                print(profile)
+                
                 context_dict = {'job_applied': job_applied, 'profile':profile[0]  }
 
                 return render(request,'profileview.html', context_dict)
@@ -191,7 +191,6 @@ def save_profile_basic(request):
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
-            print('1')
             profile.save()
     return HttpResponseRedirect('/')
 
@@ -200,9 +199,8 @@ def save_profile_education(request):
     userprofile = request.user
     if request.method=="POST":
         form = EducationForm(request.POST)
-        a = form.save()
         if form.is_valid():
-            print(a)
+            
             education = form.save()
             profile = UserProfile.objects.get(user=request.user)
             profile.education.add(education)
@@ -214,39 +212,44 @@ def save_profile_education(request):
 @login_required
 def save_profile_skills(request):
     if request.method=="POST":
-        
-        form = SkillsForm(request.POST)
-
+        profile = UserProfile.objects.get(user=request.user)
+        form  = SkillsForm(request.POST)
         if form.is_valid():
-            profile = UserProfile.objects.get(user=request.user)
-            print("a")
-            profile.skills = form.save()
-            profile.save()
+            selection = request.POST.getlist('skills')
+            
+            for s in selection:
+                profile.skills.add(s)
+
+    return HttpResponseRedirect('/')
+           
 
 
 @login_required
 def save_profile_training(request):
     if request.method=="POST":
-        form = form(request.POST)
+        form = TrainingForm(request.POST)
 
         if form.is_valid():
             training = form.save()
             profile = UserProfile.objects.get(user=request.user)
-            profile.training.add(training)
+            profile.trainings.add(training)
             profile.save()
+            print('a')
+    return HttpResponseRedirect('/')
 
 
 @login_required
 def save_profile_experience(request):
     if request.method=="POST":
         form = ExperienceForm(request.POST)  
-        print('s')
-
+        a = form.save()
+        print('e')
         if form.is_valid():
-            print('a')
+            
             experience = form.save()
             profile = UserProfile.objects.get(user=request.user)
             profile.work_experience.add(experience)
+            print('a')
             profile.save()
     return HttpResponseRedirect("/")
 
@@ -266,7 +269,6 @@ def edit_profile_education(request, id):
         form = EducationForm(request.POST)
 
         if form.is_valid():
-            print('a')
             education = form.save()
             profile = UserProfile.objects.get(user=request.user)
             profile.education.add(education)
@@ -300,8 +302,46 @@ def edit_profile_experience(request, id):
 
 
 
+@login_required
+def delete_profile_education(request, id):
+    if request.method=="POST":
+        form = EducationForm(request.POST)
+
+        if form.is_valid():
+            
+            education = form.save()
+            profile = UserProfile.objects.get(user=request.user)
+            profile.education.add(education)
+            profile.save()
+
+
+@login_required
+def delete_profile_skills(request, id):
+    if request.method=="POST":
+        form = form(request.POST)
+        if form.is_valid():
+            education = form.save()
+
+
+@login_required
+def delete_profile_training(request, id):
+    if request.method=="POST":
+        form = form(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+
+@login_required
+def delete_profile_experience(request, id):
+    if request.method=="POST":
+        form = form(request.POST)
+
+        if form.is_valid():
+            form.save()
+
 def temp_add(request):
-    form = EducationsForm()
+    form = SkillsForm()
     return render (request, 'abc.html',{'form':form})
 
 def temp_view(request):

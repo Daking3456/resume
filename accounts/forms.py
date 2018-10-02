@@ -64,8 +64,8 @@ class TrainingForm(forms.ModelForm):
 
 class SkillsForm(forms.ModelForm):
  	class Meta:
- 		models= Skills
- 		fields = '__all__'
+ 		model= UserProfile
+ 		fields = ('skills',)
 
 
 class ExperienceForm(forms.ModelForm):

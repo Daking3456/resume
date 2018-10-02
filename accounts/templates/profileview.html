@@ -87,20 +87,24 @@
 					<div class="tab-pane fade" id="pop2" role="tabpanel" aria-labelledby="pop2-tab">
 						<div class="col-lg-8 work-info">
 							<h4 class="text-center title"><span class="underline">work experience</span></h4>
-							<hr>						
+							<hr>					
 							{% if profile.work_experience %}
 							{% for work in profile.work_experience.all %}
 							<div class="detail">
 								<a href="#" class="btn-delete pull-right"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
-								<p><span class="job-title">work.title</span>&nbsp;<span>(level)</span> </p>
-								<p>Company Name (nature of company)</p>
-								<p>May 2018</p>
-								<p>location of the company</p>
+								<p><span class="job-title">{{work.job_title}}</span>&nbsp;<span>(level)</span> </p>
+								<p>{{ work.organization }}</p>
+								<p></p>
+								<p>{{work.locartion}}</p>
 								<p>Duties & Responsibilities : <br>
-									Text area msg
+									{{ work.responsibilities }}
 								</p>
 								<hr>
 							</div>
+
+
+
+
 
 							<div class="row">
 								<div class="col-md-3 btn-group">
@@ -119,9 +123,9 @@
 							{% for edu in profile.education.all %}
 							<div class="detail">
 								<a href="#" class="btn-delete pull-right"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
-								<p><span class="ed-title">{{edu.title}}</span>&nbsp;<span>80.9%</span> </p>
-								<p>{{ edu.institute}}, </p>
-								<p>Board</p>
+								<p><span class="ed-title">{{edu.title}}</span>&nbsp;<span>{{edu.marks}}</span> </p>
+								<p>{{ edu.institution}} </p>
+								<p>{{edu.board}}</p>
 								<hr>
 							</div>	
 							
@@ -159,12 +163,12 @@
 						<div class="col-lg-8 training-info">
 							<h4 class="text-center title"><span class="underline">Training</span></h4>
 							<hr>
-							{% if profile.skills %}
-							{% for skill in profile.skills.all %}
+							{% if profile.trainings %}
+							{% for training in profile.trainings.all %}
 							<div class="detail">
 								<a href="#" class="btn-delete pull-right"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
-								<p><span class="ed-title">Course Name</span>&nbsp;<span>2011</span> </p>
-								<p>Institution</p>
+								<p><span class="ed-title">{{ training.name }}</span>&nbsp;<span>[{{training.end_date}} - {{training.end_date}}]</span> </p>
+								<p>{{training.institution}}</p>
 								<hr>
 							</div>
 							
