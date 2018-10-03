@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'accounts',
 
     'datetimewidget',
-    
+    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -179,3 +179,13 @@ EMAIL_HOST_USER = 'daking.infodev@gmail.com'
 EMAIL_HOST_PASSWORD = 'entertheinfodev'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch2_backend.Elasticsearch2SearchEngine',
+        'URL': 'http://127.0.0.1:9200/',
+        'INDEX_NAME': 'job',
+    },
+}

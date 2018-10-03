@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path,include
 from job import views
 
 urlpatterns = [
@@ -10,5 +10,10 @@ urlpatterns = [
     path('job/applicants/<slug>/', views.see_applicants, name='see_applicants'),
     path('job/field/<id>/', views.view_by_field, name='view_by_field'),
     path('detail/edit/', views.edit_parsed_data, name='edit_parsed_data'),
+
+    path('search/autocomplete/', views.autocomplete),
+    path('search/', views.FacetedSearchView.as_view(), name='haystack_search'),
+
+    path('search/', include('haystack.urls')),
     # path('search/job/',views.search_job, name='search_job'),
 ]

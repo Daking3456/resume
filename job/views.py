@@ -1,13 +1,16 @@
 from django.shortcuts import render
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 
-from job.forms import JobForm, JobModelForm, ParsedResumeForm
+from job.forms import JobForm, JobModelForm, ParsedResumeForm, FacetedProductSearchForm 
 from job.models import Job, Field, Applicant, TempResume, ParsedResume
 from accounts.models import Company, Address
 from job.resume_verifier import Resume 
+
+from haystack.generic_views import FacetedSearchView as BaseFacetedSearchView
+
 
 # for simple search
 from django.db.models import Q
@@ -176,26 +179,36 @@ def filtered_job(request):
     job = []
     ids = Resume.filtered_jobs()
     for i in ids:
-        job.append(Job.objects.get(id=i))
+        try:
+            job.append(Job.objects.get(id=i))
+        
+        except:
+
+            pass
 
     context_dict = {'jobs' : job}
     return render(request,'filtered_jobs.html', context_dict)
 
 
 
+def autocomplete(request):
+    sqs = SearchQuerySet().autocomplete(
+        content_auto=request.GET.get(
+            'query',
+            ''))[
+        :5]
+    s = []
+    for result in sqs:
+        d = {"value": result.title, "data": result.object.slug}
+        s.append(d)
+    output = {'suggestions': s}
+    return JsonResponse(output)
 
-# def search_job(request):
-#     job = Job.objects.filter(status=True).order_by('-created_at')
-#     query = request.GET.get("q")
-#     print(query)
-#     if query:
-#         search = job.filter(
-#             Q(title__icontains=query)|
-#             Q(company__user__username__icontains=query)|
-#             Q(responsibilities__icontains=query)
-                      
-#             )
 
-#         return render(request, 'search-job.html', {'job': search})
-#     else:
-#         return render(request, 'search-job.html', {'job': job})
+class FacetedSearchView(BaseFacetedSearchView):
+
+    form_class = FacetedProductSearchForm
+    facet_fields = ['category', 'brand', 'experience']
+    template_name = 'search_result.html'
+    paginate_by = 3
+    context_object_name = 'object_list'
