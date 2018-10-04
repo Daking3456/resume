@@ -60,22 +60,16 @@
 										<label for="dob" class="col-form-label">Date of Birth <span> *</span></label>
 									</div>
 									<div class="col-md-3">
-										<input type="text" class="datepicker" name="dob" placeholder="" style="text-align: left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;">
+										<input type="text" class="datepicker form-control" name="dob" placeholder="" style="text-align: left;border-top-left-radius: 5px;border-bottom-left-radius: 5px;">
 									</div>
 								</div>
 								<div class="form-group row">
-									<div class="col-md-3">
-										<label for="religion" class="col-form-label">Religion</label>
-									</div>
-									<div class="col-md-3">
-										<input type="text" class="form-control" name="religion" placeholder="religion">
-									</div>
 									<div class="col-md-3 text-right">
 										<label for="id_maritual_status" class="col-form-label">Marital Status<span>*</span></label>
 									</div>
 									<div class="col-md-3">									
 										<select class="custom-select" name="maritual_status">
-											<option selected disabled>-----</option>
+											<option selected value="3" >-----</option>
 											<option value="1">Married</option>
 											<option value="2">Unmarried</option>
 										</select>
@@ -156,25 +150,6 @@
 										<input type="text" class="form-control" name="job_title" placeholder="Your job post">
 									</div>
 								</div>
-								<!-- <div class="form-group row">
-									<div class="col-md-4">
-										<label for="job_category" class="col-form-label">Job Category<span>*</span></label>
-									</div>
-									<div class="col-md-8">
-										<select class="custom-select">
-											<option selected disabled>-----</option>
-											<option value="1">Advertising Agency</option>
-											<option value="2">Airlines / GSA</option>
-											<option value="3">Architecture / Interior Design Firm</option>
-											<option value="4">Banks</option>
-											<option value="5">Construction / Real Estate</option>
-											<option value="6">Automotive Sales, Support &amp; Service</option>
-											<option value="7">Education - School &amp; Colleges</option>
-											<option value="8">Airlines / GSA</option>
-											<option value="9">Embassies /  Foreign Consulate</option>
-										</select>
-									</div>
-								</div> -->
 								<div class="form-group row">
 									<div class="col-md-4">
 										<label for="level" class="col-form-label">Job Level<span>*</span></label>
@@ -204,7 +179,7 @@
 										<label for="start_date" class="col-form-label">Start Date<span>*</span></label>
 									</div>
 									<div class="col-md-8">
-										<input type="dates" class="datepicker" name="from_date" placeholder="Your job post">
+										<input type="dates" class="datepicker form-control" name="from_date" placeholder="Your job post">
 									</div>
 									
 					
@@ -214,7 +189,7 @@
 										<label for="end_date" class="col-form-label">End Date<span>*</span></label>
 									</div>
 									<div class="col-md-8">
-										<input type="dates" class="datepicker" name="to_date" placeholder="Your job post">
+										<input type="dates" class="datepicker form-control" name="to_date" placeholder="Your job post">
 									</div>
 									
 								</div>
@@ -243,7 +218,7 @@
 					<div class="tab-pane fade" id="pop3" role="tabpanel" aria-labelledby="pop3-tab">
 						<div class="col-lg-8 education-info">
 							<h4 class="text-center title"><span class="underline">Education</span></h4>
-							<form class="profile3" method="POST" action="">
+							<form class="profile3" method="POST" action="/abc/">
 								{% csrf_token %}
 								<div class="form-group row">
 									<div class="col-md-3">
@@ -363,19 +338,19 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<label for="duration" class="col-form-label">Start Date<span>*</span></label>
 									</div>
-									<div class="col-md-4">
-										<input type="text" class="datepicker" name="start_date" placeholder="">
+									<div class="col-md-3">
+										<input type="text" class="datepicker form-control" name="start_date" placeholder="">
 									</div>
 									
 								
-									<div class="col-md-2">
+									<div class="col-md-4">
 										<label for="completion" class="col-form-label">End Date<span>*</span></label>
 									</div>
-									<div class="col-md-4">
-										<input type="bootstrap-datepicker3" class="datepicker" name="end_date" placeholder="">
+									<div class="col-md-3">
+										<input type="bootstrap-datepicker3" class="datepicker form-control" name="end_date" placeholder="">
 									</div>
 									
 								</div>
@@ -504,11 +479,12 @@ $(document).ready(function(){
     }
 })
 
+
 $(document).ready(function(){
     var $myForm = $('.profile3')
     $myForm.submit(function(event){
         event.preventDefault()
-        var $formData = $(this).serialize()
+        var $formData = $(this).serialize() 
         var $thisURL = '/accounts/profile/education/'  // or set your own url
         $.ajax({
             method: "POST",
@@ -521,6 +497,7 @@ $(document).ready(function(){
 
     function handleFormSuccess(data, textStatus, jqXHR){
     	$("#pop4-tab").click()
+    	console.log()
     }
 
     function handleFormError(jqXHR, textStatus, errorThrown){

@@ -1,0 +1,7 @@
+{{object.title}}
+{{object.responsibilities}}
+{{object.qualification}}
+{{object.education}}
+{{object.description}}
+{{object.requirements}}
+{{object.type_of_job}}

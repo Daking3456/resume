@@ -4,7 +4,8 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 
-from job.forms import JobForm, JobModelForm, ParsedResumeForm, FacetedProductSearchForm 
+from job.forms import JobForm, JobModelForm, ParsedResumeForm
+# FacetedProductSearchForm 
 from job.models import Job, Field, Applicant, TempResume, ParsedResume
 from accounts.models import Company, Address
 from job.resume_verifier import Resume 
@@ -205,10 +206,10 @@ def autocomplete(request):
     return JsonResponse(output)
 
 
-class FacetedSearchView(BaseFacetedSearchView):
+# class FacetedSearchView(BaseFacetedSearchView):
 
-    form_class = FacetedProductSearchForm
-    facet_fields = ['category', 'brand', 'experience']
-    template_name = 'search_result.html'
-    paginate_by = 3
-    context_object_name = 'object_list'
+#     form_class = FacetedProductSearchForm
+#     facet_fields = ['category', 'brand', 'experience']
+#     template_name = 'search_result.html'
+#     paginate_by = 3
+#     context_object_name = 'object_list'

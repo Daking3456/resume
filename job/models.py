@@ -45,10 +45,13 @@ class Job(models.Model):
     def __str__(self):
         return ('{}'.format(self.title))
 
-    def save(self, **kwargs):
-        slug_str = "%s %s %s" % (self.title, self.company.user.username,self.created_at)
-        self.slug = slugify(self, slug_str)
-        super(Job, self).save(**kwargs)
+    # def save(self, **kwargs):
+    #     slug_str = "%s %s %s" % (self.title, self.company.user.username,self.created_at)
+    #     self.slug = slugify(self, slug_str)
+    #     super(Job, self).save(**kwargs)
+    def get_absolute_url(self):
+        return reverse('product',
+        kwargs={'slug': self.slug})
 
 
 

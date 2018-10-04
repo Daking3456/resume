@@ -214,8 +214,6 @@ class UserProfile(models.Model):
     full_name = models.CharField(max_length=100)
 
     dob = models.DateField()
-
-    religion = models.CharField(max_length=50, null=True, blank=True)
     maritual_status = models.IntegerField(choices=MARRIED_STATUS_CHOICES, default=3)
 
     gender = models.IntegerField(choices=GENDER_CHOICES)    

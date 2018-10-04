@@ -30,7 +30,7 @@
         {% if user.is_authenticated %}
         
         <li class="nav-item">
-          <a class="nav-link " href="/accounts/profile/">PROFILE</a>
+          <a class="nav-link " href="/accounts/profile/">Welcome, {{request.user}}</a>
         </li>
         {% if user|has_group:"company" %}
 
@@ -41,7 +41,7 @@
         {% endif %}
        
         <li class="nav-item">
-          <a class="nav-link loginbtn " href="/accounts/logout/">
+          <a class="nav-link  " href="/accounts/logout/">
             <i class="fa fa-user"></i> LOG OUT</a>
         </li>
         {% else %}
@@ -49,10 +49,10 @@
           <a class="nav-link  " href='{% url "createcompany" %}'>EMPLOYERS</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link  loginbtn" href="{% url 'createuser'%}"> JOIN US</a>
+          <a class="nav-link " href="{% url 'createuser'%}"> JOIN US</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link loginbtn" data-toggle="modal" data-target="#loginForm">
+          <a class="nav-link " data-toggle="modal" data-target="#loginForm">
             <i class="fa fa-user"></i> LOGIN</a>
         </li>
         {% endif %}

@@ -7,10 +7,14 @@
 
   <h4>It looks like you applied for:{{ parsedvalue.applied_for }} </h4>
 
-<p>Profile:<br>{{ parsedvalue.personal_info }}  </p>
-<p>education:<br>{{ parsedvalue.education }}</p>
-<p>experience:<br>{{ parsedvalue.experience }}</p>
-<p>skills:<br>{{ parsedvalue.skills }}</p>
+<p><strong>Profile:</strong>{{ parsedvalue.personal_info|linebreaks }}  </p>
+<p><strong>Education:</strong>
+<br>{{ parsedvalue.education|linebreaks }}</p>
+<p><strong>
+Experience:</strong>
+<br>{{ parsedvalue.experience|linebreaks }}</p>
+<p><strong>Skills:</strong>
+<br>{{ parsedvalue.skills|linebreaks }}</p>
 
 
         <div class="modal-footer">
