@@ -33,34 +33,38 @@
 	        <form method='POST' enctype="multipart/form-data">
 	            {% csrf_token %}
 	            
-	            <div class="form-group">
-					<label>Title</label>
+	            <div class="form-group ">
+					<label>Title<span style="color: red;">*</span></label>
 					<input type="text" class="form-control" name="title">
 				</div>
-	            <div class="form-group">
+				<div class="row">
+					
+	            <div class="form-group col-lg-6 col-md-6 col-sm-12 ">
 					<label>Field</label>
-					<select name="job_field">
+					<select name="job_field" class="form-control" >
 				    
 				    {% for field in fields %}
 				    <option value="{{field.id}}">{{field}}</option>
 				  	{% endfor %}
 				  </select>
+				  </div>
 
 
-				</div>
-				<div class="form-group">
+				<div class="form-group col-lg-6 col-md-6 col-sm-12">
 					<label>Type</label>
 					<input type="text" class="form-control" name="type_of_job">
 				</div>
+				</div>
+				
 	            <div class="form-group">
 					<label>Responsibilities</label><br>
 
-					<textarea  rows="6" cols ="60" name="responsibilities"></textarea>
+					<textarea  rows="3" class="form-control" name="responsibilities"></textarea>
 				</div>
 
 	            <div class="form-group">
 					<label>Qualification</label><br>
-					<textarea  rows="6" cols ="60" name="qualification"></textarea>
+					<textarea  rows="3" class="form-control" name="qualification"></textarea>
 				</div>
 	            <div class="form-group">
 					<label>Education</label>
@@ -68,30 +72,32 @@
 				</div>
 				<div class="form-group">
 					<label>Description</label><br>
-					<textarea  rows="6" cols ="60" name="description"></textarea>
+					<textarea  rows="3" class="form-control" name="description"></textarea>
 				</div>
 				<div class="form-group">
 					<label>Requirements</label><br>
-					<textarea  rows="6" cols ="60" name="requirements"></textarea>
+					<textarea  rows="3" class="form-control" name="requirements"></textarea>
 				</div>
-				<div class="form-group">
+				<div class="row">
+				<div class="form-group col-lg-4 col-md-6 col-sm-12  ">
 					<label>Salary</label>
 					<input type="text" class="form-control" name="salary">
 				</div>
-				<div class="form-group">
-					<label>Deadline</label>
+				<div class="form-group col-lg-4 col-md-6 col-sm-12 ">
+					<label>Deadline<span style="color: red;">*</span></label>
 					{{form.deadline}}
 				</div>
-	            <div class="form-group">
+	            <div class="form-group col-lg-4 col-md-12 col-sm-12">
 					<label>Number of Openings</label>
 					<input type="text" class="form-control" name="no_opening">
+				</div>
 				</div>
 				<div class="form-group">
 					<label>Tags</label>
 					<input type="text" class="form-control" name="tags">
 				</div>
 				<div class="form-group">
-					<button class="btn btn-primary" type="submit">Post</button>
+					<button class="btn btn-success" type="submit">Post</button>
 				</div>
 
 

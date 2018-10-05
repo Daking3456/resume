@@ -133,8 +133,9 @@ def accounts_profile(request):
 
             if profile:
                 job_applied = Applicant.objects.filter(applicant=user).order_by('-date_applied')
-                
-                context_dict = {'job_applied': job_applied, 'profile':profile[0]  }
+                skills = Skills.objects.all()
+
+                context_dict = {'job_applied': job_applied, 'profile':profile[0], 'skills':skills }
 
                 return render(request,'profileview.html', context_dict)
             else:
@@ -242,8 +243,7 @@ def save_profile_training(request):
 def save_profile_experience(request):
     if request.method=="POST":
         form = ExperienceForm(request.POST)  
-        a = form.save()
-        print('e')
+        
         if form.is_valid():
             
             experience = form.save()
