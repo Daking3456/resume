@@ -12,8 +12,7 @@ urlpatterns = [
     path('detail/edit/', views.edit_parsed_data, name='edit_parsed_data'),
 
 
-    path('search/', include('haystack.urls')),
-    # path('search/autocomplete/', views.autocomplete),
-    # path('search/', views.FacetedSearchView.as_view(), name='haystack_search'),
+    path('search/autocomplete/', views.autocomplete),
+    path('search/', views.FacetedSearchView.as_view(), name='haystack_search'),
     # path('search/job/',views.search_job, name='search_job'),
 ]

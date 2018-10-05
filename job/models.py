@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.conf import settings
 from accounts.models import Company, User
+from django.urls.base import reverse
 
 
 
@@ -50,8 +51,7 @@ class Job(models.Model):
     #     self.slug = slugify(self, slug_str)
     #     super(Job, self).save(**kwargs)
     def get_absolute_url(self):
-        return reverse('product',
-        kwargs={'slug': self.slug})
+        return reverse('job_detail',kwargs={'slug': self.slug})
 
 
 

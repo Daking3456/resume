@@ -4,8 +4,21 @@ from job.models import Job
 
 class JobIndex(indexes.SearchIndex, indexes.Indexable):
 	text = indexes.CharField(document=True, use_template=True)
-	title = indexes.CharField(model_attr='title')
+	title = indexes.EdgeNgramField(model_attr='title')
+
+	company = indexes.EdgeNgramField(model_attr='company')
+	responsibilities = indexes.CharField(model_attr='responsibilities')
+	qualification = indexes.CharField(model_attr='qualification')
+	education = indexes.CharField(model_attr='education')
 	
+	description = indexes.CharField(model_attr='description')
+	requirements = indexes.CharField(model_attr='requirements')
+	type_of_job = indexes.CharField(model_attr='type_of_job', faceted=True)
+	type_job = indexes.EdgeNgramField(model_attr='type_of_job')
+	job_field = indexes.EdgeNgramField(model_attr='job_field')
+	tags = indexes.CharField(model_attr='tags')
+	# content_auto = indexes.EdgeNgramField(model_attr='title')
+
 
 	def get_model(self):
 		return Job
