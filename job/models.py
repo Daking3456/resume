@@ -18,7 +18,6 @@ class Job(models.Model):
     Author: Daking Rai (daking.rai@infodevelopers.com.np)
     Date: July 05, 2018
     """
-    
     title = models.CharField(max_length=250)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     responsibilities = models.TextField(null=True, blank=True)
@@ -46,10 +45,10 @@ class Job(models.Model):
     def __str__(self):
         return ('{}'.format(self.title))
 
-    # def save(self, **kwargs):
-    #     slug_str = "%s %s %s" % (self.title, self.company.user.username,self.created_at)
-    #     self.slug = slugify(self, slug_str)
-    #     super(Job, self).save(**kwargs)
+    def save(self, **kwargs):
+        slug_str = "%s %s %s" % (self.title, self.company.user.username,self.created_at)
+        self.slug = slugify(self, slug_str)
+        super(Job, self).save(**kwargs)
     def get_absolute_url(self):
         return reverse('job_detail',kwargs={'slug': self.slug})
 

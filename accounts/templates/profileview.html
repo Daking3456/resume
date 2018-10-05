@@ -749,6 +749,137 @@
     format: 'yyyy-mm-dd',
     });
 </script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+    $('#checkedId').change(function() {
+        $('#viewEndDate').toggle();
+    });
+});
+</script>
+<script>
+$(document).ready(function(){
+    var $myForm = $('.profile1')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = '/accounts/profile/basic/'  // or set your own url
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+    	
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+
+    }
+})
+
+
+$(document).ready(function(){
+    var $myForm = $('.profile2')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = '/accounts/profile/experice/' // or set your own url
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+    	
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+
+    }
+})
+
+
+$(document).ready(function(){
+    var $myForm = $('.profile3')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize() 
+        var $thisURL = '/accounts/profile/education/'  // or set your own url
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+    	
+    	
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+
+    }
+})
+
+$(document).ready(function(){
+    var $myForm = $('.profile4')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = '/accounts/profile/skills/'   // or set your own url
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+    	
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+
+    }
+})
+$(document).ready(function(){
+    var $myForm = $('.profile5')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = '/accounts/profile/training/'// or set your own url
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+    	location.reload(true);
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+
+    }
+})
+</script>
 {% endblock %}
 
    
