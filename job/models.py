@@ -17,21 +17,31 @@ class Job(models.Model):
     """
     Author: Daking Rai (daking.rai@infodevelopers.com.np)
     Date: July 05, 2018
+   
+    fulltime parttime contract Internship student_work
     """
     title = models.CharField(max_length=250)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    responsibilities = models.TextField(null=True, blank=True)
-    qualification = models.TextField(null=True, blank=True)
-    education = models.CharField(max_length=500, null=True, blank=True)
-    salary = models.IntegerField(null=True, blank=True)
-    no_opening = models.IntegerField(null= True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    description = models.TextField(null=True, blank=True)
-    requirements = models.TextField(null=True, blank=True)
-
-    type_of_job = models.CharField(max_length=100)
     job_field = models.ForeignKey(Field, on_delete=models.CASCADE)
+    type_of_job = models.CharField(max_length=100)      #  facitated
+    contract_type = models.IntegerField()               #  facitated
+    level_of_job = models.CharField()                   ## senior mid associate etry   facitated
+
+    description = models.TextField(null=True, blank=True)
+    responsibilities = models.TextField(null=True, blank=True)
+    skills_qualification = models.TextField()
+    requirements = models.TextField(null=True, blank=True)
+    
+    experience = models.CharField() 
+    no_opening = models.IntegerField(null= True, blank=True)
+
     deadline = models.DateTimeField()
+
+    benifits = models.TextField(null=True, blank=True)
+    salary = models.IntegerField(null=True, blank=True)
+  
+
+    created_at = models.DateTimeField(auto_now_add=True)
     is_featured = models.BooleanField(default=False)
     status = models.BooleanField(default=True)
     slug = models.SlugField(unique=True)
