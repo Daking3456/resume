@@ -41,6 +41,3 @@ class JobIndex(indexes.SearchIndex, indexes.Indexable):
 
 	def prepare_experience(self, obj):
 		return obj.get_experience_display()
-
-	def prepare_industry(self, obj):
-		return obj.job_field.name

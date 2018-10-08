@@ -6,10 +6,10 @@
 <div class="container">
 <div class="row">
 <div class="col-md-6">
-<form class="navbar-form navbar-left" role = "search" method="get" action="/search/">
+<form class="navbar-form navbar-left" role = "search" id="search_form" method="get" action="/search/">
           <input type="text" name="q" class="form-control" placeholder="enter keywords e.g: web designing">
          <div class="btn-group">
-              <a href="#" class="btn btn-success btn-md " role="button" aria-pressed="true">
+              <a href="#" class="btn btn-success btn-md " id="search_submit" role="button" aria-pressed="true">
                       <i class="fa fa-search"></i> &nbsp;SEARCH</a>
             </div>
           </form>
@@ -22,7 +22,7 @@
         <dl>
         {% if facets.fields.industry %}
         <dt>Filter by Industry</dt>
-        {% for type_of_job in facets.fields.industry %}
+        {% for industry in facets.fields.industry %}
         {% if industry.1 != 0 %}
         <dd>
         <input class="facet" id="{{industry.0|cut:" "}}" type="checkbox" name="industry" value="{{ industry.0 }}" 
