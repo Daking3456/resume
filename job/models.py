@@ -20,26 +20,54 @@ class Job(models.Model):
    
     fulltime parttime contract Internship student_work
     """
+
+    LEVEL_CHOICES = (
+        (1,"Senior Level"),
+        (2,"Mid Level"),
+        (3,"Associate Level"),
+        (4,"Entry Level"),
+        )
+
+    TYPE_CHOICES =(
+        (1,"Full Time"),
+        (2,"Part Time"),
+        (3,"Internship"),
+        (4,"Contract"),
+        (5,"Student Work"),
+        )
+
+    CONTRACT_CHOICES =(
+        (1,"Permanant"),
+        (2,"Temporary"),
+     
+        )
+
+    EXPERIENCE_CHOICES =(
+        (1,"0-1 Years"),
+        (2,"1-3 Years"),
+        (3,"3-5 Years"),
+        (4,"5+ "),
+        )
+
     title = models.CharField(max_length=250)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     job_field = models.ForeignKey(Field, on_delete=models.CASCADE)
-    type_of_job = models.CharField(max_length=100)      #  facitated
-    contract_type = models.IntegerField()               #  facitated
-    level_of_job = models.CharField()                   ## senior mid associate etry   facitated
+    type_of_job = models.PositiveSmallIntegerField(choices=TYPE_CHOICES)                     #  facitated
+    contract_type = models.PositiveSmallIntegerField(choices=CONTRACT_CHOICES)               #  facitated
+    level_of_job = models.PositiveSmallIntegerField(choices=LEVEL_CHOICES)                   # senior mid associate etry   facitated
 
     description = models.TextField(null=True, blank=True)
     responsibilities = models.TextField(null=True, blank=True)
     skills_qualification = models.TextField()
     requirements = models.TextField(null=True, blank=True)
     
-    experience = models.CharField() 
+    experience = models.PositiveSmallIntegerField(choices=EXPERIENCE_CHOICES) 
     no_opening = models.IntegerField(null= True, blank=True)
 
-    deadline = models.DateTimeField()
-
     benifits = models.TextField(null=True, blank=True)
-    salary = models.IntegerField(null=True, blank=True)
+    salary = models.PositiveIntegerField(null=True, blank=True)
   
+    deadline = models.DateTimeField()
 
     created_at = models.DateTimeField(auto_now_add=True)
     is_featured = models.BooleanField(default=False)

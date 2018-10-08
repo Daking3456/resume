@@ -1,12 +1,9 @@
 {{ object.title }}
-
+{{ object.tags }}
 {{ object.company }}
 {{ object.responsibilities }}
-{{ object.qualification }}
-{{ object.education }}
-{{ object.salary }}
 {{ object.description }}
 {{ object.requirements }}
 {{ object.type_of_job }}
 {{ object.job_field }}
-{{ object.tags }}
+{{ object.salary }}

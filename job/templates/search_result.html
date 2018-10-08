@@ -20,38 +20,39 @@
 <div class="col-md-3">
     <h3>Filters</h3>
         <dl>
-        {% if facets.fields.type_of_job %}
+        {% if facets.fields.industry %}
         <dt>Filter by Industry</dt>
-        {% for type_of_job in facets.fields.type_of_job %}
-        {% if type_of_job.1 != 0 %}
+        {% for type_of_job in facets.fields.industry %}
+        {% if industry.1 != 0 %}
         <dd>
-        <input class="facet" id="{{type_of_job.0|cut:" "}}" type="checkbox" name="type_of_job" value="{{ type_of_job.0 }}" 
-        data-toggle="toggle" /> {{ type_of_job.0 }} ({{ type_of_job.1 }})
+        <input class="facet" id="{{industry.0|cut:" "}}" type="checkbox" name="industry" value="{{ industry.0 }}" 
+        data-toggle="toggle" /> {{ industry.0 }} ({{ industry.1 }})
         </dd>
         {% endif %}
         {% endfor %}
-        {% endif %}
-        </dl>
         <div>
         <input class="btn btn-info btn-sm pull-right" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
         </div>
-
+        {% endif %}
+        </dl>
+        <hr>
         <dl>
-        {% if facets.fields.type_of_job %}
+        {% if facets.fields.experience %}
         <dt>Filter by Experience</dt>
-        {% for type_of_job in facets.fields.type_of_job %}
-        {% if type_of_job.1 != 0 %}
+        {% for experience in facets.fields.experience %}
+        {% if experience.1 != 0 %}
         <dd>
-        <input class="facet" id="{{type_of_job.0|cut:" "}}" type="checkbox" name="type_of_job" value="{{ type_of_job.0 }}" 
-        data-toggle="toggle" /> {{ type_of_job.0 }} ({{ type_of_job.1 }})
+        <input class="facet" id="{{experience.0|cut:" "}}" type="checkbox" name="experience" value="{{ experience.0 }}" 
+        data-toggle="toggle" /> {{ experience.0 }} ({{ experience.1 }})
         </dd>
         {% endif %}
         {% endfor %}
-        {% endif %}
-        </dl>
         <div>
         <input class="btn btn-info btn-sm pull-right" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
         </div>
+        {% endif %}
+        </dl>
+        <hr>
         <dl>
         {% if facets.fields.type_of_job %}
         <dt>Filter by Type</dt>
@@ -63,64 +64,46 @@
         </dd>
         {% endif %}
         {% endfor %}
-        {% endif %}
-        </dl>
         <div>
         <input class="btn btn-info btn-sm pull-right" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
         </div>
+        {% endif %}
+        </dl>
+        <hr>
         <dl>
-        {% if facets.fields.type_of_job %}
-        <dt>Filter by Type</dt>
-        {% for type_of_job in facets.fields.type_of_job %}
-        {% if type_of_job.1 != 0 %}
+        {% if facets.fields.level_of_job %}
+        <dt>Filter by Level</dt>
+        {% for level_of_job in facets.fields.level_of_job %}
+        {% if level_of_job.1 != 0 %}
         <dd>
-        <input class="facet" id="{{type_of_job.0|cut:" "}}" type="checkbox" name="type_of_job" value="{{ type_of_job.0 }}" 
-        data-toggle="toggle" /> {{ type_of_job.0 }} ({{ type_of_job.1 }})
+        <input class="facet" id="{{level_of_job.0|cut:" "}}" type="checkbox" name="level_of_job" value="{{ level_of_job.0 }}" 
+        data-toggle="toggle" /> {{ level_of_job.0 }} ({{ level_of_job.1 }})
         </dd>
         {% endif %}
         {% endfor %}
-        {% endif %}
-        </dl>
         <div>
         <input class="btn btn-info btn-sm pull-right" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
         </div>
+        {% endif %}
+        </dl>
+        <hr>
         <dl>
-        {% if facets.fields.type_of_job %}
-        <dt>Filter by Type</dt>
-        {% for type_of_job in facets.fields.type_of_job %}
-        {% if type_of_job.1 != 0 %}
+        {% if facets.fields.contract_type %}
+        <dt>Filter by Contract Type</dt>
+        {% for contract_type in facets.fields.contract_type %}
+        {% if contract_type.1 != 0 %}
         <dd>
-        <input class="facet" id="{{type_of_job.0|cut:" "}}" type="checkbox" name="type_of_job" value="{{ type_of_job.0 }}" 
-        data-toggle="toggle" /> {{ type_of_job.0 }} ({{ type_of_job.1 }})
+        <input class="facet" id="{{contract_type.0|cut:" "}}" type="checkbox" name="contract_type" value="{{ contract_type.0 }}" 
+        data-toggle="toggle" /> {{ contract_type.0 }} ({{ contract_type.1 }})
         </dd>
         {% endif %}
         {% endfor %}
-        {% endif %}
-        </dl>
         <div>
         <input class="btn btn-info btn-sm pull-right" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
         </div>
-        <dl>
-        {% if facets.fields.type_of_job %}
-        <dt>Filter by Type</dt>
-        {% for type_of_job in facets.fields.type_of_job %}
-        {% if type_of_job.1 != 0 %}
-
-        <dd>
-        <input class="facet" id="{{type_of_job.0|cut:" "}}" type="checkbox" name="type_of_job" value="{{ type_of_job.0 }}" 
-        data-toggle="toggle" /> {{ type_of_job.0 }} ({{ type_of_job.1 }})
-        </dd>
-        {% endif %}
-        {% endfor %}
         {% endif %}
         </dl>
-        <div>
-        <input class="btn btn-info btn-sm pull-right" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
-        </div>
-
-
-
-    </div>
+   </div>
 {% endif %}
     <div class="col-md-9">
             <div class="row">

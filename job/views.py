@@ -208,7 +208,8 @@ def autocomplete(request):
 class FacetedSearchView(BaseFacetedSearchView):
 
     form_class = FacetedProductSearchForm
-    facet_fields = [ 'type_of_job']
+    facet_fields = [ 'type_of_job', 'industry','contract_type','level_of_job','experience' ]
+
     template_name = 'search_result.html'
     paginate_by = 3
     context_object_name = 'object_list'

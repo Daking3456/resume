@@ -42,12 +42,13 @@ from haystack.forms import FacetedSearchForm
 class FacetedProductSearchForm(FacetedSearchForm):
 
     def __init__(self, *args, **kwargs):
+
         data = dict(kwargs.get("data", []))
-        self.categories = data.get('category', [])
-        self.brands = data.get('brand', [])
-        self.type_of_job = data.get('job_type', [])
-        self.experiences = data.get('experience', [])
-        self.salary = data.get
+        self.type_of_job = data.get('type_of_job',[])
+        self.industry = data.get('industry', [])
+        self.contract_type = data.get('contract_type', [])
+        self.level_of_job = data.get('level_of_job', [])
+        self.experience = data.get('experience', [])
 
         super(FacetedProductSearchForm, self).__init__(*args, **kwargs)
 
@@ -55,41 +56,55 @@ class FacetedProductSearchForm(FacetedSearchForm):
         sqs = super(FacetedProductSearchForm, self).search()
         if self.type_of_job:
             query = None
-            for category in self.categories:
+            for type_of_job in self.type_of_job:
                 if query:
                     query += u' OR '
                 else:
                     query = u''
-                query += u'"%s"' % sqs.query.clean(category)
+                query += u'"%s"' % sqs.query.clean(type_of_job)
             sqs = sqs.narrow(u'category_exact:%s' % query)
-        # if self.brands:
-        #     query = None
-        #     for brand in self.brands:
-        #         if query:
-        #             query += u' OR '
-        #         else:
-        #             query = u''
-        #         query += u'"%s"' % sqs.query.clean(brand)
-        # #     sqs = sqs.narrow(u'brand_exact:%s' % query)
-        # if self.job_types:
-        #     query = None
-        #     for job_type in self.job_types:
-        #         if query:
-        #             query += u' OR '
-        #         else:
-        #             query = u''
-        #         query += u'"%s"' % sqs.query.clean(job_type)
-        #     sqs = sqs.narrow(u'job_type_exact:%s' % query)
-        #    # sqs = sqs.narrow(u'brand_exact:%s' % query)
-        # if self.experiences:
-        #     query = None
-        #     for experience in self.experiences:
-        #         if query:
-        #             query += u' OR '
-        #         else:
-        #             query = u''
-        #         query += u'"%s"' % sqs.query.clean(experience)
-        #     sqs = sqs.narrow(u'experience_exact:%s' % query)
+        
+        if self.industry:
+            query = None
+            for industry in self.industry:
+                if query:
+                    query += u' OR '
+                else:
+                    query = u''
+                query += u'"%s"' % sqs.query.clean(industry)
+            sqs = sqs.narrow(u'category_exact:%s' % query)
+        
+        if self.contract_type:
+            query = None
+            for contract_type in self.contract_type:
+                if query:
+                    query += u' OR '
+                else:
+                    query = u''
+                query += u'"%s"' % sqs.query.clean(contract_type)
+            sqs = sqs.narrow(u'category_exact:%s' % query)
+       
+        if self.level_of_job:
+            query = None
+            for level_of_job in self.level_of_job:
+                if query:
+                    query += u' OR '
+                else:
+                    query = u''
+                query += u'"%s"' % sqs.query.clean(level_of_job)
+            sqs = sqs.narrow(u'category_exact:%s' % query)
+
+        if self.experience:
+            query = None
+            for experience in self.experience:
+                if query:
+                    query += u' OR '
+                else:
+                    query = u''
+                query += u'"%s"' % sqs.query.clean(experience)
+            sqs = sqs.narrow(u'category_exact:%s' % query)
+
+
         return sqs
 
 

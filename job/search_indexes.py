@@ -8,16 +8,19 @@ class JobIndex(indexes.SearchIndex, indexes.Indexable):
 
 	company = indexes.EdgeNgramField(model_attr='company')
 	responsibilities = indexes.CharField(model_attr='responsibilities')
-	qualification = indexes.CharField(model_attr='qualification')
-	education = indexes.CharField(model_attr='education')
+
+	industry = indexes.CharField(model_attr='job_field', faceted=True)
+	type_of_job = indexes.CharField(model_attr='type_of_job', faceted=True)
+	contract_type = indexes.CharField(model_attr='contract_type', faceted=True)
+	level_of_job = indexes.CharField(model_attr='level_of_job', faceted=True)
+	experience = indexes.CharField(model_attr='experience', faceted=True)
 	
 	description = indexes.CharField(model_attr='description')
 	requirements = indexes.CharField(model_attr='requirements')
-	type_of_job = indexes.CharField(model_attr='type_of_job', faceted=True)
-	type_job = indexes.EdgeNgramField(model_attr='type_of_job')
-	job_field = indexes.EdgeNgramField(model_attr='job_field')
-	tags = indexes.CharField(model_attr='tags')
-	# content_auto = indexes.EdgeNgramField(model_attr='title')
+	tags = indexes.EdgeNgramField(model_attr='tags')
+	
+
+	content_auto = indexes.EdgeNgramField(model_attr='title')
 
 
 	def get_model(self):
