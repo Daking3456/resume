@@ -29,3 +29,18 @@ class JobIndex(indexes.SearchIndex, indexes.Indexable):
 	def index_queryset(self, using=None):
 		"""Used when the entire index for model is updated."""
 		return self.get_model().objects.all()
+
+	def prepare_type_of_job(self, obj):
+		return obj.get_type_of_job_display()
+
+	def prepare_contract_type(self, obj):
+		return obj.get_contract_type_display()
+
+	def prepare_level_of_job(self, obj):
+		return obj.get_level_of_job_display()
+
+	def prepare_experience(self, obj):
+		return obj.get_experience_display()
+
+	def prepare_industry(self, obj):
+		return obj.job_field.name

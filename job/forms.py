@@ -62,7 +62,7 @@ class FacetedProductSearchForm(FacetedSearchForm):
                 else:
                     query = u''
                 query += u'"%s"' % sqs.query.clean(type_of_job)
-            sqs = sqs.narrow(u'category_exact:%s' % query)
+            sqs = sqs.narrow(u'type_of_job_exact:%s' % query)
         
         if self.industry:
             query = None
@@ -72,7 +72,7 @@ class FacetedProductSearchForm(FacetedSearchForm):
                 else:
                     query = u''
                 query += u'"%s"' % sqs.query.clean(industry)
-            sqs = sqs.narrow(u'category_exact:%s' % query)
+            sqs = sqs.narrow(u'industry_exact:%s' % query)
         
         if self.contract_type:
             query = None
@@ -82,7 +82,7 @@ class FacetedProductSearchForm(FacetedSearchForm):
                 else:
                     query = u''
                 query += u'"%s"' % sqs.query.clean(contract_type)
-            sqs = sqs.narrow(u'category_exact:%s' % query)
+            sqs = sqs.narrow(u'contract_type_exact:%s' % query)
        
         if self.level_of_job:
             query = None
@@ -92,7 +92,7 @@ class FacetedProductSearchForm(FacetedSearchForm):
                 else:
                     query = u''
                 query += u'"%s"' % sqs.query.clean(level_of_job)
-            sqs = sqs.narrow(u'category_exact:%s' % query)
+            sqs = sqs.narrow(u'level_of_job_exact:%s' % query)
 
         if self.experience:
             query = None
@@ -102,7 +102,7 @@ class FacetedProductSearchForm(FacetedSearchForm):
                 else:
                     query = u''
                 query += u'"%s"' % sqs.query.clean(experience)
-            sqs = sqs.narrow(u'category_exact:%s' % query)
+            sqs = sqs.narrow(u'experience_exact:%s' % query)
 
 
         return sqs
