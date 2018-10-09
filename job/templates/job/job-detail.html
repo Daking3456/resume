@@ -2,197 +2,178 @@
 {% load static %}
 {% load auth_extras %}
 
+{% block extrastyles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jobdetail.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container">
-
-    <!--Indicate the current page’s location within a navigational hierarchy-->
-
-	<div class="row">
-    <!--left part of the page-->
-
-  		<div class="col-sm-8 mainbody">
-  			<div class = "mains">  				
-  				<h2>{{job.title}}</h2> <!--Title for the job-->
-  					<div class="view">Date of publish
-  						:<span class="imp">{{job.created_at}}</span> &nbsp;&nbsp;&nbsp; 
-  						| &nbsp;&nbsp; Apply Before : <span class="imp">{{job.deadline}}</span><br><br>
-  					</div>
-
-            <!-- ************************************-->
-              <!-- Button trigger modal -->
-
-{% if user.is_authenticated %}
-{% if user|has_group:"company" %}
-
-{% else %}
-<button type="button" class="btn btn-success buttons1" data-toggle="modal" data-target="#exampleModalLong">
-  Apply now
-</button>
-{% endif %}
-{% else %}
-<a class="btn btn-success buttons1" data-toggle="modal" data-target="#loginForm" > Apply Now </a>
-{% endif %}
- <hr class="style2">
-
-
-
-<!-- Modal -->
-          <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    
-                    <div class="modal-header">
-
-                      <h3 class="modal-title">Resume Upload</h3>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-
-                    <div class="modal-body">
-                     <form role="form" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-              {% csrf_token %}
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Name</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter Name" name="name" value="{{ request.user.username }}" required>
-            </div>
-            <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-envelope"></span> Email</label>
-              <input type="text" class="form-control" id="psw" name="email" value="{{request.user.email}}" placeholder="Enter Email address" required>
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-file"></span> Upload CV</label>
-              <input type="file" class="form-control" id="usrname" placeholder="Upload CV" name="resume" value="/media/{{request.user.recent_resume}}" required>
-            </div>
-            <button type="submit" class="btn btn-success btn-block applying">Apply</button>
-          </form>
-                    </div>
-
-
-
-                  </div>
-                </div>
+<section id="jobdetail">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class = "mains">         
+          <h2>{{job.title}}</h2> <!--Title for the job-->
+          <div class="view">
+            Date of publish
+            :<span class="imp">{{job.created_at}}</span> &nbsp;&nbsp;&nbsp; 
+            | &nbsp;&nbsp; Apply Before : <span class="imp">{{job.deadline}}</span><br>
           </div>
+          {% if user.is_authenticated %}
+            {% if user|has_group:"company" %}
+              {% else %}
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModalLong">
+                  Apply now
+                </button>
+            {% endif %}
 
-            <!-- ************************************-->
+            {% else %}
+            <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#loginForm" > Apply Now </a>
+          {% endif %}
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3 class="modal-title">Resume Upload</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form role="form" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                    {% csrf_token %}
+                      <label for="usrname"><span class="glyphicon glyphicon-user"></span> Name</label>
+                      <input type="text" class="form-control" id="usrname" placeholder="Enter Name" name="name" value="{{ request.user.username }}" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="psw"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+                      <input type="text" class="form-control" id="psw" name="email" value="{{request.user.email}}" placeholder="Enter Email address" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="usrname"><span class="glyphicon glyphicon-file"></span> Upload CV</label>
+                      <input type="file" class="form-control" id="usrname" placeholder="Upload CV" name="resume" value="/media/{{request.user.recent_resume}}" required>
+                    </div>
+                      <button type="submit" class="btn btn-success btn-block applying">Apply</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Div main end -->
+        <div class="mainsbody">
+          <div class="req">       
+            <div class = "detail">
+              <table class="table table-borderless">
+                {% if job.salary %}
+                <tr>
+                  <td style="width:25%;"><b>Salary</b></td>
+                  <td><b>:</b>&nbsp;{{job.salary}}</td>
+                </tr>
+                {% endif %}
 
-  			
-  				<!--<button class="buttons2" type="submit"><i class="fa fa-linkedin fa-lg"></i>&nbsp;&nbsp; APPLY WITH LINKEDIN</button>-->
+                {% if job.location %}
+                <tr>
+                  <td style="width:25%;"><b>Location:</b></td>
+                  <td><b>:</b>&nbsp;{{job.location}}</td>
+                </tr>
+                {% endif %}
 
-  			</div>
+                {% if job.type_of_job %}
+                <tr>
+                  <td style="width:25%;"><b>Employment Type</b></td>
+                  <td><b>:</b>&nbsp;{{job.type_of_job}}</td>
+                </tr>
+                {% endif %}
 
-  		<div class="mainsbody">
-  			<div class="jumbotron jumbotron-fluid">
-  			<div class="req">
-  			
-  				<div class = "detail">
-  					<table border= "0">
-  						<tr>
-  							<td><b>Salary:</b></td>
-  							<td>{{job.salary}}</td>
-  						</tr>
-  						<tr>
-  							<td><b>Location:</b></td>
-  							<td>{{job.location}}</td>
-  						</tr>
-  						<tr>
-  							<td><b>Employment Type:</b></td>
-  							<td>{{job.type_of_job}}</td>
-  						</tr>
+                 {% if job.job_field %} 
+                <tr>
+                  <td style="width:25%;"><b>Field</b></td>
+                  <td><b>:</b>&nbsp;{{job.job_field}}</td>
+                </tr>
+                {% endif %}
 
-  						<tr>
-  							<td><b>Field:</b></td>
-  							<td>{{job.job_field}}</td>
-  						</tr>
+                {% if job.education %}
+                <tr>
+                  <td style="width:25%;"><b>Education</b></td>
+                  <td><b>:</b>&nbsp;{{job.education}}</td>
+                </tr>
+                {% endif %}
 
-              <tr>
-                <td><b>Education:</b></td>
-                <td>{{job.education}}</td>
-              </tr>
+                {% if job.qualification %}
+                 <tr>
+                  <td style="width:25%;"><b>Qualification</b></td>
+                  <td><b>:</b>&nbsp;{{job.qualification}}</td>
+                </tr>
+                {% endif %}
 
-               <tr>
-                <td><b>Qualification:</b></td>
-                <td>{{job.qualification}}</td>
-              </tr>
+                {% if job.responsibilities %}
+                <tr>
+                  <td style="width:25%;"><b>Responsibilities</b></td>
+                  <td><b>:</b>&nbsp;{{job.responsibilities}}</td>
+                </tr>
+                {% endif %}
 
-              <tr>
-                <td><b>Responsibilities:</b></td>
-                <td>{{job.responsibilities}}</td>
-              </tr>
-
-               <tr>
-                <td><b>No of opening:</b></td>
-                <td>{{job.no_opening}}</td>
-              </tr>
-  					</table>
-  				</div>
-  				<hr class="style1">
-
-   				 <h2 class="display-4">Description</h2>
-    			<p class="lead">
-					{{job.description}}		
-          </p>
-
-				<h2 class="display-4">Requirement</h2>
-    			<p class="lead"> {{job.requirements}}</p>
-  			</div>
-
-{% if user.is_authenticated %}
-{% if user|has_group:"company" %}
-{% else %}
-<button type="button" class="btn btn-success buttons1" data-toggle="modal" data-target="#exampleModalLong">
-  Apply now
-</button>
-{% endif %}
-{% else %}
-<a class="btn btn-success buttons1" data-toggle="modal" data-target="#loginForm"  >
-  Apply Now
-</a>
-{% endif %}
-
-      			<div class = "info">
-      				<hr class="style1">
-      				<h3><div class="companynamee">{{job.company.user.username}}</div></h3><!--place for company detail-->
+                {% if job.no_opening %}
+                 <tr>
+                  <td style="width:25%;"><b>No of opening</b></td>
+                  <td><b>:</b>&nbsp;{{job.no_opening}}</td>
+                </tr>
+                 {% endif %}
+              </table>
+            </div>
+            {% if job.description %}
+             <h5>Description</h5>
+            <p>
+            {{job.description}}   
+            </p>
+            {% endif %}
+            <h5>Requirement</h5>
+            <p> {{job.requirements}}</p>
+          </div>
+          {% if user.is_authenticated %}
+          {% if user|has_group:"company" %}
+          {% else %}
+          <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModalLong">
+            Apply now
+          </button>
+          {% endif %}
+          {% else %}
+          <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#loginForm"  >
+            Apply Now
+          </a>
+          {% endif %}
+        </div>
+        <div class="mainsfooter">
+            <div class = "info">
+              <h3>{{job.company.user.username}}</h3><!--place for company detail-->
                     {{job.company.user.address.address1}}<br>
                     {{job.company.user.address.country}}<br>
                     {{job.company.user.address.zip_code}}<br>
                     {{job.company.user.website}}<br>
-      			</div>
-
-
-			</div>
-		</div>
-
-  		</div>
-
-       <div class="col-sm-4">
+            </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
         <!--shows relatable job on the right side-->
         <div class = "relatable">
-         <!--  <div class="backtosearchresult">
-              <a href = "#"> <i class="fa fa-chevron-left" style="font-size:13px"></i> Back to search result </a>
-          </div> -->
-        <h3>Relatable Jobs</h3>        
-             {% for related_job in related_jobs %}   
-            <div class="summ">
-                      
-                <a href="/job/{{related_job.slug}}/"> {{related_job.title}}</a>
-                 <br>
-                    <span class="rh-job-result-sidebar__job-details">{{related_job.comapany.user.username}}</span>
+          <h3>Relatable Jobs</h3>        
+          {% for related_job in related_jobs %}   
+            <div class="summ">     
+              <a href="/job/{{related_job.slug}}/"> {{related_job.title}}</a>
                 <br>
-                    <span class="rh-job-result-sidebar__job-details">Contract</span>
+              <span class="rh-job-result-sidebar__job-details"><!-- {{related_job.comapany.user.username}} -->Company</span>
                 <br>
-                    <span class="rh-job-result-sidebar__job-details">deadline: {{related_job.deadline}}</span>
+              <span class="rh-job-result-sidebar__job-details">Contract</span>
                 <br>
-                
+              <span class="rh-job-result-sidebar__job-details">deadline: {{related_job.deadline}}</span>
+               <br>                
             </div>
-             {% endfor %}   
+          {% endfor %}   
          </div>
       </div>
-
-	</div>
-</div>
-
-{% endblock %}
-
- 
-
+    </div>
+  </div>
+</section>
+{% endblock %}z
