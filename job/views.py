@@ -190,18 +190,17 @@ def filtered_job(request):
     return render(request,'filtered_jobs.html', context_dict)
 
 
-
+from haystack.query import SearchQuerySet
 def autocomplete(request):
     sqs = SearchQuerySet().autocomplete(
         content_auto=request.GET.get(
-            'query',
-            ''))[
-        :5]
+            'q',
+            ''))[:5]
     s = []
     for result in sqs:
         d = {"value": result.title, "data": result.object.slug}
         s.append(d)
-    output = {'suggestions': s}
+    output = {'results': s}
     return JsonResponse(output)
 
 

@@ -17,12 +17,7 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
     crossorigin="anonymous"></script>
-  <script>
-    $(document).ready(function(){
-        $("#btntrigger").click();
-
-    });
-  </script>
+  
 {% endblock %}
 
 {% block content %}
@@ -35,12 +30,11 @@
 
         <div class="form-group1">
           <div class="topslogon">
-            Artificial Intelligence In Modern Recruitment System
-          </div>
-          <form class="navbar-form navbar-left" id="search_form" role = "search" method="get" action="/search/">
+           </div>
+          <form class="navbar-form navbar-left autocomplete-me" autocomplete="off" id="search_form" role = "search" method="get" action="/search/">
           <input type="text" name="q" class="form-control" placeholder="enter keywords e.g: web designing">
          <div class="btn-group">
-              <a href="#" class="btn btn-success btn-md " id="search_submit" role="button" aria-pressed="true">
+              <a href="#" class="btn btn-success btn-md "  id="search_submit" role="button" aria-pressed="true">
                       <i class="fa fa-search"></i> &nbsp;SEARCH</a>
             </div>
                          
@@ -235,6 +229,13 @@
 </script>
  -->
  {% endblock %}
+{% block extrascripts %}
+<script>
+    $(document).ready(function(){
+        $("#btntrigger").click();
 
+    });
+  </script>
+{% endblock %}
 
 
