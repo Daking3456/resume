@@ -1,166 +1,182 @@
 {% extends "layout.html" %}
 
+{% load static %}
 
+{% block extrastyles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/searchstyle.css' %}">
+{% endblock %}
     
 {% block content %}
-<div class="container">
-<div class="row">
-<div class="col-md-6">
-<form class="navbar-form navbar-left" role = "search" id="search_form" method="get" action="/search/">
-          <input type="text" name="q" class="form-control" placeholder="enter keywords e.g: web designing">
-         <div class="btn-group">
-              <a href="#" class="btn btn-success btn-md " id="search_submit" role="button" aria-pressed="true">
-                      <i class="fa fa-search"></i> &nbsp;SEARCH</a>
-            </div>
-          </form>
-</div>
-</div>
-<div class="row">
-{% if  page_obj.object_list %}
-<div class="col-md-3">
-    <h3>Filters</h3>
-        <dl>
-        {% if facets.fields.industry %}
-        <dt>Filter by Industry</dt>
-        {% for industry in facets.fields.industry %}
-        {% if industry.1 != 0 %}
-        <dd>
-        <input class="facet" id="{{industry.0|cut:" "}}" type="checkbox" name="industry" value="{{ industry.0 }}" 
-        data-toggle="toggle" /> {{ industry.0 }} ({{ industry.1 }})
-        </dd>
-        {% endif %}
-        {% endfor %}
-        <div>
-        <input class="btn btn-info btn-sm pull-right" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
+<div class="wrapper-search-tab" style="min-height: 384px;">
+<section id="search-tab">
+    <div class="container">
+        <div class="col-md-9" style="margin: auto;">
+            <form role = "search" method="get" action="/search/" class="autocomplete-me" autocomplete="off" id="search_form">
+                <div class="form-row">
+                    <div class="col-md-9 col-12 search-tab-section">
+                         <input type="text" name="q" class="form-control" placeholder="enter keywords e.g: web designing">
+                    </div>
+                    <div class="col-md-3 col-12 search-tab-section">
+                        <a href="#" class="btn btn-success btn-md search-btn" role="button" aria-pressed="true" id="search_submit">
+                        <i class="fa fa-search"></i> &nbsp;SEARCH</a>
+                    </div>
+                </div>
+            </form>
         </div>
-        {% endif %}
-        </dl>
-        <hr>
-        <dl>
-        {% if facets.fields.experience %}
-        <dt>Filter by Experience</dt>
-        {% for experience in facets.fields.experience %}
-        {% if experience.1 != 0 %}
-        <dd>
-        <input class="facet" id="{{experience.0|cut:" "}}" type="checkbox" name="experience" value="{{ experience.0 }}" 
-        data-toggle="toggle" /> {{ experience.0 }} ({{ experience.1 }})
-        </dd>
-        {% endif %}
-        {% endfor %}
-        <div>
-        <input class="btn btn-info btn-sm pull-right" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
-        </div>
-        {% endif %}
-        </dl>
-        <hr>
-        <dl>
-        {% if facets.fields.type_of_job %}
-        <dt>Filter by Type</dt>
-        {% for type_of_job in facets.fields.type_of_job %}
-        {% if type_of_job.1 != 0 %}
-        <dd>
-        <input class="facet" id="{{type_of_job.0|cut:" "}}" type="checkbox" name="type_of_job" value="{{ type_of_job.0 }}" 
-        data-toggle="toggle" /> {{ type_of_job.0 }} ({{ type_of_job.1 }})
-        </dd>
-        {% endif %}
-        {% endfor %}
-        <div>
-        <input class="btn btn-info btn-sm pull-right" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
-        </div>
-        {% endif %}
-        </dl>
-        <hr>
-        <dl>
-        {% if facets.fields.level_of_job %}
-        <dt>Filter by Level</dt>
-        {% for level_of_job in facets.fields.level_of_job %}
-        {% if level_of_job.1 != 0 %}
-        <dd>
-        <input class="facet" id="{{level_of_job.0|cut:" "}}" type="checkbox" name="level_of_job" value="{{ level_of_job.0 }}" 
-        data-toggle="toggle" /> {{ level_of_job.0 }} ({{ level_of_job.1 }})
-        </dd>
-        {% endif %}
-        {% endfor %}
-        <div>
-        <input class="btn btn-info btn-sm pull-right" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
-        </div>
-        {% endif %}
-        </dl>
-        <hr>
-        <dl>
-        {% if facets.fields.contract_type %}
-        <dt>Filter by Contract Type</dt>
-        {% for contract_type in facets.fields.contract_type %}
-        {% if contract_type.1 != 0 %}
-        <dd>
-        <input class="facet" id="{{contract_type.0|cut:" "}}" type="checkbox" name="contract_type" value="{{ contract_type.0 }}" 
-        data-toggle="toggle" /> {{ contract_type.0 }} ({{ contract_type.1 }})
-        </dd>
-        {% endif %}
-        {% endfor %}
-        <div>
-        <input class="btn btn-info btn-sm pull-right" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
-        </div>
-        {% endif %}
-        </dl>
-   </div>
-{% endif %}
-    <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-6 col-xs-6">
-                      Search result for: <label> {{query}} </label>
-               </div>
-               <div class="col-md-6 col-xs-6 align-right">
-               
-                   Showing {{ page_obj.start_index }} - {{ page_obj.end_index }} of total 
-                    {{ page_obj.paginator.count }}
-                    results on page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-               </div>
-            </div>    
-            <div>
-        {% if  page_obj.object_list %}
-                <ol class="row top20">
-                
-                    {% for result in page_obj.object_list %}
-                        
-                        <div class="showcase col-sm-6 col-md-4">
-           <a href="{{ result.object.get_absolute_url }}">
-              <h3>{{result.object.title}}</h3>
-                        
-           </a>
-            <h4 class="text-center"><span class="label label-info">{{result.object.brand}}</span></h4>
-            </div>
-                    {% endfor %}
-                </ol>
-            </div>
-            {% if is_paginated %}
-              <ul class="pagination pull-right">
-                {% if page_obj.has_previous %}
-                  <li><a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-                {% else %}
-                  <li class="disabled"><span>&laquo;</span></li>
-                {% endif %}
-                {% for i in paginator.page_range %}
-                  {% if page_obj.number == i %}
-                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                  {% else %}
-                    <li><a href="?q={{ query }}&page={{ i }}">{{ i }}</a></li>
-                  {% endif %}
-                {% endfor %}
-                {% if page_obj.has_next %}
-                  <li><a href="?q={{ query }}&page={{ page_obj.next_page_number }}">&raquo;</a></li>
-                {% else %}
-                  <li class="disabled"><span>&raquo;</span></li>
-                {% endif %}
-              </ul>
-            {% endif %}
-        {% else %}
-        <p> Sorry, no result found for the search term  <strong>{{query}} </strong></p>
-    {% endif %}
     </div>
+</section>
+<section id="message">
+    <div class="container">
+        <div class="row">
+            {% if  page_obj.object_list %}
+            <div class="col-md-3">
+                <div class="filter-content">
+                    <h3>Filters</h3>
+                    <hr>
+                    <dl>
+                        {% if facets.fields.industry %}
+                        <dt>Filter by Industry</dt>
+                            {% for industry in facets.fields.industry %}
+                                {% if industry.1 != 0 %}
+                                <dd>
+                                    <input class="facet" id="{{industry.0|cut:" "}}" type="checkbox" name="industry" value="{{ industry.0 }}" 
+                                data-toggle="toggle" /> 
+                                <label for="{{industry.0|cut:" "}}">{{ industry.0 }} ({{ industry.1 }})</label>
+                                </dd>
+                                {% endif %}
+                            {% endfor %}
+                        <input class="btn btn-info btn-sm" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
+                        {% endif %}
+                        </dl>
+                    <hr>
+                    <dl>
+                        {% if facets.fields.experience %}
+                        <dt>Filter by Experience</dt>
+                            {% for experience in facets.fields.experience %}
+                                {% if experience.1 != 0 %}
+                                <dd>
+                                    <input class="facet" id="{{experience.0|cut:" "}}" type="checkbox" name="experience" value="{{ experience.0 }}" 
+                                data-toggle="toggle" /> 
+                                <label for="{{experience.0|cut:" "}}">{{ experience.0 }} ({{ experience.1 }})</label>
+                                </dd>
+                                {% endif %}
+                            {% endfor %}
+                        <input class="btn btn-info btn-sm" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
+                        {% endif %}
+                    </dl>
+                    <hr>
+                    <dl>
+                        {% if facets.fields.type_of_job %}
+                        <dt>Filter by Type</dt>
+                            {% for type_of_job in facets.fields.type_of_job %}
+                                {% if type_of_job.1 != 0 %}
+                                <dd>
+                                    <input class="facet" id="{{type_of_job.0|cut:" "}}" type="checkbox" name="type_of_job" value="{{ type_of_job.0 }}" data-toggle="toggle" /> 
+                                    <label for="{{type_of_job.0|cut:" "}}">{{ type_of_job.0 }} ({{ type_of_job.1 }})</label>
+                                </dd>
+                                {% endif %}
+                            {% endfor %}
+                        <input class="btn btn-info btn-sm" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
+                        {% endif %}
+                    </dl>
+                    <hr>
+                    <dl>
+                        {% if facets.fields.level_of_job %}
+                        <dt>Filter by Level</dt>
+                            {% for level_of_job in facets.fields.level_of_job %}
+                                {% if level_of_job.1 != 0 %}
+                                <dd>
+                                    <input class="facet" id="{{level_of_job.0|cut:" "}}" type="checkbox" name="level_of_job" value="{{ level_of_job.0 }}" data-toggle="toggle" /> 
+                                    <label for="{{level_of_job.0|cut:" "}}">{{ level_of_job.0 }} ({{ level_of_job.1 }})</label>
+                                </dd>
+                                {% endif %}
+                            {% endfor %}
+                        <input class="btn btn-info btn-sm" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
+                        {% endif %}
+                    </dl>
+                    <hr>
+                    <dl>
+                        {% if facets.fields.contract_type %}
+                        <dt>Filter by Contract Type</dt>
+                            {% for contract_type in facets.fields.contract_type %}
+                                {% if contract_type.1 != 0 %}
+                                    <dd>
+                                        <input class="facet" id="{{contract_type.0|cut:" "}}" type="checkbox" name="contract_type" value="{{ contract_type.0 }}" data-toggle="toggle" /> 
+                                        <label for="{{contract_type.0|cut:" "}}">{{ contract_type.0 }} ({{ contract_type.1 }})</label>
+                                    </dd>
+                                {% endif %}
+                            {% endfor %}
+                        <input class="btn btn-info btn-sm" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
+                        {% endif %}
+                    </dl>
+                </div>
+            </div>
+            {% endif %}
+            <div class="col-md-9">
+                 {% if  page_obj.object_list %}
+                <div class="row" style="background: #fff;padding-top: 10px;padding-bottom: 10px;">
+                    <div class="col-md-6 col-xs-6">
+                        Search result for: <label> {{query}} </label>
+                   </div>
+                   <div class="col-md-6 col-xs-6">               
+                       Showing {{ page_obj.start_index }} - {{ page_obj.end_index }} of total 
+                        {{ page_obj.paginator.count }}
+                        results on page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                   </div>
+                </div>   
+               
+                                
+                    {% for result in page_obj.object_list %}
+                    <div class="showcase row">
+                            <div class="col-md-2">
+                                <img src="{% static 'image/ucl.jpg' %}" class="img-thumbnail" width="100">
+                            </div>
+                            <div class="col-md-10">
+                                <a href="{{ result.object.get_absolute_url }}"><h4>{{result.object.title}}</h4></a>
+                                <p class="company-name">{{result.object.company}}</p>
+                                <p><i class="fa fa-calendar" aria-hidden="true"></i> 5 days ago</p>
+                                <p>{{result.object.description}}</p>
+                                
+                            </div>
+                        <div class="col-lg-12 deadline">
+                            <p class="text-right">Deadline: 3 days from now</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                {% if is_paginated %}
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                            <li><a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        
+                        {% for i in paginator.page_range %}
+                            {% if page_obj.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a href="?q={{ query }}&page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if page_obj.has_next %}
+                            <li><a href="?q={{ query }}&page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+            {% else %}
+            </div>
+        </div>
+            <div class="no-result-found col-md-9" style="margin: auto;">
+                <p> <i class="fa fa-search" aria-hidden="true"></i><br>
+                    Sorry, no result found for the search term  <strong>{{query}} </strong></p>
+            </div>
+            {% endif %}    
+</section>
 </div>
-</div>
-    
 {% endblock %}
 
 {% block extrascripts %}
@@ -176,10 +192,6 @@ function getParameterByName(name, url) {
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
-
-
-
-
 function onFacetChangeApplied(){
     var url = window.location.href.split("?")[0];
     var search_query = getParameterByName('q');
@@ -194,8 +206,6 @@ function onFacetChangeApplied(){
     location.href = url_with_search_query;
     return true;
 } 
-
-
 function getQueryParams(){
   var vars = {}, hash;
   var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -206,8 +216,6 @@ function getQueryParams(){
   }
   return vars;
 }
-
-
 $( document ).ready(function() {
     var all_params = getQueryParams();
     console.log();
@@ -219,3 +227,4 @@ $( document ).ready(function() {
 });
 </script>
 {% endblock %}
+    

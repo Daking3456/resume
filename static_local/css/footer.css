@@ -30,25 +30,35 @@
     
     color: #575757;
 }
-
+/*footer{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}*/
 
 .footer-copyright{
     background-color: #333333;
     color:#e3e3e3;
 }
+.footer-copyright p{
+    margin-bottom: 0px;
+    padding: 5px 0px;
+}
+.linkss{
+margin-top: 10px;}
 .linkss >h5 {
     color:white;
 }
 .linkss ul>li > a{
     color:#e3e3e3;
 }
-
+footer .row{
+    margin: 0px;
+}
 .footerup
 {
     background-color:#4A4A4A;
-    padding: 10px;
     padding-top: 20px;
-    margin-top: 10px;
 }
 .linkss > ul{
     list-style-type: none;
