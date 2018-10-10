@@ -44,7 +44,7 @@
 										<div class="col-md-12">
 											<h6 style="color: #28a745;">Profile Status</h6>
 											<div class="progress">
-												<div class="progress-bar bg-info" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+												<div class="progress-bar bg-info" role="progressbar" style="width: {{profile.profile_status}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{profile.profile_status}}%</div>
 											</div>
 										</div>
 									</div>							
@@ -57,7 +57,7 @@
 												</tr>
 												<tr>
 													<th scope="row" width="25%">Gender</th>
-													<td>: &nbsp; {{ profile.get_gender }}</td>
+													<td>: &nbsp; {{ profile.get_gender_display }}</td>
 												</tr>
 												<tr>
 													<th scope="row" width="25%">Date of Birth</th>
@@ -65,7 +65,7 @@
 												</tr>
 												<tr>
 													<th scope="row" width="25%">Marital Status</th>
-													<td>: &nbsp; {{profile.get_marritual_status}}</td>
+													<td>: &nbsp; {{profile.get_maritual_status_display}}</td>
 												</tr>
 												<tr>
 													<th scope="row" width="25%">Current Address</th>
@@ -254,7 +254,7 @@
 												</div>
 											</div>
 											&nbsp;|
-											<a href="#" class="btn-delete"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
+											<a href="/accounts/profile/experience/delete/{{work.id}}/" class="btn-delete"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
 										</div>
 										<p><span class="job-title">{{work.job_title}}</span>&nbsp;<span>({{ work.job_level }})</span> </p>
 										<p>{{ work.organization }}</p>
@@ -438,7 +438,7 @@
 												</div>
 											</div>
 											&nbsp;|
-											<a href="#" class="btn-delete"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
+											<a href="/accounts/profile/education/delete/{{edu.id}}/" class="btn-delete"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
 										</div>					
 										<p><span class="ed-title">{{edu.degree}}</span>&nbsp;<span>{{edu.marks}}</span> </p>
 										<p><span>{{ edu.institution}}</span>&nbsp;,<span>{{ edu.graduation}}</span></p>
@@ -531,8 +531,8 @@
 									{% for skill in profile.skills.all %}
 									<div class="detail">
 										<div class="pull-right">
-											<a href="#" class="btn-edit"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Edit</a>&nbsp;|
-											<a href="#" class="btn-delete"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
+											
+											<a href="/accounts/profile/skills/delete/{{skill.id}}/" class="btn-delete"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
 										</div>
 										<p>{{ skill }}</p>
 									</div>										
@@ -644,7 +644,7 @@
 												</div>
 											</div>
 											&nbsp;|
-											<a href="#" class="btn-delete"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
+											<a href="/accounts/profile/training/delete/{{training.id}}/" class="btn-delete"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
 										</div>
 										<p><span class="ed-title">{{ training.name }}</span></p>
 										<p>{{training.institution}}</p>
@@ -716,11 +716,15 @@
 							</div>
 						</div>	
 					</div>
-					<div class="tab-pane fade" id="v-pills-jobs-applied" role="tabpanel" aria-labelledby="v-pills-jobs-applied-tab">Jobs Applied</div>
+					<div class="tab-pane fade" id="v-pills-jobs-applied" role="tabpanel" aria-labelledby="v-pills-jobs-applied-tab">
+						{% include 'accounts/jobapplied.html' %}
+
+					</div>
 					<div class="tab-pane fade" id="v-pills-resetp" role="tabpanel" aria-labelledby="v-pills-resetp-tab">Reset Password</div>
 					<div class="tab-pane fade" id="v-pills-cemail" role="tabpanel" aria-labelledby="v-pills-cemail-tab">Change Email</div>
 					<div class="tab-pane fade" id="v-pills-sociala" role="tabpanel" aria-labelledby="v-pills-sociala-tab">Socail Account</div>
 					<div class="tab-pane fade" id="v-pills-dacc" role="tabpanel" aria-labelledby="v-pills-dacc-tab">Deativate Accounut</div>
+				
 				</div>
 			</div>
 		</div>
@@ -790,7 +794,7 @@ $(document).ready(function(){
     $myForm.submit(function(event){
         event.preventDefault()
         var $formData = $(this).serialize()
-        var $thisURL = '/accounts/profile/experice/' // or set your own url
+        var $thisURL = '/accounts/profile/experience/' // or set your own url
         $.ajax({
             method: "POST",
             url: $thisURL,

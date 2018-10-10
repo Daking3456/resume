@@ -1,14 +1,9 @@
 {% extends 'layout.html' %}
 
-{% block extrascripts %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-{% endblock %}
 {% block content %}
-<div class="container">
-  <h2>Applicants for {{job.title}}</h2>            
+<div class="container" style="min-height: 350px">
+  <br>
+  <h3>Applicants for {{job.title}}</h3>            
   <table class="table table-bordered">
     <thead>
       <tr>

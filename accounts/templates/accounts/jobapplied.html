@@ -13,12 +13,12 @@
     <tbody>
       {% for applicant in job_applied %}
       <tr>
-        <td>{{applicant.date_applied|date:'Y-m-d'}}</td>
-        <td>{{applicant.job.title}}</td>
-        <td>{{applicant.job.company.user.username}}</td>
+        <td>{{ applicant.date_applied|date:'Y-m-d' }}</td>
+        <td>{{ applicant.job.title }}</td>
+        <td>{{ applicant.job.company.user.username }}</td>
         
       </tr>
-      {% endfor%}
+      {% endfor %}
      
     </tbody>
   </table>

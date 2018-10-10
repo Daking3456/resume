@@ -150,7 +150,7 @@ class WorkExperience(models.Model):
 	organization = models.CharField(max_length=100)
 	location = models.CharField(max_length=100)
 	responsibilities = models.TextField()
-	job_level = models.CharField(max_length=10, null=True, blank=True)
+	job_level = models.CharField(max_length=20, null=True, blank=True)
 
 
 	from_date = models.DateField()
@@ -224,33 +224,25 @@ class UserProfile(models.Model):
 
     education = models.ManyToManyField(Education, blank=True)
     trainings = models.ManyToManyField(Training, blank=True)
-    skills = models.ManyToManyField(Skills, blank=True)
     work_experience = models.ManyToManyField(WorkExperience, blank=True)
     
+    skills = models.ManyToManyField(Skills, blank=True)
 
     def __str__(self):
         return self.user.username
 
-    def get_gender(self):
-        if (self.gender == 1):
-            return "Male"
-        
-        elif self.gender == 2:
-            return 'Female'
-        elif self.gender == 3:
-            return "Prefer not to say"
-        else:
-            return "N/A"
+    def profile_status(self):
+    	temp = 25
+    	if self.education.all():
+    		temp+=25
 
-
-    def get_marritual_status(self):
-        if (self.gender == 1):
-            return "Married"
-        
-        elif self.gender == 2:
-            return 'Unmarried'
-        else:
-            return "-"
+    	if self.work_experience.all():
+    		temp+=25
+    	if self.trainings.all():
+    		temp+=10
+    	if self.skills.all():
+    		temp+=15
+    	return temp
 
 
 class UserExtractedProfile(models.Model):

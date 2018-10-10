@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect,HttpResponseNotFound
+from django.http import HttpResponseRedirect,HttpResponseNotFound, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import Group
@@ -10,6 +10,8 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 #from requests_oauthlib.compliance_fixes import linkedin
 from social_django.models import UserSocialAuth
+
+from .models import WorkExperience, Skills , Education, Training
 
 
 from accounts.models import Company, Address, UserProfile, Skills
@@ -304,41 +306,34 @@ def edit_profile_experience(request, id):
 
 @login_required
 def delete_profile_education(request, id):
-    if request.method=="POST":
-        form = EducationForm(request.POST)
-
-        if form.is_valid():
-            
-            education = form.save()
-            profile = UserProfile.objects.get(user=request.user)
-            profile.education.add(education)
-            profile.save()
-
+    profile = UserProfile.objects.get(user=request.user)
+    edu = Education.objects.get(id=id)
+    profile.education.remove(edu)
+    return HttpResponseRedirect('/accounts/profile/')
 
 @login_required
 def delete_profile_skills(request, id):
-    if request.method=="POST":
-        form = form(request.POST)
-        if form.is_valid():
-            education = form.save()
+    profile = UserProfile.objects.get(user=request.user)
+    skill = Skills.objects.get(id=id)
+    profile.skills.remove(skill)
+    return HttpResponseRedirect('/accounts/profile/')
 
 
 @login_required
 def delete_profile_training(request, id):
-    if request.method=="POST":
-        form = form(request.POST)
-
-        if form.is_valid():
-            form.save()
+    profile = UserProfile.objects.get(user=request.user)
+    training = Training.objects.get(id=id)
+    profile.trainings.remove(training)
+    return HttpResponseRedirect('/accounts/profile/')
 
 
 @login_required
 def delete_profile_experience(request, id):
-    if request.method=="POST":
-        form = form(request.POST)
+    profile = UserProfile.objects.get(user=request.user)
+    experience= WorkExperience.objects.get(id=id)
+    profile.work_experience.remove(experience) 
+    return HttpResponseRedirect('/accounts/profile/')
 
-        if form.is_valid():
-            form.save()
 
 def temp_add(request):
     form = SkillsForm()

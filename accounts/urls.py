@@ -26,10 +26,22 @@ urlpatterns = [
 
 
     path('accounts/profile/basic/',views.save_profile_basic,name="profile_basic"),
-    path('accounts/profile/experice/',views.save_profile_experience,name="profile_experience"),
+    path('accounts/profile/experience/',views.save_profile_experience,name="profile_experience"),
     path('accounts/profile/education/',views.save_profile_education,name="profile_education"),
     path('accounts/profile/skills/',views.save_profile_skills,name="profile_skills"),
     path('accounts/profile/training/',views.save_profile_training,name="profile_training"),
+
+    path('accounts/profile/experience/edit/<id>/',views.edit_profile_experience, name="edit_experience"),
+    path('accounts/profile/skills/edit/<id>/',views.edit_profile_skills, name="edit_skills"),
+    path('accounts/profile/training/edit/<id>/',views.edit_profile_training, name="edit_training"),
+    path('accounts/profile/education/edit/<id>/',views.edit_profile_education, name="edit_education"),
+
+    path('accounts/profile/experience/delete/<int:id>/',views.delete_profile_experience, name="delete_experience"),
+    path('accounts/profile/skills/delete/<int:id>/',views.delete_profile_skills, name="delete_skills"),
+    path('accounts/profile/training/delete/<int:id>/',views.delete_profile_training, name="delete_training"),
+    path('accounts/profile/education/delete/<int:id>/',views.delete_profile_education, name="delete_education"),
+
+
 
 
     ###  <temporary for static representation of design
