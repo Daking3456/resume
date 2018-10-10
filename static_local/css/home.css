@@ -242,3 +242,21 @@
     border: 1px solid green;
     color: green;
  }
+ /*search*/
+ .ac-results{
+    background: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    z-index: 2;
+    position: absolute;
+    width: auto;
+ }
+ .result-wrapper{
+    border-bottom: 1px solid #ececec;
+    padding: 5px 10px;
+    text-align: left;
+ }
+  .result-wrapper a{
+      color: #333;    
+    text-transform: capitalize;
+  }
