@@ -12,7 +12,6 @@ urlpatterns = [
     path('accounts/logout/',views.logout_page,name="logout"),
     
     # using default auth view for pasword change and reset
-        
     path('accounts/change_password/', auth_views.PasswordChangeView.as_view()),
     path('accounts/password_change/done/', auth_views.PasswordChangeDoneView.as_view(),name='password_change_done'),
     path('accounts/password_reset/', auth_views.PasswordResetView.as_view()),
@@ -48,4 +47,5 @@ urlpatterns = [
 
     path('static_page/profile/add', views.temp_add),
     path('static_page/profile/view', views.temp_view),
+    path('formset', views.formset),
 ]

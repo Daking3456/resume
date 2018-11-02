@@ -167,11 +167,14 @@ class Education(models.Model):
 	degree = models.CharField(max_length=100)
 
 	program = models.CharField(max_length=100)
-	board  = models.CharField(max_length=100)
+	school  = models.CharField(max_length=100)
 	institution = models.CharField(max_length=100)
 	marks = models.CharField(max_length=20)
 
-	graduation = models.CharField(max_length=10)
+	location = models.CharField(max_length=100)
+	start = models.CharField(max_length=10)
+	end = models.CharField(max_length=10, )
+	currently_studing = models.BooleanField()
 
 	def __str__(self):
 		return self.program
@@ -211,15 +214,18 @@ class UserProfile(models.Model):
     )
 
     user =  models.OneToOneField(User, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=50)
+    middle_name = models.CharField(max_length=50, null=True, blank=True)
+    first_name = models.CharField(max_length=50)
 
     dob = models.DateField()
-    maritual_status = models.IntegerField(choices=MARRIED_STATUS_CHOICES, default=3)
 
-    gender = models.IntegerField(choices=GENDER_CHOICES)    
+    gender = models.IntegerField(choices=GENDER_CHOICES, null=True, blank=True)    
 
-    current_address = models.CharField(max_length=100)
-    permanent_address = models.CharField(max_length=100)
+    mailing_address = models.EmailField()
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    zip_code = models.CharField(max_length=10)
     contact = models.CharField(max_length=20)
 
     education = models.ManyToManyField(Education, blank=True)

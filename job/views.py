@@ -24,8 +24,10 @@ def load_home(request):
 
     if request.method == 'POST':
         resume = request.FILES['temp_resume']
+        data = resume.read()
 
-        resume_status = Resume.resume_verifier()
+        resume_status = Resume.resume_verifier(data)
+        print(Resume.resume_classifier(data))
             
         if resume_status == True:
             user = request.user
@@ -208,7 +210,9 @@ class FacetedSearchView(BaseFacetedSearchView):
 
     form_class = FacetedProductSearchForm
     facet_fields = [ 'type_of_job', 'industry','contract_type','level_of_job','experience' ]
-
     template_name = 'search_result.html'
     paginate_by = 3
     context_object_name = 'object_list'
+
+
+

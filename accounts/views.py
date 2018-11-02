@@ -341,3 +341,20 @@ def temp_add(request):
 
 def temp_view(request):
     return render (request, 'profileview.html')
+
+from django.forms import formset_factory
+def formset(request):
+    extra_forms = 2
+    EducationFormSet = formset_factory(EducationForm, extra=extra_forms, max_num=20)
+    if request.method == 'POST':
+        if 'additems' in request.POST and request.POST['additems'] == 'true':
+            formset_dictionary_copy = request.POST.copy()
+            formset_dictionary_copy['form-TOTAL_FORMS'] = int(formset_dictionary_copy['form-TOTAL_FORMS']) + extra_forms
+            formset = EducationFormSet(formset_dictionary_copy)
+        else:
+            formset = EducationFormSet(request.POST)
+            if formset.is_valid():
+                return HttpResponseRedirect('/')
+    else:
+        formset = EducationFormSet()
+    return render(request,'formset.html',{'formset':formset})

@@ -1,6 +1,6 @@
 from django import forms
 from accounts.models import User, Address, Company, UserProfile, Education, Training, Skills, WorkExperience
-
+from django.forms import formset_factory
 # Form for registration of user
 class UserForm(forms.ModelForm):
 
