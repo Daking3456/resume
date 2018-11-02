@@ -4,25 +4,10 @@
 
 {% block extrastyles %}
 
-  <link rel="stylesheet" href="{% static 'css/profiles.css' %}">
+<link rel="stylesheet" href="{% static 'css/profiles.css' %}">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-{% block extrascripts %}
-<script type="text/javascript">
-  $('form')
-    .each(function(){
-        $(this).data('serialized', $(this).serialize())
-    })
-    .on('change input', function(){
-        $(this)             
-            .find('input:submit, button:submit')
-                .prop('disabled', $(this).serialize() == $(this).data('serialized'))
-        ;
-     })
-    .find('input:submit, button:submit')
-        .prop('disabled', true);
-</script>
-
 {% endblock %}
+
 
 {% block content %}
 <div class="container">
@@ -75,5 +60,23 @@
   </div>
 </div>
 
+
+{% endblock %}
+
+{% block extrascripts %}
+<script type="text/javascript">
+  $('form')
+    .each(function(){
+        $(this).data('serialized', $(this).serialize())
+    })
+    .on('change input', function(){
+        $(this)             
+            .find('input:submit, button:submit')
+                .prop('disabled', $(this).serialize() == $(this).data('serialized'))
+        ;
+     })
+    .find('input:submit, button:submit')
+        .prop('disabled', true);
+</script>
 
 {% endblock %}
