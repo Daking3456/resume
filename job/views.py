@@ -25,9 +25,10 @@ def load_home(request):
     if request.method == 'POST':
         resume = request.FILES['temp_resume']
         data = resume.read()
+        print(data)
 
-        resume_status = Resume.resume_verifier(data)
-        print(Resume.resume_classifier(data))
+        # resume_status1 = Resume.resume_verifier(data)
+        resume_status = Resume.resume_classifier(data)
             
         if resume_status == True:
             user = request.user
