@@ -1,14 +1,12 @@
-from django.http import HttpResponseRedirect,HttpResponseNotFound, HttpResponse
-from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
+from django.http import HttpResponseRedirect, HttpResponseNotFound, HttpResponse
 from django.contrib.auth.models import Group
 from django.db import transaction
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import update_session_auth_hash, login, authenticate
+from django.contrib.auth import update_session_auth_hash, login, authenticate, logout
 from django.contrib import messages
-#from django.http import HttpResponseRedirect, HttpResponse
+# from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
-#from requests_oauthlib.compliance_fixes import linkedin
+# from requests_oauthlib.compliance_fixes import linkedin
 from social_django.models import UserSocialAuth
 
 from .models import WorkExperience, Skills , Education, Training
@@ -39,7 +37,8 @@ def create_user(request):
             'form': form,
         }
 
-    return render(request,'create_user.html', context_dict)
+    return render(request, 'create_user.html', context_dict)
+
 
 # View function for registration of company
 @transaction.atomic
@@ -60,17 +59,18 @@ def create_company(request):
             user_group.user_set.add(user)
 
             # Create company
-            Company.objects.create(website = form.cleaned_data['website'],
-                                   user = user)
+            Company.objects.create(website=form.cleaned_data['website'],
+                                   user=user)
             messages.info(request, "Company created successfully!")
         else:
             messages.error(request, 'Something is Wrong!')
         return HttpResponseRedirect('/accounts/login/')
     else:
         form = UserForm()
-        context_dict = {'form': form,}
+        context_dict = {'form': form}
 
-    return render(request,'create_company.html', context_dict)
+    return render(request, 'create_company.html', context_dict)
+
 
 # View function for login of user
 def login_page(request):
@@ -85,20 +85,22 @@ def login_page(request):
                 login(request, user)
                 return HttpResponseRedirect('/')
             else:
-                messages.error(request,'Invalid login credentials!')
-                return render(request, 'home/login_modal.html',{'error': 'Invalid login credentials'})
+                messages.error(request, 'Invalid login credentials!')
+                return render(request, 'home/login_modal.html', {'error': 'Invalid login credentials'})
         else:
-            messages.error(request,'Invalid login credentials!')
-            return render(request, 'home/login_modal.html',{'error': form.errors})
+            messages.error(request, 'Invalid login credentials!')
+            return render(request, 'home/login_modal.html', {'error': form.errors})
 
     else:
         form = LoginForm()
-        return render(request,'login.html',{'forms':form})
+        return render(request,'login.html', {'forms': form})
+
 
 # View function to handle logout
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
+
 
 def accounts_profile(request):
     user = request.user
@@ -115,7 +117,7 @@ def accounts_profile(request):
         return HttpResponseRedirect('/accounts/profile/')
 
     else:
-        if user.is_company == True :
+        if user.is_company is True :
             company = Company.objects.get(user = user)
             job_posted = Job.objects.filter(company = company).order_by('-created_at')
 
@@ -127,7 +129,6 @@ def accounts_profile(request):
             for job in job_posted:
                 temp = [job, len(Applicant.objects.filter(job=job))]
                 job_and_applicants.append(temp)
-            
 
             context_dict = {'job_and_applicants': job_and_applicants}
         else:
@@ -139,7 +140,7 @@ def accounts_profile(request):
 
                 context_dict = {'job_applied': job_applied, 'profile':profile[0], 'skills':skills }
 
-                return render(request,'profileview.html', context_dict)
+                return render(request, 'profileview.html', context_dict)
             else:
                 skills = Skills.objects.all()
                 return render(request, 'profilebuilder.html', {'skills':skills} )
@@ -185,11 +186,10 @@ def password(request):
     return render(request, 'password.html', {'form': form})
 
 
-
 # for basic profile data
 @login_required
 def save_profile_basic(request):
-    if request.method=="POST":
+    if request.method == "POST":
         form = BasicProfileForm(request.POST)
         if form.is_valid():
             profile = form.save(commit=False)
@@ -197,13 +197,12 @@ def save_profile_basic(request):
             profile.save()
     return HttpResponseRedirect('/')
 
+
 @login_required
 def save_profile_education(request):
-    userprofile = request.user
-    if request.method=="POST":
+    if request.method == "POST":
         form = EducationForm(request.POST)
         if form.is_valid():
-            
             education = form.save()
             profile = UserProfile.objects.get(user=request.user)
             profile.education.add(education)
@@ -214,22 +213,21 @@ def save_profile_education(request):
 
 @login_required
 def save_profile_skills(request):
-    if request.method=="POST":
+    if request.method == "POST":
         profile = UserProfile.objects.get(user=request.user)
-        form  = SkillsForm(request.POST)
+        form = SkillsForm(request.POST)
         if form.is_valid():
-            selection = request.POST.getlist('skills')
-            
-            for s in selection:
-                profile.skills.add(s)
-
+            # selection = request.POST.getlist('skills')
+            #
+            # for s in selection:
+            #     profile.skills.add(s)
+            profile.save_m2m()
     return HttpResponseRedirect('/')
-           
 
 
 @login_required
 def save_profile_training(request):
-    if request.method=="POST":
+    if request.method == "POST":
         form = TrainingForm(request.POST)
 
         if form.is_valid():
@@ -243,7 +241,7 @@ def save_profile_training(request):
 
 @login_required
 def save_profile_experience(request):
-    if request.method=="POST":
+    if request.method == "POST":
         form = ExperienceForm(request.POST)  
         
         if form.is_valid():
@@ -256,10 +254,9 @@ def save_profile_experience(request):
     return HttpResponseRedirect("/")
 
 
-
 def edit_profile_basic(request, id):
-    if request.method=="POST":
-        form = form(request.POST)
+    if request.method == "POST":
+        form = BasicProfileForm(request.POST)
 
         if form.is_valid():
             form.save(commit=False)
@@ -267,7 +264,7 @@ def edit_profile_basic(request, id):
 
 @login_required
 def edit_profile_education(request, id):
-    if request.method=="POST":
+    if request.method == "POST":
         form = EducationForm(request.POST)
 
         if form.is_valid():
@@ -279,16 +276,16 @@ def edit_profile_education(request, id):
 
 @login_required
 def edit_profile_skills(request, id):
-    if request.method=="POST":
-        form = form(request.POST)
+    if request.method == "POST":
+        form = SkillsForm(request.POST)
         if form.is_valid():
             education = form.save()
 
 
 @login_required
 def edit_profile_training(request, id):
-    if request.method=="POST":
-        form = form(request.POST)
+    if request.method == "POST":
+        form = TrainingForm(request.POST)
 
         if form.is_valid():
             form.save()
@@ -296,12 +293,11 @@ def edit_profile_training(request, id):
 
 @login_required
 def edit_profile_experience(request, id):
-    if request.method=="POST":
+    if request.method == "POST":
         form = form(request.POST)
 
         if form.is_valid():
             form.save()
-
 
 
 @login_required
@@ -310,6 +306,7 @@ def delete_profile_education(request, id):
     edu = Education.objects.get(id=id)
     profile.education.remove(edu)
     return HttpResponseRedirect('/accounts/profile/')
+
 
 @login_required
 def delete_profile_skills(request, id):
@@ -337,12 +334,16 @@ def delete_profile_experience(request, id):
 
 def temp_add(request):
     form = SkillsForm()
-    return render (request, 'abc.html',{'form':form})
+    return render (request, 'abc.html', {'form': form})
+
 
 def temp_view(request):
     return render (request, 'profileview.html')
 
+
 from django.forms import formset_factory
+
+
 def formset(request):
     extra_forms = 2
     EducationFormSet = formset_factory(EducationForm, extra=extra_forms, max_num=20)
@@ -357,4 +358,4 @@ def formset(request):
                 return HttpResponseRedirect('/')
     else:
         formset = EducationFormSet()
-    return render(request,'formset.html',{'formset':formset})
+    return render(request, 'formset.html', {'formset': formset})
