@@ -37,21 +37,21 @@
 								<div class="form-row">
 								    <div class="form-group col-md-4">
 								      <label for="fname">First Name <span>*</span></label>
-								      <input type="text" class="form-control form-control-sm" id="fname" placeholder="First Name" required autocomplete="off">
+								      <input type="text" name="first_name" class="form-control form-control-sm" id="fname" placeholder="First Name" required autocomplete="off">
 								    </div>
 								    <div class="form-group col-md-4">
 								      <label for="mname">Middle Name</label>
-								      <input type="text" class="form-control form-control-sm" id="mname" placeholder="Middle Name" autocomplete="off">
+								      <input type="text" name="middle_name" class="form-control form-control-sm" id="mname" placeholder="Middle Name" autocomplete="off">
 								    </div>
 								    <div class="form-group col-md-4">
 								      <label for="lname">Last Name <span>*</span></label>
-								      <input type="text" class="form-control form-control-sm" id="lname" placeholder="Last Name" required autocomplete="off">
+								      <input type="text" name="last_name" class="form-control form-control-sm" id="lname" placeholder="Last Name" required autocomplete="off">
 								    </div>
 								  </div>
 								  <div class="form-row">
 								    <div class="form-group col-md-6">
 								      <label for="gender">Gender</label>
-								      <select id="gender" class="form-control form-control-sm">
+								      <select id="gender" name=" gender" class="form-control form-control-sm">
 								        <option selected disabled>Choose...</option>
 								        <option value="1">Male</option>
 								        <option value="2">Female</option>
@@ -60,44 +60,38 @@
 								    </div>
 								    <div class="form-group col-md-6">
 								      <label for="dob">Date of Birth<span>*</span></label>
-								      <input type="text" class="form-control form-control-sm datepicker_dob" id="dob" placeholder="mm/dd/yyyy" required autocomplete="off">
+								      <input type="text" name="dob" class="form-control form-control-sm datepicker_dob" id="dob" placeholder="mm/dd/yyyy" required autocomplete="off">
 								    </div>
 								  </div>
 								  <div class="form-group">
 								    <label for="mailaddress">Mailing Address<span>*</span></label>
-								    <input type="text" class="form-control form-control-sm" id="mailaddress" placeholder="Kathmandu" required autocomplete="off">
+								    <input type="text" name="mailing_address" class="form-control form-control-sm" id="mailaddress" placeholder="Kathmandu" required autocomplete="off">
 								  </div>
 								  <div class="form-row">
 								    <div class="form-group col-md-6">
 								      <label for="inputCity">City<span>*</span></label>
-								      <input type="text" class="form-control form-control-sm" id="inputCity" required autocomplete="off">
+								      <input type="text" name="city" class="form-control form-control-sm" id="inputCity" required autocomplete="off">
 								    </div>
 								    <div class="form-group col-md-4">
 								      <label for="inputState">State<span>*</span></label>
-								      <select id="inputState" class="form-control form-control-sm">
-								        <option selected>Choose...</option>
-								        <option>...</option>
-								      </select>
+								      <input type="text" name="state" class="form-control form-control-sm" id="inputState" required autocomplete="off">
 								    </div>
 								    <div class="form-group col-md-2">
 								      <label for="inputZip">Zip<span>*</span></label>
-								      <input type="text" class="form-control form-control-sm" id="inputZip" required autocomplete="off">
+								      <input type="text" name="zip_code" class="form-control form-control-sm" id="inputZip" required autocomplete="off">
 								    </div>
 								  </div>
 								  <b>Contact</b>
 								  <div class="form-row">
-								    <div class="form-group col-md-6">
-								      <label for="mobile">Mobile <span>*</span></label>
-								      <input type="text" class="form-control form-control-sm" id="mobile" placeholder="987-957-5457" required autocomplete="off">
-								    </div>
+							
 								    <div class="form-group col-md-6">
 								      <label for="home">Home <span>*</span></label>
-								      <input type="text" class="form-control form-control-sm" id="home" placeholder="957-5457" required autocomplete="off">
+								      <input type="text" name="contact" class="form-control form-control-sm" id="home"  required autocomplete="off">
 								    </div>
 								  </div>								
 								<div class="row">
 									<div class="col-md-3 btn-group">
-										<button class=" btn btn-success ml-auto" type="submit">Save</button>
+										<button class="btn btn-success ml-auto" type="submit">Save</button>
 									</div>
 								</div>
 							</form>
