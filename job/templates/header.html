@@ -30,14 +30,13 @@
         {% if user.is_authenticated %}        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#"  id="profileDrop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, {{request.user}}</a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDrop">
+          <div class="dropdown-menu dropdown-menu-right custom-dropdown" aria-labelledby="profileDrop">
           <a class="dropdown-item" href="/accounts/profile/"><i class="fa fa-user"></i> PROFILE</a>
-          <a class="dropdown-item" href="/accounts/logout/">LOG OUT</a>
+          <a class="dropdown-item" href="/accounts/logout/"><i class="fa fa-sign-out" aria-hidden="true"></i> LOG OUT</a>
         </li>
         {% if user|has_group:"company" %}
-
         <li class="nav-item">
-          <a class="nav-link  " href="/post/job/">
+          <a class="nav-link " href="/post/job/">
             <i class="fa fa-user"></i> POST JOB</a>
         </li>
         {% endif %}

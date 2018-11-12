@@ -27,3 +27,13 @@ body {
   position:relative;
 }
 
+.custom-dropdown{
+  padding: 0px;
+}
+.custom-dropdown .dropdown-item{
+  padding: .4rem 1rem;
+}
+
+.custom-dropdown .dropdown-item:active {
+    background-color: #28a745;
+  }

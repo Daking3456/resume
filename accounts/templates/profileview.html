@@ -62,18 +62,22 @@
 												<tr>
 													<th scope="row" width="25%">Date of Birth</th>
 													<td>: &nbsp; {{ profile.dob }}</td>
+												</tr>												
+												<tr>
+													<th scope="row" width="25%">Mailing Address</th>
+													<td>: &nbsp; {{profile.mailing_address}}</td>
 												</tr>
 												<tr>
-													<th scope="row" width="25%">Marital Status</th>
-													<td>: &nbsp; {{profile.get_maritual_status_display}}</td>
+													<th scope="row" width="25%">City</th>
+													<td>: &nbsp; {{profile.city }}</td>
 												</tr>
 												<tr>
-													<th scope="row" width="25%">Current Address</th>
-													<td>: &nbsp; {{profile.current_address}}</td>
+													<th scope="row" width="25%">State</th>
+													<td>: &nbsp; {{profile.state }}</td>
 												</tr>
 												<tr>
-													<th scope="row" width="25%">Permanent Address</th>
-													<td>: &nbsp; {{profile.permanent_address }}</td>
+													<th scope="row" width="25%">Zip</th>
+													<td>: &nbsp; {{profile.zip_code }}</td>
 												</tr>
 												<tr>
 													<th scope="row" width="25%">Contact</th>
@@ -98,73 +102,81 @@
 															<form class="profile1" method="POST" action="">
 														<div class="modal-body">
 																{% csrf_token %}
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="name" class="col-form-label">Full Name<span>*</span></label>
-																	</div>
-																	<div class="col-md-8">
-																		<input type="text" class="form-control" name="full_name" placeholder="" value=" {{ profile.full_name}}">
-																	</div>
+																<div class="form-row">
+																    <div class="form-group col-md-4">
+																      <label for="fname">First Name <span>*</span></label>
+																      <input type="text" name="first_name" class="form-control form-control-sm" id="fname" placeholder="" required autocomplete="off" value="{{ profile.first_name }}">
+																    </div>
+																    <div class="form-group col-md-4">
+																      <label for="mname">Middle Name</label>
+																      <input type="text" name="middle_name" class="form-control form-control-sm" id="mname" placeholder="Middle Name" autocomplete="off" value="{{ profile.middle_name }}">
+																    </div>
+																    <div class="form-group col-md-4">
+																      <label for="lname">Last Name <span>*</span></label>
+																      <input type="text" name="last_name" class="form-control form-control-sm" id="lname" placeholder="" required autocomplete="off" value="{{ profile.last_name }}">
+																    </div>
 																</div>
-																<div class="form-group row">
+																<div class="form-row">
+																    <div class="form-group col-md-6">
+																      <label for="gender">Gender</label>
+																      <select id="gender" name=" gender" class="form-control form-control-sm">
+																       <!--  <option selected value="{{ profile.gender }}">{{ profile.get_gender }}</option> -->
+																        <option selected disabled>Choose...</option>
+																        <option value="1">Male</option>
+																        <option value="2">Female</option>
+																        <option value="3">Others</option>
+																      </select>
+																    </div>
+																    <div class="form-group col-md-6">
+																      <label for="dob">Date of Birth<span>*</span></label>
+																      <input type="text" name="dob" class="form-control form-control-sm datepicker_dob" id="dob" placeholder="" required autocomplete="off" value="{{ profile.dob }}">
+																    </div>
+																  </div>
+																<!--<div class="form-group row">
 																	<div class="col-md-4">
 																		<label for="gender" class="col-form-label">Gender<span>*</span></label>
 																	</div>
 																	<div class="col-md-5">
 																		<select class="custom-select" name="gender">
 																			<option selected value="{{ profile.gender }}">{{ profile.get_gender }}</option>
-																			<!-- <option value="1">Male</option>
+																			<option value="1">Male</option>
 																			<option value="2">Female</option>
-																			<option value="3">Prefer not to Say</option> -->
+																			<option value="3">Prefer not to Say</option>
 																		</select>
 																	</div>
 																</div>
-																<div class="form-group row">
+																 <div class="form-group row">
 																	<div class="col-md-4 input-daterange" id="datepicker">
 																		<label for="dob" class="col-form-label">Date of Birth <span> *</span></label>
 																	</div>
 																	<div class="col-md-5">
 																		<input type="text" class="datepicker form-control" name="dob" placeholder="" value="{{ profile.dob }}">
 																	</div>
+																</div> -->
+																<div class="form-group">
+																    <label for="mailaddress">Mailing Address<span>*</span></label>
+																    <input type="text" name="mailing_address" class="form-control form-control-sm" id="mailaddress" placeholder="" required autocomplete="off" value="{{ profile.mailing_address }}">
 																</div>
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="id_maritual_status" class="col-form-label">Marital Status<span>*</span></label>
-																	</div>
-																	<div class="col-md-5">									
-																		<select class="custom-select" name="maritual_status">
-																			<option selected value="{{profile.marritual_status}}">{{profile.get_marritual_status}}</option>
-																			<!-- <option selected disabled>-----</option>
-																			<option value="1">Married</option>
-																			<option value="2">Unmarried</option> -->
-																		</select>
-																	</div>
+																<div class="form-row">
+																    <div class="form-group col-md-6">
+																      <label for="inputCity">City<span>*</span></label>
+																      <input type="text" name="city" class="form-control form-control-sm" id="inputCity" required autocomplete="off" value="{{ profile.city }}">
+																    </div>
+																    <div class="form-group col-md-4">
+																      <label for="inputState">State<span>*</span></label>
+																      <input type="text" name="state" class="form-control form-control-sm" id="inputState" required autocomplete="off" value="{{ profile.state }}">
+																    </div>
+																    <div class="form-group col-md-2">
+																      <label for="inputZip">Zip<span>*</span></label>
+																      <input type="text" name="zip_code" class="form-control form-control-sm" id="inputZip" required autocomplete="off" value="{{ profile.zip_code }}">
+																    </div>
 																</div>
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="current_address" class="col-form-label">Current Address<span>*</span></label>
-																	</div>
-																	<div class="col-md-8">
-																		<input type="text" class="form-control" name="current_address" placeholder="" value="{{profile.current_address}}">
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="permanent_address" class="col-form-label">Permanent Address<span>*</span></label>
-																	</div>
-																	<div class="col-md-8">
-																		<input type="text" class="form-control" name="permanent_address" placeholder="" value="{{profile.permanent_address }}">
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="contact" class="col-form-label">Contact<span>*</span></label>
-																	</div>
-																	<div class="col-md-8">
-																		<input type="text" class="form-control" name="contact" placeholder="" value="{{profile.contact }}">
-																	</div>
-																</div>
-															
+																<div class="form-row">
+																	<div class="form-group col-md-6">
+																      <label for="contacnt">Contact <span>*</span></label>
+																      <input type="text" name="contact" class="form-control form-control-sm" id="contact"  required autocomplete="off" value="{{ profile.contact }}">
+																    </div>	
+															    </div>														
 														</div>
 														<div class="modal-footer">
 															<button class=" btn btn-success">Save</button>
@@ -198,7 +210,7 @@
 															<form class="profile2" method="POST" action="">
 														<div class="modal-body">
 																{% csrf_token %}
-																<div class="form-group row">
+																<!-- <div class="form-group row">
 																	<div class="col-md-5">
 																		<label for="organization_name" class="col-form-label">Organization Name<span>*</span></label>
 																	</div>
@@ -228,12 +240,12 @@
 																	</div>
 																	<div class="col-md-7">
 																		<select class="custom-select" name='job_level' required>
-																			<option selected value="{{ work.job_level }}">{{ work.job_level }}</option>
+																			<option selected value="{{ work.job_level }}">{{ work.job_level }}</option> -->
 																			<!-- <option value="top_level">Top Level</option>
 																			<option value="senior_level">Senior Level</option>
 																			<option value="mid_level">Mid Level</option>
 																			<option value="entry_level">Entry Level</option> -->
-																		</select>
+																	<!-- 	</select>
 																	</div>
 																</div>
 																<div class="form-group row">
@@ -243,13 +255,52 @@
 																	<div class="col-md-7">
 																		<textarea class="form-control" rows="3" name="responsibilities" value="{{work.responsibilities }}">{{work.responsibilities }}</textarea>
 																	</div>
+																</div> -->
+															<div class="form-group ">
+															    <label for="job_title">Job Title <span>*</span></label>
+															    <input type="text" class="form-control form-control-sm" name="job_title" id="job_title" placeholder="" required value="{{ work.job_title }}">
+															</div> 
+															<div class="form-row">
+																<div class="form-group col-md-6">
+																    <label for="company_name">Company Name<span>*</span></label>
+																    <input type="text" class="form-control form-control-sm" placeholder="" required name="company_name" id="company_name" value="{{ work.organization }}">
 																</div>
-															</form>
+																<div class="form-group col-md-6">
+																    <label for="location">Location</label>
+																    <input type="text" class="form-control form-control-sm" placeholder="" name="location" id="location" value="{{ work.location }}">
+																</div>
+															</div>
+															<div class="form-group">
+															  <div class="custom-control custom-checkbox checkedId">
+																	<input type="checkbox" class="custom-control-input" id="custom_check" name="custom_check">
+																	<label class="custom-control-label" for="custom_check">Currently Working Here?</label>
+																</div>
+															</div>
+															<div class="form-row">
+															    <div class="form-group col-md-6">
+															      <label for="s_date">Start Date<span>*</span></label>
+															      <input type="text" class="form-control form-control-sm s_date" id="s_date" placeholder="July, 2015" required name="s_date" value="{{ work.from_date }}">
+															    </div>
+															    <div class="form-group col-md-6 viewEndDate">
+															      <label for="e_date">End Date<span>*</span></label>
+															      <input type="text" class="form-control form-control-sm e_date" id="e_date" placeholder="June, 2016" required name="e_date" value="{{ work.to_date }}">
+															    </div>
+															</div>
+															<div class="form-group">
+															    <label for="desc">Description &amp; Responsibilities</label>
+															    <textarea rows="2" class="form-control form-control-sm" id="desc" name="desc" value="{{work.responsibilities }}">{{work.responsibilities }}</textarea>
+															</div>
+															<div class="form-group">
+															      <label for="env">Environment</label>
+															      <input type="text" class="form-control form-control-sm" id="env" name="env">
+															      <small id="envHelp" class="form-text text-muted">Skills that were learned on that work</small>
+															</div>
 														</div>
 														<div class="modal-footer">
 															<button class=" btn btn-success">Save</button>
 															<button class="btn btn-outline-default" data-dismiss="modal">Cancel</button>
 														</div>
+													</form>
 													</div>
 												</div>
 											</div>
@@ -282,78 +333,45 @@
 															<form class="profile2" method="POST" action="">
 														<div class="modal-body">
 																{% csrf_token %}
-																<div class="form-group row">
-																	<div class="col-md-5">
-																		<label for="organization_name" class="col-form-label">Organization Name<span>*</span></label>
-																	</div>
-																	<div class="col-md-7">
-																		<input type="text" class="form-control" name="organization" placeholder="Name of Company">
-																	</div>
+																<div class="form-group ">
+															    <label for="job_title">Job Title <span>*</span></label>
+															    <input type="text" class="form-control form-control-sm" name="job_title" id="job_title" placeholder="" required>
+															</div> 
+															<div class="form-row">
+																<div class="form-group col-md-6">
+																    <label for="company_name">Company Name<span>*</span></label>
+																    <input type="text" class="form-control form-control-sm" placeholder="" required name="company_name" id="company_name">
 																</div>
-																<div class="form-group row">
-																	<div class="col-md-5">
-																		<label for="location" class="col-form-label">Location</label>
-																	</div>
-																	<div class="col-md-7">
-																		<input type="text" class="form-control" name="location" placeholder="Organization Address">
-																	</div>
+																<div class="form-group col-md-6">
+																    <label for="location">Location</label>
+																    <input type="text" class="form-control form-control-sm" placeholder="" name="location" id="location">
 																</div>
-																<div class="form-group row">
-																	<div class="col-md-5">
-																		<label for="job_title" class="col-form-label">Job Title<span>*</span></label>
-																	</div>
-																	<div class="col-md-7">
-																		<input type="text" class="form-control" name="job_title" placeholder="Your job post">
-																	</div>
+															</div>
+															<div class="form-group">
+															  <div class="custom-control custom-checkbox checkedId">
+																	<input type="checkbox" class="custom-control-input" id="custom_checkbox" name="custom_checkbox">
+																	<label class="custom-control-label" for="custom_checkbox">Currently Working Here?</label>
 																</div>
-																<div class="form-group row">
-																	<div class="col-md-5">
-																		<label for="level" class="col-form-label">Job Level<span>*</span></label>
-																	</div>
-																	<div class="col-md-7">
-																		<select class="custom-select" name='job_level' required>
-																			<option selected disabled>-----</option>
-																			<option value="top_level">Top Level</option>
-																			<option value="senior_level">Senior Level</option>
-																			<option value="mid_level">Mid Level</option>
-																			<option value="entry_level">Entry Level</option>
-																		</select>
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<div class="col-md-5">
-																	</div>
-																	<div class="col-md-7">
-																		<div class="custom-control custom-checkbox" id="checkedId">
-																			<input type="checkbox" class="custom-control-input" id="customCheck1" name="currently_working">
-																			<label class="custom-control-label" for="customCheck1">Currently Working Here?</label>
-																		</div>
-																	</div>	
-																</div>
-																<div class="form-group row">
-																	<div class="col-md-5">
-																		<label for="start_date" class="col-form-label">Start Date<span>*</span></label>
-																	</div>
-																	<div class="col-md-7">
-																		<input type="dates" class="datepicker form-control" name="from_date" placeholder="Your job post">
-																	</div>	
-																</div>
-																<div class="form-group row" id="viewEndDate">
-																	<div class="col-md-5">
-																		<label for="end_date" class="col-form-label">End Date<span>*</span></label>
-																	</div>
-																	<div class="col-md-7">
-																		<input type="dates" class="datepicker form-control" name="to_date" placeholder="Your job post">
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<div class="col-md-5">
-																		<label for="level" class="col-form-label">Duties &amp; Responsibilities<span>*</span></label>
-																	</div>
-																	<div class="col-md-7">
-																		<textarea class="form-control" rows="3" name="responsibilities"></textarea>
-																	</div>
-																</div>
+															</div>
+															<div class="form-row">
+															    <div class="form-group col-md-6">
+															      <label for="s_date">Start Date<span>*</span></label>
+															      <input type="text" class="form-control form-control-sm s_date" id="s_date" placeholder="July, 2015" required name="s_date">
+															    </div>
+															    <div class="form-group col-md-6 viewEndDate">
+															      <label for="e_date">End Date<span>*</span></label>
+															      <input type="text" class="form-control form-control-sm e_date" id="e_date" placeholder="June, 2016" required name="e_date">
+															    </div>
+															</div>
+															<div class="form-group">
+															    <label for="desc">Description &amp; Responsibilities</label>
+															    <textarea rows="2" class="form-control form-control-sm" id="desc" name="desc"></textarea>
+															</div>
+															<div class="form-group">
+															      <label for="env">Environment</label>
+															      <input type="text" class="form-control form-control-sm" id="env" name="env">
+															      <small id="envHelp" class="form-text text-muted">Skills that were learned on that work</small>
+															</div>
 														</div>
 														<div class="modal-footer">
 															<button class=" btn btn-success">Save</button>
@@ -387,7 +405,7 @@
 															<form class="profile3" method="POST" action="">
 														<div class="modal-body">
 																{% csrf_token %}
-																<div class="form-group row">
+																<!-- <div class="form-group row">
 																	<div class="col-md-4">
 																		<label for="Degree" class="col-form-label">Degree<span>*</span></label>
 																	</div>
@@ -427,13 +445,73 @@
 																	<div class="col-md-5">
 																		<input type="text" class="form-control" name="graduation" placeholder="" maxlength="10" value="{{edu.graduation}}">
 																	</div>
+																</div> -->
+															<div class="form-group">
+																<label for="school" class="col-form-label">School<span>*</span></label>
+																<input type="text" class="form-control form-control-sm" name="school_name" placeholder="" required value="{{edu.institution}}">
+															</div>
+															<div class="form-row">
+															    <div class="form-group col-md-6">
+															      <label for="degree">Degree<span>*</span></label>
+															      <select class="form-control form-control-sm" name="degree">
+																		<option selected disabled>-----</option>
+																		<option value="Ph. D">Ph. D.</option>
+																		<option value="MD">MD</option>
+																		<option value="JD">JD</option>
+																		<option value="MBA">MBA</option>
+																		<option value="master_degree">Master's Degree</option>
+																		<option value="bachelor_degree">Bachelor's Degree</option>
+																		<option value="associate_degree">Associate's Degree</option>
+																		<option value="high_school_degree">High School's Degree</option>
+																	</select>
+															    </div>
+															    <div class="form-group col-md-6">
+															      <label for="study">Field of Study<span>*</span></label>
+															      <select class="form-control form-control-sm" name="study">
+																		<option selected disabled>-----</option>
+																		<option value="computer_forensics">Computer Forensics</option>
+																		<option value="computer_support_specialist">Computer Support Specialist</option>
+																		<option value="computer_programming_specific_applications">Computer Programming, Specific Applications</option>
+																		<option value="commercial_and_advertising_art">Commercial and Advertising Art</option>
+																		<option value="computational_science">Computational Science</option>
+																		<option value="computational_mathematics">Computational Mathematics</option>
+																		<option value="community_psychology">Community Psychology</option>
+																		<option value="computer_installation_and_repair_technology">Computer Installation and Repair Technology</option>
+																		<option value="computer_hardware_engineering">Computer Hardware Engineering</option>
+																		<option value="computer_systems_analysis">Computer Systems Analysis</option>
+																	</select>
+															    </div>
+															</div>
+															<div class="form-group ">
+																<label for="location" class="col-form-label">Location</label>
+																<input type="text" class="form-control form-control-sm" name="location" placeholder="" value="{{edu.location}}">
+															</div>
+															<div class="form-group">
+															  <div class="custom-control custom-checkbox edu_checkedId">
+																	<input type="checkbox" class="custom-control-input" id="edu_checkbox" name="currently_check">
+																	<label class="custom-control-label" for="edu_checkbox">I Currently attend</label>
 																</div>
-															</form>
+																</div>
+															<div class="form-row">
+															    <div class="form-group col-md-6">
+															      <label for="s_date">Start Date<span>*</span></label>
+															      <input type="text" class="form-control form-control-sm edu_startdate" id="s_date" placeholder="July, 2015" required value="{{edu.start}}">
+															    </div>
+															    <div class="form-group col-md-6 hideEndDate">
+															      <label for="e_date">End Date<span>*</span></label>
+															      <input type="text" class="form-control form-control-sm edu_enddate" id="e_date" placeholder="June, 2016" required value="{{edu.end}}">
+															    </div>
+															</div>
+															<div class="form-group">
+															    <label for="desc">Description</label>
+															    <textarea rows="2" class="form-control form-control-sm" id="desc"></textarea>
+															  </div>															
 														</div>
 														<div class="modal-footer">
 															<button class=" btn btn-success">Save</button>
 															<button class="btn btn-outline-default" data-dismiss="modal">Cancel</button>
 														</div>
+														</form>
 													</div>
 												</div>
 											</div>
@@ -441,8 +519,8 @@
 											<a href="/accounts/profile/education/delete/{{edu.id}}/" class="btn-delete"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
 										</div>					
 										<p><span class="ed-title">{{edu.degree}}</span>&nbsp;<span>{{edu.marks}}</span> </p>
-										<p><span>{{ edu.institution}}</span>&nbsp;,<span>{{ edu.graduation}}</span></p>
-										<p>{{edu.board}}</p>
+										<p><span>{{ edu.institution}}</span>&nbsp;,<span>{{ edu.location}}</span></p>
+										<p>{{edu.school}}</p>
 										<hr class="profile-line">
 									</div>	
 									{% endfor %}
@@ -463,55 +541,66 @@
 															<form class="profile3" method="POST" action="">
 														<div class="modal-body">
 																{% csrf_token %}
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="Degree" class="col-form-label">Degree<span>*</span></label>
-																	</div>
-																	<div class="col-md-8">
-																		<input type="text" class="form-control" name="degree" placeholder="Education Program">
-																	</div>						
+															<div class="form-group">
+																<label for="school" class="col-form-label">School<span>*</span></label>
+																<input type="text" class="form-control form-control-sm" name="school_name" placeholder="School Name" required>
+															</div>
+															<div class="form-row">
+															    <div class="form-group col-md-6">
+															      <label for="degree">Degree<span>*</span></label>
+															      <select class="form-control form-control-sm" name="degree">
+																		<option selected disabled>-----</option>
+																		<option value="Ph. D">Ph. D.</option>
+																		<option value="MD">MD</option>
+																		<option value="JD">JD</option>
+																		<option value="MBA">MBA</option>
+																		<option value="master_degree">Master's Degree</option>
+																		<option value="bachelor_degree">Bachelor's Degree</option>
+																		<option value="associate_degree">Associate's Degree</option>
+																		<option value="high_school_degree">High School's Degree</option>
+																	</select>
+															    </div>
+															    <div class="form-group col-md-6">
+															      <label for="study">Field of Study<span>*</span></label>
+															      <select class="form-control form-control-sm" name="study">
+																		<option selected disabled>-----</option>
+																		<option value="computer_forensics">Computer Forensics</option>
+																		<option value="computer_support_specialist">Computer Support Specialist</option>
+																		<option value="computer_programming_specific_applications">Computer Programming, Specific Applications</option>
+																		<option value="commercial_and_advertising_art">Commercial and Advertising Art</option>
+																		<option value="computational_science">Computational Science</option>
+																		<option value="computational_mathematics">Computational Mathematics</option>
+																		<option value="community_psychology">Community Psychology</option>
+																		<option value="computer_installation_and_repair_technology">Computer Installation and Repair Technology</option>
+																		<option value="computer_hardware_engineering">Computer Hardware Engineering</option>
+																		<option value="computer_systems_analysis">Computer Systems Analysis</option>
+																	</select>
+															    </div>
+															</div>
+															<div class="form-group ">
+																<label for="location" class="col-form-label">Location</label>
+																<input type="text" class="form-control form-control-sm" name="location" placeholder="Where You study">
+															</div>
+															<div class="form-group">
+															  <div class="custom-control custom-checkbox edu_checkedId">
+																	<input type="checkbox" class="custom-control-input" id="currently_check" name="currently_check">
+																	<label class="custom-control-label" for="currently_check">I Currently attend</label>
 																</div>
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="education_program" class="col-form-label">Education Program<span>*</span></label>
-																	</div>
-																	<div class="col-md-8">
-																		<input type="text" class="form-control" name="program" placeholder="Education Program">
-																	</div>
 																</div>
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="education_board" class="col-form-label">Education Board<span>*</span></label>
-																	</div>
-																	<div class="col-md-8">
-																		<input type="text" class="form-control" name="board" placeholder="Education Board">
-																	</div>									
-																</div>
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="name_of_institute" class="col-form-label">Institute Name<span>*</span></label>
-																	</div>
-																	<div class="col-md-8">
-																		<input type="text" class="form-control" name="institution" placeholder="Institute you Study">
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="marks_secured" class="col-form-label">Marks Secured In<span>*</span></label>
-																	</div>
-																	
-																	<div class="col-md-5">
-																		<input type="text" class="form-control" name="marks" placeholder="">
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="year" class="col-form-label">Graduation Year<span>*</span></label>
-																	</div>
-																	<div class="col-md-5">
-																		<input type="text" class="form-control" name="graduation" placeholder="" maxlength="10">
-																	</div>
-																</div>
+															<div class="form-row">
+															    <div class="form-group col-md-6">
+															      <label for="s_date">Start Date<span>*</span></label>
+															      <input type="text" class="form-control form-control-sm edu_startdate" id="s_date" placeholder="July, 2015" required>
+															    </div>
+															    <div class="form-group col-md-6 hideEndDate">
+															      <label for="e_date">End Date<span>*</span></label>
+															      <input type="text" class="form-control form-control-sm edu_enddate" id="e_date" placeholder="June, 2016" required>
+															    </div>
+															</div>
+															<div class="form-group">
+															    <label for="desc">Description</label>
+															    <textarea rows="2" class="form-control form-control-sm" id="desc"></textarea>
+															  </div>
 														</div>
 														<div class="modal-footer">
 															<button class=" btn btn-success">Save</button>
@@ -556,10 +645,10 @@
 														<div class="modal-body">
 															{% csrf_token %}
 															<div class="form-group row">
-																<div class="col-md-3">
+																<div class="col-md-4">
 																	<label for="skill" class="col-form-label">Select Your Skills<span>*</span></label>
 																</div>
-																<div class="col-md-9">
+																<div class="col-md-8">
 																	<select class="custom-select select2" multiple="multiple" data-placeholder="Select skills"
 																	style="width: 100%;" name="skills">
 																		{% for skill in skills%}
@@ -602,7 +691,7 @@
 															<form class="profile5" method="POST" action=""> 
 														<div class="modal-body">
 																{% csrf_token %}
-																<div class="form-group row">
+																<!-- <div class="form-group row">
 																	<div class="col-md-4">
 																		<label for="training_name" class="col-form-label">Training Name<span>*</span></label>
 																	</div>
@@ -633,7 +722,25 @@
 																	<div class="col-md-6">
 																		<input type="bootstrap-datepicker3" class="datepicker form-control" name="end_date" value="{{training.end_date}}">
 																	</div>	
-																</div>
+																</div> -->
+															<div class="form-group">	
+																<label for="training_name" class="col-form-label">Training Name<span>*</span></label>
+																<input type="text" class="form-control form-control-sm" name="name" placeholder="" value="{{ training.name }}">
+															</div>
+															<div class="form-group">
+																<label for="institution_name" class="col-form-label">Institution Name<span>*</span></label>
+																<input type="text" class="form-control form-control-sm" name="institution" placeholder="" value="{{training.institution}}">
+															</div>
+															<div class="form-row">
+															    <div class="form-group col-md-6">
+															      <label for="s_date">Start Date<span>*</span></label>
+															      <input type="text" class="form-control form-control-sm t_startdate" id="s_date" placeholder="" required value="{{training.start_date}}">
+															    </div>
+															    <div class="form-group col-md-6" id="hideEndDate">
+															      <label for="e_date">End Date<span>*</span></label>
+															      <input type="text" class="form-control form-control-sm t_enddate" id="e_date" placeholder="" required  value="{{training.end_date}}">
+															    </div>
+															</div>
 														</div>
 														<div class="modal-footer">
 															<button class=" btn btn-success">Save</button>
@@ -668,39 +775,25 @@
 														</div>
 															<form class="profile5" method="POST" action=""> 
 														<div class="modal-body">
-																{% csrf_token %}
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="training_name" class="col-form-label">Training Name<span>*</span></label>
-																	</div>
-																	<div class="col-md-8">
-																		<input type="text" class="form-control" name="name" placeholder="Training Name">
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="institution_name" class="col-form-label">Institution Name<span>*</span></label>
-																	</div>
-																	<div class="col-md-8">
-																		<input type="text" class="form-control" name="institution" placeholder="Institution you Study">
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="duration" class="col-form-label">Start Date<span>*</span></label>
-																	</div>
-																	<div class="col-md-6">
-																		<input type="text" class="datepicker form-control" name="start_date" placeholder="">
-																	</div>
-																</div>
-																<div class="form-group row">
-																	<div class="col-md-4">
-																		<label for="completion" class="col-form-label">End Date<span>*</span></label>
-																	</div>
-																	<div class="col-md-6">
-																		<input type="bootstrap-datepicker3" class="datepicker form-control" name="end_date" placeholder="">
-																	</div>	
-																</div>
+															{% csrf_token %}
+															<div class="form-group">	
+																<label for="training_name" class="col-form-label">Training Name<span>*</span></label>
+																<input type="text" class="form-control form-control-sm" name="name" placeholder="Training Name">
+															</div>
+															<div class="form-group">
+																<label for="institution_name" class="col-form-label">Institution Name<span>*</span></label>
+																<input type="text" class="form-control form-control-sm" name="institution" placeholder="Institution you Study">
+															</div>
+															<div class="form-row">
+															    <div class="form-group col-md-6">
+															      <label for="s_date">Start Date<span>*</span></label>
+															      <input type="text" class="form-control form-control-sm t_startdate" id="s_date" placeholder="01-Nov , 2018" required>
+															    </div>
+															    <div class="form-group col-md-6" id="hideEndDate">
+															      <label for="e_date">End Date<span>*</span></label>
+															      <input type="text" class="form-control form-control-sm t_enddate" id="e_date" placeholder="31-Nov , 2018" required>
+															    </div>
+															</div>
 														</div>
 														<div class="modal-footer">
 															<button class=" btn btn-success">Save</button>
@@ -734,11 +827,7 @@
 
 {% block extrascripts %}
 
-<!-- jquery cdn script-->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- bootstrap cdn script -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<!-- extra script -->
+
 <script type="text/javascript" src="https://s3.amazonaws.com/thurgoimages/hire/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="{% static 'js/select2.full.min.js' %}"></script>
 
@@ -746,17 +835,48 @@
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
-     $('.datepicker').datepicker({
-    format: 'yyyy-mm-dd',
-    });});
+    $('.datepicker_dob').datepicker({
+	    format: 'M dd , yyyy',
+	    autoclose: true     
+	});
+	$('.s_date').datepicker({
+   	 	format: 'M , yyyy',  
+   	 	 autoclose: true       
+	});
+	$('.e_date').datepicker({
+    	format: 'M , yyyy',  
+    	 autoclose: true       
+	});
+	$('.edu_startdate').datepicker({
+    	format: 'M , yyyy',    
+    	 autoclose: true     
+	});
+	$('.edu_enddate').datepicker({
+    format: 'M , yyyy',  
+     autoclose: true       
+	});
+	$('.t_startdate').datepicker({
+    format: 'd-M , yyyy',    
+    autoclose: true   
+	});
+	 autoclose: true     
+	$('.t_enddate').datepicker({
+    format: 'd-M , yyyy', 
+     autoclose: true        
+	});
+ });
 </script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
-    $('#checkedId').change(function() {
-        $('#viewEndDate').toggle();
-    });
-});
+      	$('.checkedId').change(function() {
+	        $('.viewEndDate').toggle();
+	    });
+	    $('.edu_checkedId').change(function() {
+        	$('.hideEndDate').toggle();
+    	});
+    
+	});
 </script>
 <script>
 $(document).ready(function(){
