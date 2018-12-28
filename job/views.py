@@ -165,7 +165,7 @@ def edit_job(request, slug):
 
 def see_applicants(request, slug):
     job = Job.objects.get(slug=slug)
-    applicants = Applicant.objects.filter(job=job).order_by("resume_score)
+    applicants = Applicant.objects.filter(job=job).order_by("resume_score")
     # job sent for displaying job title
 
     return render(request, 'job/view-applicants.html', {'applicants': applicants, 'job': job})
