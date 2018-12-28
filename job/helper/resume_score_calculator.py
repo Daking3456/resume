@@ -67,7 +67,9 @@ def resume_score(text):
         #                   'references': References}
 
         # sliced list of degrees
+        print(extracted_info )
         degrees_list = extracted_info['academics']
+
 
         # extracted as graduate and under graduate degree
         degrees = extract_education(degrees_list)
