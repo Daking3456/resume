@@ -60,7 +60,7 @@ class Job(models.Model):
     experience = models.PositiveSmallIntegerField(choices=EXPERIENCE_CHOICES) 
     no_opening = models.IntegerField(null=True, blank=True)
 
-    benifits = models.TextField(null=True, blank=True)
+    benefits = models.TextField(null=True, blank=True)
     salary = models.PositiveIntegerField(null=True, blank=True)
   
     deadline = models.DateTimeField()
@@ -79,7 +79,7 @@ class Job(models.Model):
         return '{}'.format(self.title)
 
     def save(self, **kwargs):
-        slug_str = "%s %s %s" % (self.title, self.company.user.username,self.created_at)
+        slug_str = "%s %s %s" % (self.title, self.company.user.username, self.created_at)
         self.slug = slugify(self, slug_str)
         super(Job, self).save(**kwargs)
 
@@ -94,6 +94,7 @@ class Applicant (models.Model):
     applicant = models.ForeignKey(User, on_delete=models.CASCADE)
     resume = models.FileField(upload_to="uploads/resume/%Y/%m/%d/")
     date_applied = models.DateTimeField(auto_now_add=True)
+    resume_score = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return '{}{}'.format(self.applicant.username, self.job.title)
@@ -109,5 +110,8 @@ class ParsedResume(models.Model):
     education = models.TextField(null=True, blank=True)
     experience = models.TextField(null=True, blank=True)
     skills = models.TextField(null=True, blank=True)
-
-
+    grad_degree = models.NullBooleanField(null=True, blank=True)
+    undergrad_degree = models.NullBooleanField(null=True, blank=True)
+    total_experience = models.TextField(null=True, blank=True)
+    skills_present = models.TextField(null=True, blank=True)
+    resume_score = models.IntegerField(null=True, blank=True)

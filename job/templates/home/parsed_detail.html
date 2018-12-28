@@ -1,20 +1,22 @@
-{% if parsedvalue %}
+{% if parsed_value %}
 
 <div class="modal fade" id="modaltoload" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
  <div class="container ">
 
-  <h4>It looks like you applied for:{{ parsedvalue.applied_for }} </h4>
+  <h4>It looks like you applied for:{{ parsed_value.applied_for }} </h4>
 
-<p><strong>Profile:</strong>{{ parsedvalue.personal_info|linebreaks }}  </p>
+<p><strong>Profile:</strong>{{ parsed_value.personal_info|linebreaks }}  </p>
 <p><strong>Education:</strong>
-<br>{{ parsedvalue.education|linebreaks }}</p>
+<br>{{ parsed_value.education|linebreaks }}</p>
 <p><strong>
 Experience:</strong>
-<br>{{ parsedvalue.experience|linebreaks }}</p>
+<br>{{ parsed_value.experience|linebreaks }}</p>
 <p><strong>Skills:</strong>
-<br>{{ parsedvalue.skills|linebreaks }}</p>
+<br>{{ parsed_value.skills|linebreaks }}</p>
+<p><strong>Resume Score:</strong>
+<br>{{ parsed_value.resume_score}}</p>
 
 
         <div class="modal-footer">

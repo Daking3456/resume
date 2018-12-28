@@ -10,6 +10,13 @@ from job.resume_verifier import Resume
 from haystack.query import SearchQuerySet
 from haystack.generic_views import FacetedSearchView as BaseFacetedSearchView
 
+from .helper.resume_verifier_domain import resume_verifier as rv
+from .helper.resume_verifier_domain import resume_domain_identifier as rdi
+from .helper import slice_resume_text
+from .helper import resume_score_calculator
+
+FILE_TYPES = ['txt']
+
 
 # This function is for the authorization
 def job_poster(user):
@@ -17,62 +24,59 @@ def job_poster(user):
 
 
 def load_home(request):
-    parsedvalue = []
+    parsed_value = []
 
     if request.method == 'POST':
-        resume = request.FILES['temp_resume']
-        data = resume.read()
-        print(data)
 
-        resume_status1 = Resume.resume_verifier(data)
-        resume_status = Resume.resume_classifier(data)
-            
-        if resume_status:
-            user = request.user
-            
-            temp = TempResume.objects.create(temp_resume=resume)
+        # Request name of the file
+        resume_name = request.FILES['temp_resume'].name
+        resume_name = resume_name.split('.').pop()
 
-            if user.is_authenticated:
-                user.recent_resume = temp.temp_resume
-                user.save()
-            messages.success(request, 'Resume Uploaded Successfully!')
+        if resume_name in FILE_TYPES:
+            # Request original file
+            resume = request.FILES['temp_resume']
+            text = resume.read()
+            text = text.decode('UTF-8')
 
-            scraped_dict = Resume.parse_resume()
+            resume_status = rv(text)
 
-            print(scraped_dict)
+            if resume_status is True:
+                user = request.user
 
-            parsedvalue = ParsedResume.objects.create(
-                                        applied_for=scraped_dict['applied_for'],
-                                        personal_info=scraped_dict['personal_info'], 
-                                        education=scraped_dict['education'], 
-                                        experience=scraped_dict['experience'],
-                                        skills=scraped_dict['skills'])
-            if user.is_authenticated:
-                # Add other fields as per the model
-                try:
-                
-                    UserProfile.objects.create(user=request.user)
+                temp = TempResume.objects.create(temp_resume=resume)
 
-                except:
-                    messages.error(request, ' ')
+                if user.is_authenticated:
+                    user.recent_resume = temp.temp_resume
+                    user.save()
+                messages.success(request, 'Resume Uploaded Successfully!')
 
+                resume_domain = rdi(text)
+                scraped_dict = slice_resume_text.formated_parsed_information(text)
+                resume_points = resume_score_calculator.resume_score(text)
+                print(resume_points)
+
+                parsed_value = ParsedResume.objects.create(
+                    applied_for=resume_domain,
+                    personal_info=scraped_dict['profile'],
+                    education=scraped_dict['academics'],
+                    experience=scraped_dict['experiences'],
+                    skills=scraped_dict['skills'],
+                    skills_present=scraped_dict['projects'],
+                    resume_score=resume_points)
+            else:
+                messages.error(request, 'The Resume is not valid, try again!')
         else:
-            messages.error(request, 'The Resume is not valid, try again!')
+            messages.error(request, 'Invalid file type...')
 
     companies = Company.objects.all()
     jobs = []
     for company in companies:
         j = Job.objects.filter(company=company).order_by('-id')[:2]
-        print(j)
+        # print(j)
         if len(j) > 0:
             jobs.append(j)
-    try:
-        featured_job = Job.objects.all()[0]
-    except Exception as e:
-        print(e)
-        featured_job = []
-    fields = Field.objects.all()[:5]
-    context_dict = {'jobs': jobs, 'fields': fields, 'featured_job': featured_job, 'parsedvalue': parsedvalue}
+
+    context_dict = {'jobs': jobs, 'parsed_value': parsed_value}
 
     return render(request, 'home.html', context_dict)
 
@@ -100,25 +104,28 @@ def job_detail(request, slug):
     job = Job.objects.get(slug=slug)
     if request.method == 'POST' and request.FILES['resume']: 
         user = request.user
+
         resume = request.FILES['resume']
-        
-        # Uses machine learning to verify the resume
-        resume_status = Resume.resume_verifier()
+        text = resume.read()
+        text = text.decode('UTF-8')
+
+        resume_status = rv(text)
 
         if resume_status is True:
+            resume_points = resume_score_calculator.resume_score(text)
             # print (job)
             # if User applies again to update their credentials
             if Applicant.objects.filter(job=job, applicant=user):
                 applicant = Applicant.objects.get(job=job, applicant=user)
                 applicant.delete()
                 Applicant.objects.create(name= request.POST.get('name'), email=request.POST.get('email'), job=job,
-                                         applicant=user, resume=resume)
+                                         applicant=user, resume=resume, resume_score=resume_points)
                 messages.success(request, 'Reapplied with updated credentials')
             
             # Appling for the first time
             else:
                 Applicant.objects.create(name= request.POST.get('name'), email=request.POST.get('email'), job=job,
-                                         applicant=user, resume=resume)
+                                         applicant=user, resume=resume, resume_score=resume_points )
                 messages.success(request, 'Job applied Successfully!')
 
         else:
@@ -158,17 +165,17 @@ def edit_job(request, slug):
 
 def see_applicants(request, slug):
     job = Job.objects.get(slug=slug)
-    applicants = Applicant.objects.filter(job=job)
+    applicants = Applicant.objects.filter(job=job).order_by("resume_score)
     # job sent for displaying job title
 
     return render(request, 'job/view-applicants.html', {'applicants': applicants, 'job': job})
 
 
 def edit_parsed_data(request):
-    parsedvalue = ParsedResume.objects.all().order_by('-id')[0]
+    parsed_value = ParsedResume.objects.all().order_by('-id')[0]
     
     if request.method == 'POST':
-        form = ParsedResumeForm(request.POST, instance=parsedvalue)
+        form = ParsedResumeForm(request.POST, instance=parsed_value)
         if form.is_valid():
             form.save()
             messages.success(request, 'Edited Successfully!')
@@ -177,7 +184,7 @@ def edit_parsed_data(request):
         return HttpResponseRedirect('/')
     else:
         form = ParsedResumeForm()
-        context_dict = {'form': form, 'parsedvalue': parsedvalue}
+        context_dict = {'form': form, 'parsed_value': parsed_value}
         return render(request, 'edit_parsed_detail.html', context_dict)
 
 
@@ -188,7 +195,7 @@ def filtered_job(request):
         try:
             job.append(Job.objects.get(id=i))
         
-        except:
+        except Job.DoesNotExist:
 
             pass
 

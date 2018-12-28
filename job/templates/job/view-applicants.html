@@ -11,6 +11,7 @@
         <th>Name</th>
         <th>Email</th>
         <th>Resume</th>
+        <th>Resume Score</th>
       </tr>
     </thead>
     <tbody>
@@ -19,10 +20,12 @@
       	<td>{{applicant.date_applied|date:'Y-m-d'}}</td>
         <td>{{applicant.applicant.username}}</td>
         <td>{{applicant.applicant.email}}</td>
+
         <td>
 		<a href="/media/{{applicant.resume}}/" download="{{applicant.resume}}" class="btn btn-info btn-sm">
           <span class="glyphicon glyphicon-download-alt"></span> Download
-        </a></td>   
+        </a></td>
+        <td>{{applicant.resume_score}}</td>
       </tr>
 
       {% endfor %}

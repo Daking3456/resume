@@ -85,7 +85,6 @@ class Resume:
 		return a
 
 	def parse_resume():
-		
 
 		parsed_value = {'applied_for': 'Title',
 						'personal_info':'Name Ram Shah \nAddress: Naxal\nContact 435234 \nEmail ram@shah.com',
@@ -95,6 +94,7 @@ class Resume:
 						}
 		return parsed_value
 
+	@staticmethod
 	def filtered_jobs():
 		job = (1,2,4)
 		return job
